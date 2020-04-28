@@ -69,6 +69,7 @@ brew "watch"
 brew "wget"
 # YubiKey personalization library and tool
 brew "ykpers"
+brew "square/formula/beyond-curl"
 # Drop-in MySQL replacement
 brew "square/formula/percona-server"
 brew "square/self/erg"
