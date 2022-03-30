@@ -103,9 +103,7 @@ defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 # Show indicator lights for open applications in the Dock
 defaults write com.apple.dock show-process-indicators -bool true
 
-# Wipe all (default) app icons from the Dock
-# This is only really useful when setting up a new Mac, or if you don’t use
-# the Dock to launch apps.
+# Wipe all (default) app icons from the Doc
 defaults write com.apple.dock persistent-apps -array
 
 # Show only open applications in the Dock
@@ -121,10 +119,10 @@ defaults write com.apple.dock expose-animation-duration -float 0.1
 defaults write com.apple.dock mru-spaces -bool false
 
 # Remove the auto-hiding Dock delay
-defaults write com.apple.dock autohide-delay -float 0
+# defaults write com.apple.dock autohide-delay -float 0
 
 # Remove the animation when hiding/showing the Dock
-defaults write com.apple.dock autohide-time-modifier -float 0
+# defaults write com.apple.dock autohide-time-modifier -float 0
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
@@ -142,3 +140,4 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
 killall Finder
+killall Dock
