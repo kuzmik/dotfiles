@@ -1,0 +1,62 @@
+### User configuration specific to nick
+umask 077
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+. $(brew --prefix asdf)/libexec/asdf.sh
+
+export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
+export HOMEBREW_NO_ENV_HINTS=1
+export RIPGREP_CONFIG_PATH="/Users/nick/.ripgreprc"
+export HISTSIZE=1000000000
+export SAVEHIST=1000000000
+
+setopt AUTO_PUSHD               # Push the old directory onto the stack on cd.
+setopt PUSHD_IGNORE_DUPS        # Do not store duplicates in the stack.
+setopt PUSHD_SILENT             # Do not print the directory stack after pushd or popd.
+
+setopt CORRECT                  # Spelling correction
+setopt CDABLE_VARS              # Change directory to a path stored in a variable.
+setopt EXTENDED_GLOB            # Use extended globbing syntax.
+
+setopt EXTENDED_HISTORY         # Write the history file in the ':start:elapsed;command' format.
+setopt SHARE_HISTORY            # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST   # Expire a duplicate event first when trimming history.
+setopt HIST_IGNORE_DUPS         # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS     # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_FIND_NO_DUPS        # Do not display a previously found event.
+setopt HIST_IGNORE_SPACE        # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS        # Do not write a duplicate event to the history file.
+
+unsetopt FLOW_CONTROL           # Ctrl+S and Ctrl+Q usually disable/enable tty input. This disables those inputs
+
+
+### Normal zsh
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+ZSH_THEME="kuzmik" # set by `omz`
+
+zstyle ':omz:update' mode disabled  # disable automatic updates
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+plugins=(git sudo brew asdf zsh-syntax-highlighting zsh-autosuggestions)
+
+source $ZSH/oh-my-zsh.sh
+
+eval "$(starship init zsh)"

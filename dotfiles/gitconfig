@@ -1,15 +1,6 @@
-[diff]
-	tool = meld
-
-[difftool]
-	prompt = false
-
-[difftool "meld"]
-    cmd = meld "$LOCAL" "$REMOTE"
-
 [user]
 	name = Nick Kuzmik
-	email = kuzmik@squareup.com
+	email = nick@kuzmik.org
 
 [push]
 	config = default
