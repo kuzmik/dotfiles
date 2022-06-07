@@ -26,6 +26,9 @@ github = "romkatv/zsh-defer"
 github = "Aloxaf/fzf-tab"
 apply = ["defer"]
 
+[plugins.fzf-history-search]
+github = "joshskidmore/zsh-fzf-history-search"
+
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
 apply = ["defer"]
@@ -47,6 +50,3 @@ apply = ["defer"]
 [plugins.sudo]
 github = "hcgraf/zsh-sudo"
 apply = ["defer"]
-
-[plugins.fzf-history-search]
-github = "joshskidmore/zsh-fzf-history-search"

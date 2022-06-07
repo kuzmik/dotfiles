@@ -47,7 +47,7 @@ setopt COMPLETE_IN_WORD     # Complete from both ends of a word.
 # | zstyles |
 # +---------+
 
-# Ztyle pattern
+# zstyle pattern
 # :completion:<function>:<completer>:<command>:<argument>:<tag>
 
 # Define completers
@@ -56,14 +56,13 @@ zstyle ':completion:*' completer _extensions _complete _approximate
 # Use cache for commands using cache
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$ZDOTDIR/zcompcache"
+
 # Complete the alias when _expand_alias is used as a function
 zstyle ':completion:*' complete true
 
 zle -C alias-expension complete-word _generic
 bindkey '^Xa' alias-expension
 zstyle ':completion:alias-expension:*' completer _expand_alias
-
-# Use cache for commands which use it
 
 # Allow you to select in a menu
 zstyle ':completion:*' menu select
@@ -77,12 +76,13 @@ zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
 zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 # zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+
 # Colors for files and directory
 zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # Only display some tags for the command cd
 zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
-# zstyle ':completion:*:complete:git:argument-1:' tag-order !aliases
+zstyle ':completion:*:complete:git:argument-1:' tag-order !aliases
 
 # Required for completion to be in good groups (named after the tags)
 zstyle ':completion:*' group-name ''
@@ -100,3 +100,31 @@ if (( $+commands[op] )); then
     eval "$(op completion zsh)"; compdef _op op
   fi
 fi
+
+# Setup fzf to use ripgrep and bat, if possible
+if (( $+commands[fzf] )); then
+  if (( $+commands[rg] )); then
+    if command -v rg >/dev/null 2>&1; then
+      export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow"
+    fi
+  fi
+
+  if (( $+commands[bat] )); then
+    if command -v bat >/dev/null 2>&1; then
+      export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+      export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {}"
+    fi
+  fi
+fi
+
+# fzf-tab zsh plugin configuration
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -l --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
+zstyle ':fzf-tab:complete:ls:*' fzf-preview 'exa -l --color=always $realpath'
+zstyle ':fzf-tab:complete:ls:*' popup-pad 30 0
+zstyle ':fzf-tab:complete:*:options' fzf-preview ''
+
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'bat --style=numbers,changes --wrap never --color always {} || cat {}'
+
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
+export LESSOPEN='|/Users/nick/.local/bin/lessfilter %s'

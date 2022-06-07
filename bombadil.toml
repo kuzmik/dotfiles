@@ -7,6 +7,7 @@ dotfiles_dir = "Code/dotfiles"
 prehooks = [
   "mkdir -p ~/.sheldon",
   "mkdir -p ~/.config/bat",
+  "mkdir -p ~/.local/bin",
 ]
 
 [settings.dots]
@@ -15,8 +16,8 @@ prehooks = [
 #   `source` is relative to `dotfiles_dir`
 #   `target` shall be relative to $HOME directory or absolute
 
+asdfrc = { source = "asdfrc", target = ".asdfrc" }
 bat = { source = "bat", target = ".config/bat/config" }
-fzf = { source = "fzfrc", target = ".fzfrc" }
 gemrc = { source = "gemrc", target = ".gemrc" }
 gitconfig = { source = "gitconfig", target = ".gitconfig" }
 ripgrep = { source = "ripgreprc", target = ".ripgreprc" }
@@ -24,4 +25,4 @@ sheldon = { source = "sheldon-plugins.toml", target = ".sheldon/plugins.toml" }
 starship = { source = "starship.toml", target = ".config/starship.toml" }
 zshdir = { source = "zsh_dir", target = ".zsh" }
 zshenv = { source = "zshenv", target = ".zshenv" }
-
+lessfilter = { source = "lessfilter", target = ".local/bin/lessfilter" }

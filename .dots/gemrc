@@ -1,7 +1,0 @@
----
-benchmark: false
-verbose: true
-gem: --no-document
-:sources:
-- https://gems.vip.global.square/
-- https://gems.vip.global.square/private/
