@@ -6,7 +6,13 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 . $(brew --prefix asdf)/libexec/asdf.sh
 
 alias l="ls -alG"
+alias vg="rg --vimgrep"
+alias bo='brew update && brew outdated'
+alias grb='git fetch --all && git rebase -i origin/master'
+alias dcom="docker compose"
+alias cpw="cd ~/Code/persona-web"
 
+export EDITOR="vim"
 export CLICOLOR=1
 export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 
@@ -16,6 +22,8 @@ export RIPGREP_CONFIG_PATH="/Users/nick/.ripgreprc"
 export HISTFILE="$ZDOTDIR/history"
 export HISTSIZE=1000000000
 export SAVEHIST=1000000000
+
+export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 
 setopt AUTO_PUSHD               # Push the old directory onto the stack on cd.
 setopt PUSHD_IGNORE_DUPS        # Do not store duplicates in the stack.

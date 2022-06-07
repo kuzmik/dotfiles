@@ -1,3 +1,5 @@
+# ~/.railsrc
+
 --database=mysql
 --skip-bootsnap
 --skip-coffee
