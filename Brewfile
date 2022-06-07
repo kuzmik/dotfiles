@@ -1,0 +1,25 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+
+brew "htop"
+brew "asdf"
+brew "ripgrep"
+brew "bat"
+brew "jq"
+brew "fzf"
+brew "sheldon"
+brew "starship"
+
+cask "1password"
+cask "1password-cli"
+cask "iterm2"
+cask "keepingyouawake"
+cask "sublime-text"
+
+## These are do-without-able
+# cask "brave-browser"
+# cask "cleanmymac"
+# cask "discord"
+# cask "slack"

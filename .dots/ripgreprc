@@ -1,0 +1,10 @@
+# ~/.ripgreprc
+
+--glob=!git
+--colors=line:style:bold
+--smart-case
+--hidden
+--pretty
+
+# slows it down a little but sorts by filename
+--sort=path

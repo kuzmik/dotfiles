@@ -1,4 +1,4 @@
-# -? ~/.config/bat/config
+# ~/.config/bat/config
 
 # This is `bat`s configuration file. Each line either contains a comment or
 # a command-line option that you want to pass to `bat` by default. You can

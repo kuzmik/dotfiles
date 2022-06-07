@@ -1,0 +1,12 @@
+alias bo='brew update && brew outdated'
+alias gcb="git pull && git br --merged | grep -v master | xargs git br -d && git remote prune origin && git branch -r --merged | egrep -v '(HEAD|master|deployable)' | sed 's/origin\///' | xargs -n 1 git push origin --delete"
+alias gitclean='OLDPWD=`pwd`; for i in $(ls -d /Users/kuzmik/Code/*); do cd $i; echo "    Cleaning $i"; git co master; git pull && git prune; git remote prune origin; git gc; done; cd $OLDPWD; unset OLDPWD && pkill -f "ssh git@git"; unset i'
+alias gitsuperclean='OLDPWD=`pwd`; for i in $(ls -d /Users/kuzmik/Code/*); do cd $i; echo "    Cleaning $i"; git co master; git pull && git prune; git branch --merged master | grep -v 'master$' | xargs git branch -d; git gc --aggressive; done; cd $OLDPWD; unset OLDPWD && pkill -f "ssh git@git"; unset i'
+alias gitup='OLDWD=`pwd`; for i in $(ls -d /Users/kuzmik/Code/*); do cd $i; echo "Updating $i"; git co master > /dev/null 2>&1 ; git reset --hard; git pull && git fetch -p origin; git prune; done; cd $OLDWD; unset OLDWD && pkill -f "ssh git@git"'
+alias grb='git fetch --all && git rebase -i origin/master'
+alias lockscreen='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
+alias lsl='ls -hal'
+alias lunch='~/Code/remote_employee_toolkit/submit_lunch_expense.rb -u aa_kuzmik_squareup_com -s 683219f8048e6422fa234abf852351f1b876537c'
+alias m2d='git push origin master:deployable --force-with-lease'
+alias osqi='sudo "/Library/Application Support/CloudKit/CloudKitDaemon" -S --ephemeral'
+alias profileme="history | awk '{print \$4}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"

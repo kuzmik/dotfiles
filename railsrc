@@ -1,0 +1,10 @@
+# ~/.railsrc
+
+--database=mysql
+--skip-bootsnap
+--skip-coffee
+--skip-listen
+--skip-spring
+--skip-system-test
+--skip-test
+--skip-turbolinks
