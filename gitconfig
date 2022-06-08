@@ -2,7 +2,7 @@
 
 [user]
 	name = Nick Kuzmik
-	email = nick@kuzmik.org
+	email = {{git_email}}
 
 [push]
 	config = default

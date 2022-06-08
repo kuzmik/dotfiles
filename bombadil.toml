@@ -9,6 +9,8 @@ prehooks = [
   "mkdir -p ~/.config/bat",
   "mkdir -p ~/.local/bin",
 ]
+# default vars
+vars = [ "vars-home.toml" ]
 
 [settings.dots]
 
@@ -27,3 +29,7 @@ zshdir = { source = "zsh_dir", target = ".zsh" }
 zshenv = { source = "zshenv", target = ".zshenv" }
 lessfilter = { source = "bin/lessfilter", target = ".local/bin/lessfilter" }
 inputrc = { source = "inputrc", target = ".inputrc" }
+
+[profiles.work]
+vars = [ "vars-work.toml" ]
+
