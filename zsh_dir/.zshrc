@@ -22,7 +22,8 @@ export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 export PATH="/opt/homebrew/opt/python@3.10/bin:$HOME/.local/bin:$PATH"
 export HOMEBREW_NO_ENV_HINTS=1
 export RIPGREP_CONFIG_PATH='/Users/nick/.ripgreprc'
-export HISTFILE="$ZDOTDIR/history"
+# commenting out because i lose history everytime i link dotfiles
+export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=1000000000
 export SAVEHIST=1000000000
 
