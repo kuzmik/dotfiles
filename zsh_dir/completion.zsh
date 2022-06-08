@@ -30,8 +30,6 @@ bindkey -M menuselect '^xu' undo                           # Undo
 autoload -U compinit; compinit
 _comp_options+=(globdots) # With hidden files
 
-# Only work with the Zsh function vman
-# See $DOTFILES/zsh/scripts.zsh
 compdef vman="man"
 
 # +---------+
@@ -111,7 +109,8 @@ if (( $+commands[fzf] )); then
 
   if (( $+commands[bat] )); then
     if command -v bat >/dev/null 2>&1; then
-      export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+      export FZF_DEFAULT_OPTS='--inline-info --multi --reverse --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500"'
+#      export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
       export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {}"
     fi
   fi
@@ -125,6 +124,6 @@ zstyle ':fzf-tab:complete:ls:*' popup-pad 30 0
 zstyle ':fzf-tab:complete:*:options' fzf-preview ''
 
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'bat --style=numbers,changes --wrap never --color always {} || cat {}'
-
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
+
 export LESSOPEN='|/Users/nick/.local/bin/lessfilter %s'

@@ -28,6 +28,7 @@ apply = ["defer"]
 
 [plugins.fzf-history-search]
 github = "joshskidmore/zsh-fzf-history-search"
+apply = ["defer"]
 
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"

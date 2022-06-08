@@ -13,7 +13,6 @@ prehooks = [
 vars = [ "vars-home.toml" ]
 
 [settings.dots]
-
 # A dot entry representing a symlink
 #   `source` is relative to `dotfiles_dir`
 #   `target` shall be relative to $HOME directory or absolute
@@ -32,4 +31,3 @@ inputrc = { source = "inputrc", target = ".inputrc" }
 
 [profiles.work]
 vars = [ "vars-work.toml" ]
-
