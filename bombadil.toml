@@ -25,4 +25,5 @@ sheldon = { source = "sheldon-plugins.toml", target = ".sheldon/plugins.toml" }
 starship = { source = "starship.toml", target = ".config/starship.toml" }
 zshdir = { source = "zsh_dir", target = ".zsh" }
 zshenv = { source = "zshenv", target = ".zshenv" }
-lessfilter = { source = "lessfilter", target = ".local/bin/lessfilter" }
+lessfilter = { source = "bin/lessfilter", target = ".local/bin/lessfilter" }
+inputrc = { source = "inputrc", target = ".inputrc" }
