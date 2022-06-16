@@ -5,7 +5,7 @@ mime=$(file -bL --mime-type "$1")
 category=${mime%%/*}
 
 if [ -d "$1" ]; then
-	exa --git -hl --color=always --icons "$1"
+	exa --git -hl --color=always --no-icons "$1"
 elif [ "$category" = text ]; then
 	bat --color=always "$1"
 else

@@ -117,9 +117,9 @@ if (( $+commands[fzf] )); then
 fi
 
 # fzf-tab zsh plugin configuration
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -l --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -l --color=always --no-icons $realpath'
 zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
-zstyle ':fzf-tab:complete:ls:*' fzf-preview 'exa -l --color=always $realpath'
+zstyle ':fzf-tab:complete:ls:*' fzf-preview 'exa -l --color=always --no-icons $realpath'
 zstyle ':fzf-tab:complete:ls:*' popup-pad 30 0
 zstyle ':fzf-tab:complete:*:options' fzf-preview ''
 
