@@ -8,13 +8,14 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 . $(brew --prefix asdf)/libexec/asdf.sh
 
 alias lsl='ls -halG'
-alias l="ls -alG"
 alias vg='rg --vimgrep'
 alias bo='brew update && brew outdated'
 alias grb='git fetch --all && git rebase -i origin/master'
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+# work specific
 alias dcom='docker compose'
 alias cpw='cd ~/Code/persona-web'
-alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 export EDITOR='vim'
 export CLICOLOR=1
