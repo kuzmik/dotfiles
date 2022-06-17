@@ -51,3 +51,7 @@ apply = ["defer"]
 [plugins.sudo]
 github = "hcgraf/zsh-sudo"
 apply = ["defer"]
+
+[plugins.autoenv]
+github = "nocttuam/autodotenv"
+apply = ["defer"]
