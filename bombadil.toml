@@ -4,13 +4,14 @@
 dotfiles_dir = "Code/dotfiles"
 
 [settings]
+# default vars
+vars = [ "vars-home.toml" ]
+
 prehooks = [
   "mkdir -p ~/.sheldon",
   "mkdir -p ~/.config/bat",
   "mkdir -p ~/.local/bin",
 ]
-# default vars
-vars = [ "vars-home.toml" ]
 
 [settings.dots]
 # A dot entry representing a symlink
@@ -21,13 +22,14 @@ asdfrc = { source = "asdfrc", target = ".asdfrc" }
 bat = { source = "bat", target = ".config/bat/config" }
 gemrc = { source = "gemrc", target = ".gemrc" }
 gitconfig = { source = "gitconfig", target = ".gitconfig" }
+inputrc = { source = "inputrc", target = ".inputrc" }
+lessfilter = { source = "bin/lessfilter", target = ".local/bin/lessfilter" }
 ripgrep = { source = "ripgreprc", target = ".ripgreprc" }
 sheldon = { source = "sheldon-plugins.toml", target = ".sheldon/plugins.toml" }
 starship = { source = "starship.toml", target = ".config/starship.toml" }
+tigrc = { source = "tigrc", target = ".tigrc" }
 zshdir = { source = "zsh_dir", target = ".zsh" }
 zshenv = { source = "zshenv", target = ".zshenv" }
-lessfilter = { source = "bin/lessfilter", target = ".local/bin/lessfilter" }
-inputrc = { source = "inputrc", target = ".inputrc" }
 
 [profiles.work]
 vars = [ "vars-work.toml" ]
