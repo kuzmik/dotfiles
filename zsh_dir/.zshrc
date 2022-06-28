@@ -29,6 +29,7 @@ export RIPGREP_CONFIG_PATH='/Users/nick/.ripgreprc'
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=1000000000
 export SAVEHIST=1000000000
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 setopt AUTO_PUSHD               # Push the old directory onto the stack on cd.
 setopt PUSHD_IGNORE_DUPS        # Do not store duplicates in the stack.

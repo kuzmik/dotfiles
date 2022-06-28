@@ -116,14 +116,23 @@ if (( $+commands[fzf] )); then
   fi
 fi
 
-# fzf-tab zsh plugin configuration
+## fzf-tab zsh plugin configuration
+
+# directories and files
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -l --color=always --no-icons $realpath'
 zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
 zstyle ':fzf-tab:complete:ls:*' fzf-preview 'exa -l --color=always --no-icons $realpath'
 zstyle ':fzf-tab:complete:ls:*' popup-pad 30 0
-zstyle ':fzf-tab:complete:*:options' fzf-preview ''
-
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'bat --style=numbers,changes --wrap never --color always {} || cat {}'
-zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'LESSOPEN="|/Users/nick/.local/bin/lessfilter %s" less ${(Q)realpath}'
 
-export LESSOPEN='|/Users/nick/.local/bin/lessfilter %s'
+# ps/kill completion
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview '[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
+
+# Homebrew
+zstyle ':fzf-tab:complete:brew-(install|uninstall|search|info):*-argument-rest' fzf-preview 'brew info $word'
+
+# env vars
+zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ${(P)word}'

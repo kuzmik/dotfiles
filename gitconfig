@@ -16,8 +16,8 @@
 	showUntrackedFiles = all
 
 [branch]
-
 	autosetupmerge = true
+
 [merge]
 	summary = true
 	conflictstyle = diff3

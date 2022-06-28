@@ -22,12 +22,17 @@ defer = { value = 'zsh-defer source "{{ file }}"', each = true }
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
-[plugins.fzf-tab]
-github = "Aloxaf/fzf-tab"
+[plugins.base16]
+github = "chriskempson/base16-shell"
 apply = ["defer"]
 
-[plugins.fzf-history-search]
-github = "joshskidmore/zsh-fzf-history-search"
+[plugins.completions]
+github = "zsh-users/zsh-completions"
+use = ["zsh-completions.plugin.zsh"]
+apply = ["defer"]
+
+[plugins.autoenv]
+github = "nocttuam/autodotenv"
 apply = ["defer"]
 
 [plugins.zsh-syntax-highlighting]
@@ -39,19 +44,10 @@ github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
 apply = ["defer"]
 
-[plugins.base16]
-github = "chriskempson/base16-shell"
+[plugins.fzf-tab]
+github = "Aloxaf/fzf-tab"
 apply = ["defer"]
 
-[plugins.completions]
-github = "zsh-users/zsh-completions"
-use = ["zsh-completions.plugin.zsh"]
-apply = ["defer"]
-
-[plugins.sudo]
-github = "hcgraf/zsh-sudo"
-apply = ["defer"]
-
-[plugins.autoenv]
-github = "nocttuam/autodotenv"
+[plugins.fzf-history-search]
+github = "joshskidmore/zsh-fzf-history-search"
 apply = ["defer"]
