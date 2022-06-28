@@ -9,7 +9,9 @@ if [[ -f $(brew --prefix asdf)/libexec/asdf.sh ]]; then
   . $(brew --prefix asdf)/libexec/asdf.sh
 fi
 
-export PATH="/opt/homebrew/opt/python@3.10/bin:$HOME/.local/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 alias bo='brew update && brew outdated'
 alias grb='git fetch --all && git rebase -i origin/master'
@@ -52,6 +54,10 @@ setopt PUSHD_SILENT             # Do not print the directory stack after pushd o
 unsetopt CORRECT                # Spelling correction
 unsetopt FLOW_CONTROL           # Ctrl+S and Ctrl+Q usually disable/enable tty input. This disables those inputs
 unsetopt SHARE_HISTORY          # Don't share history between all sessions.
+
+# go back to normal keybindings
+# see https://stackoverflow.com/questions/23128353/zsh-shortcut-ctrl-a-not-working
+bindkey -e
 
 # sheldon plugin manager
 if (( $+commands[sheldon] )); then

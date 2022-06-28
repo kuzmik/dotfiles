@@ -51,3 +51,7 @@ apply = ["defer"]
 [plugins.fzf-history-search]
 github = "joshskidmore/zsh-fzf-history-search"
 apply = ["defer"]
+
+[plugins.jq]
+github = "reegnz/jq-zsh-plugin"
+apply = ["defer"]
