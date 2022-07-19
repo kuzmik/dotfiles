@@ -20,6 +20,8 @@ alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias vg='rg --vimgrep'
 alias vim='nvim'
 alias wget='wget --no-hsts'
+alias k='kubectl'
+alias kx='kubectx'
 
 # work specific
 alias dcom='docker compose'
