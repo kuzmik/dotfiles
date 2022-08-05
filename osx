@@ -3,6 +3,12 @@
 # setup sudo to accept touchid
 (echo 1a; echo 'auth       sufficient     pam_tid.so'; echo .; echo w) | sudo ed - /etc/pam.d/sudo
 
+# Setup hostname
+sudo scutil --set HostName HOSTNAME
+sudo scutil --set LocalHostName HOSTNAME
+sudo scutil --set ComputerName HOSTNAME
+dscacheutil -flushcache
+
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
