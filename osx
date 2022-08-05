@@ -1,5 +1,8 @@
 # mostly from https://github.com/mathiasbynens/dotfiles/blob/main/.macos
 
+# setup sudo to accept touchid
+(echo 1a; echo 'auth       sufficient     pam_tid.so'; echo .; echo w) | sudo ed - /etc/pam.d/sudo
+
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
