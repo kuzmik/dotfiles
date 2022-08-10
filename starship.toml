@@ -1,6 +1,6 @@
 # ~/.config/starship.toml
 
-format = "$time <$username@$hostname:$directory$git_branch$git_status $status > "
+format = "$kubernetes\n$time <$username@$hostname:$directory$git_branch$git_status $status > "
 
 # Disable the blank line at the start of the prompt
 add_newline = false
@@ -45,3 +45,7 @@ disabled = false
 style = "yellow"
 up_to_date = "!"
 format = "[\\($all_status\\)]($style)"
+
+[kubernetes]
+format = '[⛵ kc:$context, kn:$namespace](dimmed cyan) '
+disabled = false
