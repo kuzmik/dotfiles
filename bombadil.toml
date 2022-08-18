@@ -5,7 +5,7 @@ dotfiles_dir = "Code/dotfiles"
 
 [settings]
 # default vars
-vars = [ "vars.toml" ]
+vars = [ "vars-home.toml" ]
 
 prehooks = [
   "mkdir -p ~/.sheldon",
@@ -14,10 +14,6 @@ prehooks = [
 ]
 
 [settings.dots]
-# A dot entry representing a symlink
-#   `source` is relative to `dotfiles_dir`
-#   `target` shall be relative to $HOME directory or absolute
-
 asdfrc = { source = "asdfrc", target = ".asdfrc" }
 bat = { source = "bat", target = ".config/bat/config" }
 gemrc = { source = "gemrc", target = ".gemrc" }
