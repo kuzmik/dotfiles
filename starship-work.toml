@@ -1,6 +1,6 @@
 # ~/.config/starship.toml
 
-format = "$time <$username@$hostname:$directory$git_branch$git_status $status > "
+format = "$gcloud $kubernetes\n$time <$username@$hostname:$directory$git_branch$git_status $status > "
 
 # Disable the blank line at the start of the prompt
 add_newline = false
@@ -45,3 +45,17 @@ disabled = false
 style = "yellow"
 up_to_date = "!"
 format = "[\\($all_status\\)]($style)"
+
+[gcloud]
+format = '[$account(\($project\)) -](dimmed cyan)'
+disabled = false
+
+[kubernetes]
+format = '[kctx:$context, kns:$namespace](dimmed cyan)'
+disabled = false
+
+[kubernetes.context_aliases]
+"gke_persona-web_us-central1_persona-web" = "prod-us"
+"gke_persona-web_europe-west3_persona-web-europe-west3" = "prod-eu"
+"gke_persona-web-staging_us-central1_persona-web-staging" = "staging-us"
+"gke_persona-web-staging_europe-west3_persona-web-staging" = "staging-eu"

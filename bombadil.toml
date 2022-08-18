@@ -5,7 +5,7 @@ dotfiles_dir = "Code/dotfiles"
 
 [settings]
 # default vars
-vars = [ "vars-home.toml" ]
+vars = [ "vars.toml" ]
 
 prehooks = [
   "mkdir -p ~/.sheldon",
@@ -33,3 +33,6 @@ zshenv = { source = "zshenv", target = ".zshenv" }
 
 [profiles.work]
 vars = [ "vars-work.toml" ]
+
+[profiles.work.dots]
+starship = { source = "starship-work.toml", target = ".config/starship.toml" }

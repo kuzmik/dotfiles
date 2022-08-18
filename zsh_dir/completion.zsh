@@ -99,32 +99,33 @@ if (( $+commands[op] )); then
   fi
 fi
 
-# Setup fzf to use ripgrep and bat, if possible
-if (( $+commands[fzf] )); then
-  if (( $+commands[rg] )); then
-    if command -v rg >/dev/null 2>&1; then
-      export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow"
-    fi
-  fi
+# # Commenting this out for now, it's more annoying than anything
+# # Setup fzf to use ripgrep and bat, if possible
+# if (( $+commands[fzf] )); then
+#   if (( $+commands[rg] )); then
+#     if command -v rg >/dev/null 2>&1; then
+#       export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow"
+#     fi
+#   fi
 
-  if (( $+commands[bat] )); then
-    if command -v bat >/dev/null 2>&1; then
-      export FZF_DEFAULT_OPTS='--inline-info --multi --reverse --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500"'
-#      export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
-      export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {}"
-    fi
-  fi
-fi
+#   if (( $+commands[bat] )); then
+#     if command -v bat >/dev/null 2>&1; then
+#       export FZF_DEFAULT_OPTS='--inline-info --multi --reverse --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500"'
+#       export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+#       export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {}"
+#     fi
+#   fi
+# fi
 
-## fzf-tab zsh plugin configuration
+# # fzf-tab zsh plugin configuration
 
 # directories and files
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -l --color=always --no-icons $realpath'
-zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
-zstyle ':fzf-tab:complete:ls:*' fzf-preview 'exa -l --color=always --no-icons $realpath'
-zstyle ':fzf-tab:complete:ls:*' popup-pad 30 0
-zstyle ':fzf-tab:complete:*:*' fzf-preview 'bat --style=numbers,changes --wrap never --color always {} || cat {}'
-zstyle ':fzf-tab:complete:*:*' fzf-preview 'LESSOPEN="|/Users/nick/.local/bin/lessfilter %s" less ${(Q)realpath}'
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -l --color=always --no-icons $realpath'
+# zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
+# zstyle ':fzf-tab:complete:ls:*' fzf-preview 'exa -l --color=always --no-icons $realpath'
+# zstyle ':fzf-tab:complete:ls:*' popup-pad 30 0
+# zstyle ':fzf-tab:complete:*:*' fzf-preview 'bat --style=numbers,changes --wrap never --color always {} || cat {}'
+# zstyle ':fzf-tab:complete:*:*' fzf-preview 'LESSOPEN="|/Users/nick/.local/bin/lessfilter %s" less ${(Q)realpath}'
 
 # ps/kill completion
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
