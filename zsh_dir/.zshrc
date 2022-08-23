@@ -22,6 +22,8 @@ alias vim='nvim'
 alias wget='wget --no-hsts'
 alias k='kubectl'
 alias kx='kubectx'
+alias kn='kubens'
+alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 
 # work specific
 alias dcom='docker compose'
