@@ -20,10 +20,12 @@ alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias vg='rg --vimgrep'
 alias vim='nvim'
 alias wget='wget --no-hsts'
+alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 alias k='kubectl'
 alias kx='kubectx'
 alias kn='kubens'
-alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
+alias proxy.stg='kubectx gke_persona-web-staging_us-central1_persona-web-staging && kubens proxysql'
+alias proxy.prd='kubectx gke_persona-web_us-central1_persona-web && kubens proxysql'
 
 # work specific
 alias dcom='docker compose'
