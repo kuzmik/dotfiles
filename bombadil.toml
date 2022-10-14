@@ -8,7 +8,7 @@ dotfiles_dir = "Code/dotfiles"
 vars = [ "vars-home.toml" ]
 
 prehooks = [
-  "mkdir -p ~/.sheldon",
+  "mkdir -p ~/.config/sheldon",
   "mkdir -p ~/.config/bat",
   "mkdir -p ~/.local/bin",
 ]
@@ -21,7 +21,7 @@ gitconfig = { source = "gitconfig", target = ".gitconfig" }
 inputrc = { source = "inputrc", target = ".inputrc" }
 lessfilter = { source = "bin/lessfilter", target = ".local/bin/lessfilter" }
 ripgrep = { source = "ripgreprc", target = ".ripgreprc" }
-sheldon = { source = "sheldon-plugins.toml", target = ".sheldon/plugins.toml" }
+sheldon = { source = "sheldon-plugins.toml", target = ".config/sheldon/plugins.toml" }
 starship = { source = "starship.toml", target = ".config/starship.toml" }
 tigrc = { source = "tigrc", target = ".tigrc" }
 zshdir = { source = "zsh_dir", target = ".zsh" }
