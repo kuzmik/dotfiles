@@ -24,8 +24,13 @@ alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 alias k='kubectl'
 alias kx='kubectx'
 alias kn='kubens'
+
+# persona
 alias proxy.stg='kubectx gke_persona-web-staging_us-central1_persona-web-staging && kubens proxysql'
 alias proxy.prd='kubectx gke_persona-web_us-central1_persona-web && kubens proxysql'
+alias gcp-prod="gcloud config set project persona-web"
+alias gcp-staging="gcloud config set project persona-web-staging"
+
 
 # work specific
 alias dcom='docker compose'
