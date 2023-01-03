@@ -55,7 +55,8 @@ format = '[kctx:$context, kns:$namespace](dimmed cyan)'
 disabled = false
 
 [kubernetes.context_aliases]
-"gke_persona-web_us-central1_persona-web" = "prod-us"
-"gke_persona-web_europe-west3_persona-web-europe-west3" = "prod-eu"
-"gke_persona-web-staging_us-central1_persona-web-staging" = "staging-us"
-"gke_persona-web-staging_europe-west3_persona-web-staging" = "staging-eu"
+"teleport.withpersona-teleport.com-persona-web-production-us-central1" = "prod-us"
+"teleport.withpersona-teleport.com-persona-web-production-europe-west3" = "prod-eu"
+
+"teleport.withpersona-teleport.com-persona-web-staging-us-central1" = "staging-us"
+"teleport.withpersona-teleport.com-persona-web-staging-europe-west3" = "staging-eu"
