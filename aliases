@@ -7,5 +7,9 @@ alias grb='git fetch --all && git rebase -i origin/master'
 alias lockscreen='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine'
 #alias l="ls -alG"
 alias lsl='ls -hal'
-alias profileme="history | awk '{print \$4}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+# bash
+# alias profileme="history | awk '{print \$4}' | awk 'BEGIN{FS=\"|\"}{print \$1}' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"
+# zsh 
+alias profileme="history 1 | awk '{ print $2 }' | sort | uniq -c | sort -n | tail -n 20 | sort -nr"

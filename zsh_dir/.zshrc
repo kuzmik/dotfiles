@@ -14,7 +14,6 @@ export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 alias bo='brew update && brew outdated'
-alias grb='git fetch --all && git rebase -i origin/master'
 alias lsl='ls -halG'
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias vg='rg --vimgrep'
@@ -24,15 +23,10 @@ alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 alias k='kubectl'
 alias kx='kubectx'
 alias kn='kubens'
+# fix the pam file to allow touch id to auth sudo. macos updates revert this.
+alias fixsudo="if grep -q pam_tid /etc/pam.d/sudo; then echo 'no need'; else (echo 1a; echo 'auth       sufficient     pam_tid.so'; echo .; echo w) | sudo ed - /etc/pam.d/sudo; fi"
 
 # persona
-alias proxy.stg='kubectx gke_persona-web-staging_us-central1_persona-web-staging && kubens proxysql'
-alias proxy.prd='kubectx gke_persona-web_us-central1_persona-web && kubens proxysql'
-alias gcp-prod="gcloud config set project persona-web"
-alias gcp-staging="gcloud config set project persona-web-staging"
-
-
-# work specific
 alias dcom='docker compose'
 alias cpw='cd ~/Code/persona-web'
 
