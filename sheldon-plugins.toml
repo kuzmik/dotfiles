@@ -31,9 +31,9 @@ github = "zsh-users/zsh-completions"
 use = ["zsh-completions.plugin.zsh"]
 apply = ["defer"]
 
-[plugins.autoenv]
-github = "nocttuam/autodotenv"
-apply = ["defer"]
+# [plugins.autoenv]
+# github = "nocttuam/autodotenv"
+# apply = ["defer"]
 
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"

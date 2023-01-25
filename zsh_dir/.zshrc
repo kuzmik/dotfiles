@@ -78,5 +78,8 @@ if (( $+commands[starship] )); then
   fi
 fi
 
+eval "$(direnv hook zsh)"
+
 # Load all the completion stuff from a separate file
 source $ZDOTDIR/completion.zsh
+

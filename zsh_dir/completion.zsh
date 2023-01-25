@@ -99,6 +99,9 @@ if (( $+commands[op] )); then
   fi
 fi
 
+# I don't know why I need to manually source this. it's stupid and dumb.
+source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+
 # # Commenting this out for now, it's more annoying than anything
 # # Setup fzf to use ripgrep and bat, if possible
 # if (( $+commands[fzf] )); then
