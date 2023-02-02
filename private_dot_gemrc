@@ -1,0 +1,6 @@
+# ~/.gemrc
+
+---
+benchmark: false
+verbose: true
+gem: --no-document

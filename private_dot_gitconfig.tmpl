@@ -1,0 +1,80 @@
+# ~/.gitconfig
+
+# Some parts of this rely on the git-delta package from homebrew
+
+[user]
+  name = Nick Kuzmik
+{{- if eq .chezmoi.hostname "arcadia" }}
+  email = nick.kuzmik@withpersona.com
+{{- else }}
+  email = nick@kuzmik.org
+{{- end}}
+
+[push]
+  config = default
+  default = current
+
+[diff]
+  renames = true
+  indentHeuristic = on
+  colorMoved = default
+
+[status]
+  showUntrackedFiles = all
+
+[branch]
+  autosetupmerge = true
+
+[merge]
+  summary = true
+  conflictstyle = diff3
+
+[rebase]
+  autosquash = true
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+
+[core]
+  excludesfile = ~/.gitignore
+  pager = delta
+
+[alias]
+  # since we use a mixture of main/master, this oughta make it easier
+  main-branch = !git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4
+  com = "!f(){ git checkout $(git main-branch) $@;}; f"
+  remotesh = remote set-head origin --auto
+  st = status
+  out = log origin..HEAD
+  co = checkout
+  br = branch
+  changed = diff --name-status -r
+  add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+  au = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+  ch = diff --name-status -r
+  ignored = "!git ls-files --others --exclude-standard"
+  whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+  lastauthor = log -1 --format='%Cgreen%an <%ae>'
+  publish = push -u
+  hist = log --pretty=format:\"%C(yellow)%h %ad%Creset | %s%C(bold red)%d%Creset [%C(bold blue)%an%Creset]\" --graph --date=short
+  pf = push --force-with-lease
+  nit = commit --amend --no-edit
+
+[rerere]
+  enabled = 0
+
+[pull]
+  rebase = true
+
+[interactive]
+  diffFilter = delta --color-only
+
+[add.interactive]
+  useBuiltin = false # required for git 2.37.0
+
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)

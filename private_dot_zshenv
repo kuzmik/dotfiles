@@ -1,0 +1,10 @@
+# ~/.zshenv
+
+# Dont read global configs
+unsetopt GLOBAL_RCS
+
+export ZDOTDIR="$HOME/.zsh"
+
+if [[ -f "$HOME/.zshenv.custom" ]]; then
+  . $HOME/.zshenv.custom
+fi
