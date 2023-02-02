@@ -48,9 +48,11 @@
   com = "!f(){ git checkout $(git main-branch) $@;}; f"
   remotesh = remote set-head origin --auto
   st = status
-  out = log origin..HEAD
   co = checkout
   br = branch
+
+  # i don't use any of this, but am keeping it around anyway
+  out = log origin..HEAD
   changed = diff --name-status -r
   add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
   au = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"

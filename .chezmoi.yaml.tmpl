@@ -1,0 +1,17 @@
+# ~/.config/chezmoi/config
+
+# https://www.chezmoi.io/reference/configuration-file/
+# Requires `delta` to do the diff, and sublime to run edit
+
+diff:
+    command: delta
+edit:
+    command: subl
+    args: -w
+    minDuration: 0
+git:
+    autoAdd: true
+    autoPush: false
+progress: true
+sourceDir: {{ .chezmoi.homeDir }}/.local/share/chezmoi
+verbose: false
