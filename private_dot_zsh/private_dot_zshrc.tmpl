@@ -3,13 +3,19 @@
 ### User configuration specific to nick
 umask 077
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# TODO: mac only. lots of this file is mac only i bet.
+if [[ -f /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+else
+  echo "you need to install brew, duh"
+fi
 
 if [[ -f $(brew --prefix asdf)/libexec/asdf.sh ]]; then
   . $(brew --prefix asdf)/libexec/asdf.sh
 fi
 
-export PATH="/usr/local/bin:$PATH"
 export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export CLICOLOR=1
