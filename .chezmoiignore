@@ -1,5 +1,6 @@
 # Things  we don't want to lay down on an apply run, but want to keep around anyway
 /README.md
+/LICENSE
 
 # other random stuff that doesn't necessarily need to be copied to ~
 /misc

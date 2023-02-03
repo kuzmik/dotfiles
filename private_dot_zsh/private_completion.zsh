@@ -100,7 +100,10 @@ if (( $+commands[op] )); then
 fi
 
 # I don't know why I need to manually source this. it's stupid and dumb.
-source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+if [ -d /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]; then
+  . /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+  . /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+fi
 
 # # Commenting this out for now, it's more annoying than anything
 # # Setup fzf to use ripgrep and bat, if possible
