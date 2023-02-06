@@ -16,8 +16,10 @@ if [[ -f $(brew --prefix asdf)/libexec/asdf.sh ]]; then
   . $(brew --prefix asdf)/libexec/asdf.sh
 fi
 
-export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
+# I forget why I had this in PATH. let's see what breaks without it
+# /opt/homebrew/opt/python@3.10/bin
+
+export PATH="/usr/local/bin:$HOME/.local/bin:$PATH"
 export CLICOLOR=1
 export EDITOR='nvim'
 export GUI_EDITOR='subl'
