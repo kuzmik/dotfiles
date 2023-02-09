@@ -17,6 +17,7 @@ brew "ripgrep"
 brew "sheldon"
 brew "starship"
 brew "tig"
+brew "zellij"
 
 cask "1password"
 cask "1password-cli"
