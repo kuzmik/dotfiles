@@ -2,7 +2,7 @@
 
 if [[ -x $(command -v asdf) ]]; then
   echo "=> asdf: updating all plugins"
-  asdf plugin update --all > /dev/null 2&>1
+  asdf plugin update --all > /dev/null 2>&1
   echo "=> asdf: plugins updated"
 fi
 
