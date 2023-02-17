@@ -10,5 +10,7 @@ fi
 if [[ -x $(command -v brew) ]]; then
   echo "=> brew: updating brew, checking for outdated formulae"
   brew update && brew outdated
+  echo "=> brew: running cleanup"
+  brew cleanup
 fi
 {{ end }}
