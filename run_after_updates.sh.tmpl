@@ -1,16 +1,16 @@
 #!/bin/bash
 
-if [[ -x $(command -v asdf) ]]; then
-  echo "=> asdf: updating all plugins"
-  asdf plugin update --all > /dev/null 2>&1
-  echo "=> asdf: plugins updated"
+if [[ -x $(command -v rtx) ]]; then
+  echo "=> rtx: updating all plugins"
+  rtx plugin update --all > /dev/null 2>&1
+  echo "=> rtx: plugins updated"
 fi
 
 {{ if eq .chezmoi.os "darwin" }}
 if [[ -x $(command -v brew) ]]; then
-  echo "=> brew: updating brew, checking for outdated formulae"
-  brew update && brew outdated
   echo "=> brew: running cleanup"
   brew cleanup
+  echo "=> brew: updating brew, checking for outdated formulae"
+  brew update && brew outdated
 fi
 {{ end }}

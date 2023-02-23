@@ -12,12 +12,13 @@ else
   echo "you need to install brew, duh"
 fi
 
-if [[ -f $(brew --prefix asdf)/libexec/asdf.sh ]]; then
-  . $(brew --prefix asdf)/libexec/asdf.sh
+# Switching from asdf to rtx
+# https://github.com/jdxcode/rtx
+if [[ -f /opt/homebrew/bin/rtx ]]; then
+  eval "$(/opt/homebrew/bin/rtx activate zsh)"
+else
+  echo "rtx is not installed, might want to handle that"
 fi
-
-# I forget why I had this in PATH. let's see what breaks without it
-# /opt/homebrew/opt/python@3.10/bin
 
 export PATH="/usr/local/bin:$HOME/.local/bin:$PATH"
 export CLICOLOR=1
