@@ -23,7 +23,7 @@ if [[ -x $(command -v softwareupdate) ]]; then
 fi
 
 # Check for available mac app store upgrades, if `mas` is installed
-if [[ -x $(command -v msas) ]]; then
+if [[ -x $(command -v mas) ]]; then
   echo "=> mas: checking for outdated apps"
   mas outdated
 
