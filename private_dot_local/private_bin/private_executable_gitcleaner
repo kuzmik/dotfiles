@@ -11,16 +11,19 @@ set -o pipefail
 
 OLDPWD=`pwd`
 
+COLOR_BOLD="$(tput bold)"
+COLOR_REST="$(tput sgr0)"
+
 for i in $(ls -d /Users/nick/Code/*); do
-  MAIN=$(git main-branch)
   cd $i;
-  echo "\n\033[1m=> Pulling $i...\033[0m\n"
+  export MAIN=$(git main-branch)
+  printf "\n%s=> Pulling %s%s\n" $COLOR_BOLD $i $COLOR_REST
   git com > /dev/null 2>&1;
   git pull;
   git prune; 
   for b in $(git branch --merged $MAIN | egrep -v $MAIN$); do
     git branch -d $b
-    echo "\n\033[1m => Deleted merged branch $b\033[0m\n"
+    printf "\n%s => Delete merged branch %s%s\n" $COLOR_BOLD $b $COLOR_REST
   done
   git gc --aggressive; 
   unset $MAIN
