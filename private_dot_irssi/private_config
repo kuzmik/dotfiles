@@ -1,0 +1,218 @@
+servers = (
+  {
+    address = "irc.oublinet.net";
+    chatnet = "oub";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_verify = "yes";
+    family = "inet";
+  },
+  {
+    chatnet = "sn";
+    address = "irc.slashnet.org";
+    port = "6667";
+    family = "inet";
+  },
+);
+
+chatnets = {
+  oub = {
+    type = "IRC";
+    nick = "nick";
+    username = "nick";
+    realname = "nick";
+    cmdspeed = "10000";
+  };
+  sn = {
+    type = "IRC";
+    nick = "nk";
+    username = "nick";
+    realname = "nk";
+    usermode = "+i-x";
+  };
+};
+
+channels = (
+  { name = "#oublinet"; chatnet = "oub"; autojoin = "yes"; },
+  { name = "#DEFCON"; chatnet = "oub"; autojoin = "yes"; },
+  { name = "#linuxos"; chatnet = "sn"; autojoin = "yes"; },
+);
+
+aliases = {
+  j = "join";
+  q = "query";
+  wii = "whois $0 $0";
+  w = "who";
+  n = "names";
+  m = "msg";
+  t = "topic";
+  kb = "kickban";
+  mub = "unban *";
+  umode = "mode $n";
+  say = "msg *";
+  helpop = "quote helpop";
+};
+
+statusbar = {
+  items = {
+    barstart = "{sbstart}";
+    barend = "{sbend}";
+    time = "{sb $Z}";
+    user = "{sb %C$cumode%c$N{sbmode $usermode}{sbaway $A}}";
+    window = "{sb $T{sbmode $M}}";
+    window_empty = "{sb $winref{sbservertag $tag}}";
+    prompt = "{prompt $[.15]T}";
+    prompt_empty = "{prompt $winname}";
+    topic = " $topic";
+    topic_empty = "";
+    win_num = "{sb win%K(%C$winref%K)%n}";
+    act = "{sb act%K($0-%K)%n }";
+    lag = "{sb %clag%K(%C$0-%K)%N}";
+    more = "-- more --";
+  };
+
+  default = {
+    window = {
+      disabled = "no";
+      type = "window";
+      placement = "bottom";
+      position = "1";
+      visible = "active";
+      items = {
+        begin = { };
+        barstart = { };
+        time = { };
+        mail = { };
+        mailcount = { };
+        usercount = { };
+        win_num = { };
+        act = { };
+      };
+    };
+
+    window_inact = {
+      type = "window";
+      placement = "bottom";
+      position = "1";
+      visible = "inactive";
+      items = {
+        barstart = { priority = "100"; };
+        window = { };
+        window_empty = { };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+
+    prompt = {
+      type = "root";
+      placement = "bottom";
+      position = "100";
+      visible = "always";
+      items = {
+        prompt = { priority = "-1"; };
+        prompt_empty = { priority = "-1"; };
+        input = { priority = "10"; };
+      };
+    };
+
+    topic = {
+      disabled = "yes";
+      type = "root";
+      placement = "top";
+      position = "1";
+      visible = "always";
+      items = {
+        barstart = { priority = "100"; };
+        topic = { };
+        topic_empty = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+
+    nk = {
+      position = "1";
+      items = {
+        barstart = { priority = "100"; };
+        user = { };
+        lag = { priority = "1"; };
+        window = { };
+        window_empty = { };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+  };
+};
+
+settings = {
+  core = {
+    override_coredump_limit = "no";
+    real_name = "nick";
+    user_name = "nick";
+    nick = "nick";
+    timestamp_format = "%H:%M:%S";
+    quit_message = "eyes pop, skin explodes, everybody dead";
+    recode_fallback = "utf-8";
+    #hostname = "moron5.com";
+    awaylog_level = "all";
+    log_timestamp = "%H:%M:%S ";
+  };
+  "fe-common/core" = {
+    theme = "gothic";
+    reuse_unused_windows = "yes";
+    autocreate_own_query = "no";
+    autolog = "yes";
+    autolog_colors = "no";
+    autolog_path = "~/.irssi/logs/$tag/$0.log";
+    activity_hide_targets = "";
+    term_charset = "utf-8";
+  };
+  "irc/core" = {
+    skip_motd = "no";
+    part_message = "through your gills i breathe";
+    #lag_check_time = "10";
+    #cmd_queue_speed = "1";
+    cmds_max_at_once = "512";
+    alternate_nick = "nick_";
+    ctcp_version_reply = "xircon[\002b4] - \002k\017ano\002!\01715beta8 by kano + \002w\017inamp\002[\0171.0\002]\017";
+    cmd_queue_speed = "0ms";
+  };
+  "perl/core/scripts" = {
+    usercount_show_ircops = "yes";
+    title_string = "[$N@$tag]$.C$.winname$.act";
+    paste_max_lines = "1000";
+    opinion_in_chan = "yes";
+    laugh_in_chan = "yes";
+    title_screen_window = "no";
+    autorejoin_channels = "*";
+    smartfilter_delay = "600";
+    dispatch_unknown_commands = "yes";
+  };
+  "fe-text" = {
+    lag_min_show = "0ms";
+    indent = "2";
+    indent_always = "yes";
+    paste_verify_line_count = "666";
+    actlist_sort = "refnum";
+  };
+  "irc/dcc" = { dcc_autoget = "yes"; dcc_autoget_masks = "*.*"; };
+  "irc/flood" = {
+    flood_max_msgs = "2147483647";
+    flood_timecheck = "600";
+    autoignore_level = "10000";
+  };
+};
+
+keyboard = (
+  { key = "^L"; id = "command"; data = "clear"; },
+  { key = "^T"; id = "command"; data = "topic"; },
+  { key = "^N"; id = "command"; data = "names"; }
+);
+
+hilights = ( { text = "%N"; nick = "yes"; word = "yes"; } );
+
+ignores = (
+  { mask = "hool*"; level = "ALL"; },
+  { mask = "*@*.na.cust.bahnhof.se"; level = "ALL"; }
+);
