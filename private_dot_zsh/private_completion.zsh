@@ -123,28 +123,19 @@ zstyle ':fzf-tab:complete:brew-(install|uninstall|search|info):*-argument-rest' 
 # env vars
 zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ${(P)word}'
 
-### DON'T DEAD, OPEN INSIDE
-# # Commenting this out for now, it's more annoying than anything
-# # Setup fzf to use ripgrep and bat, if possible
-# if (( $+commands[fzf] )); then
-#   if (( $+commands[rg] )); then
-#     if command -v rg >/dev/null 2>&1; then
-#       export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow"
-#     fi
-#   fi
 
-#   if (( $+commands[bat] )); then
-#     if command -v bat >/dev/null 2>&1; then
-#       export FZF_DEFAULT_OPTS='--inline-info --multi --reverse --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --style=numbers --color=always {} || cat {}) 2> /dev/null | head -500"'
-#       export FZF_DEFAULT_OPTS="--ansi --preview-window 'right:60%' --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
-#       export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {}"
-#     fi
-#   fi
-# fi
+if (( $+commands[fzf] )); then
+  export FZF_DEFAULT_OPTS="--bind 'ctrl-k:kill-line'"
+  export FZF_CTRL_R_OPTS="--height 20% --preview 'echo {}' --preview-window down:3:hidden:wrap --bind 'ctrl-k:kill-line' --reverse"
 
-# # fzf-tab zsh plugin configuration
+  if (( $+commands[rg] )); then
+    if command -v rg >/dev/null 2>&1; then
+      export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow"
+    fi
+  fi
+fi
 
-# directories and files
+# # fzf-tab zsh plugin configuration for directories and files
 # zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -l --color=always --no-icons $realpath'
 # zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
 # zstyle ':fzf-tab:complete:ls:*' fzf-preview 'exa -l --color=always --no-icons $realpath'
