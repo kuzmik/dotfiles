@@ -20,10 +20,15 @@ else
   echo "rtx is not installed, might want to handle that"
 fi
 
+# Use atuin to save shell history
+if [[ -f /opt/homebrew/bin/atuin ]]; then
+  eval "$(atuin init zsh --disable-up-arrow)"
+fi
+
 export PATH="/usr/local/bin:$HOME/.local/bin:$PATH"
 export CLICOLOR=1
-export EDITOR='nvim'
-export GUI_EDITOR='subl'
+export EDITOR="nvim"
+export GUI_EDITOR="subl"
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=1000000000
 export HOMEBREW_NO_ENV_HINTS=1
@@ -33,7 +38,7 @@ export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 export SAVEHIST=1000000000
-export WORDCHARS='*?[]~&;!$%^<>'
+export WORDCHARS="*?[]~&;!$%^<>"
 
 setopt AUTO_PUSHD               # Push the old directory onto the stack on cd.
 setopt CDABLE_VARS              # Change directory to a path stored in a variable.
