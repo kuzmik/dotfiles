@@ -12,9 +12,9 @@ alias k='kubectl'
 alias kx='kubectx'
 alias kn='kubens'
 alias parse_jwt="jq -R 'split(".") | .[1] | @base64d | fromjson'"
+alias speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
 # fix the pam file to allow touch id to auth sudo. macos updates revert this.
 alias fixsudo="if grep -q pam_tid /etc/pam.d/sudo; then echo 'no need'; else (echo 1a; echo 'auth       sufficient     pam_tid.so'; echo .; echo w) | sudo ed - /etc/pam.d/sudo; fi"
-
 {{- if eq .chezmoi.hostname "arcadia" }}
 # persona stuff
 alias dcom='docker compose'
