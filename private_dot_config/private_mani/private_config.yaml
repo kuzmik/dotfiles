@@ -1,0 +1,152 @@
+projects:
+  ExampleProxySQLSetup:
+    path: /users/Nick/Code/ExampleProxySQLSetup
+    url: git@github.com:maguec/ExampleProxySQLSetup.git
+  
+  junit-annotate-buildkite-plugin:
+    path: /users/Nick/Code/junit-annotate-buildkite-plugin
+    url: git@bitbucket.org:persona-id/junit-annotate-buildkite-plugin.git
+  
+  persona-android:
+    path: /users/Nick/Code/persona-android
+    url: git@bitbucket.org:persona-id/persona-android.git
+  
+  persona-ci-runners:
+    path: /users/Nick/Code/persona-ci-runners
+    url: git@bitbucket.org:persona-id/persona-ci-runners.git
+  
+  persona-cli:
+    path: /users/Nick/Code/persona-cli
+    url: git@bitbucket.org:persona-id/persona-cli.git
+  
+  persona-demo:
+    path: /users/Nick/Code/persona-demo
+    url: git@bitbucket.org:persona-id/persona-demo.git
+  
+  persona-docker-images:
+    path: /users/Nick/Code/persona-docker-images
+    url: git@bitbucket.org:persona-id/persona-docker-images.git
+  
+  persona-ds-tokens:
+    path: /users/Nick/Code/persona-ds-tokens
+    url: git@bitbucket.org:persona-id/persona-ds-tokens.git
+  
+  persona-infrastructure:
+    path: /users/Nick/Code/persona-infrastructure
+    url: git@bitbucket.org:persona-id/persona-infrastructure.git
+  
+  persona-inquiry-fallback-api:
+    path: /users/Nick/Code/persona-inquiry-fallback-api
+    url: git@bitbucket.org:persona-id/persona-inquiry-fallback-api.git
+  
+  persona-internal-tools:
+    path: /users/Nick/Code/persona-internal-tools
+    url: git@bitbucket.org:persona-id/persona-internal-tools.git
+  
+  persona-ios:
+    path: /users/Nick/Code/persona-ios
+    url: git@bitbucket.org:persona-id/persona-ios.git
+  
+  persona-kubernetes:
+    path: /users/Nick/Code/persona-kubernetes
+    url: git@bitbucket.org:persona-id/persona-kubernetes.git
+  
+  persona-load-testing:
+    path: /users/Nick/Code/persona-load-testing
+    url: git@bitbucket.org:persona-id/persona-load-testing.git
+  
+  persona-monitoring:
+    path: /users/Nick/Code/persona-monitoring
+    url: git@bitbucket.org:persona-id/persona-monitoring.git
+  
+  persona-proxysql:
+    path: /users/Nick/Code/persona-proxysql
+    url: git@bitbucket.org:persona-id/proxysql.git
+  
+  persona-sar:
+    path: /users/Nick/Code/persona-sar
+    url: git@bitbucket.org:persona-id/persona-sar.git
+  
+  persona-scanner:
+    path: /users/Nick/Code/persona-scanner
+    url: git@bitbucket.org:persona-id/persona-scanner.git
+  
+  persona-verify:
+    path: /users/Nick/Code/persona-verify
+    url: git@bitbucket.org:persona-id/persona-verify.git
+  
+  persona-watchlists:
+    path: /users/Nick/Code/persona-watchlists
+    url: git@bitbucket.org:persona-id/persona-watchlists.git
+  
+  persona-web:
+    path: /users/Nick/Code/persona-web
+    url: git@bitbucket.org:persona-id/persona-web.git
+  
+  stunner-helm:
+    path: /users/Nick/Code/stunner-helm
+    url: git@github.com:l7mp/stunner-helm.git
+  
+  swift-markdown-ui:
+    path: /users/Nick/Code/swift-markdown-ui
+    url: git@github.com:gonzalezreal/swift-markdown-ui.git
+  
+  webrtc-consumer:
+    path: /users/Nick/Code/webrtc-consumer
+    url: git@bitbucket.org:persona-id/webrtc-consumer.git
+  
+tasks:
+  update:
+    desc: pull all branches
+    spec: custom
+    target: all
+    cmd: git com > /dev/null 2>&1 && git pull
+
+  git-status:
+    desc: show working tree status
+    spec: custom
+    target: all
+    cmd: git status -s
+
+  git-last-commit-msg:
+    desc: show last commit
+    cmd: git log -1 --pretty=%B
+
+  git-last-commit-date:
+    desc: show last commit date
+    cmd: |
+      git log -1 --format="%cd (%cr)" -n 1 --date=format:"%d  %b %y" \
+      | sed 's/ //'
+
+  git-branch:
+    desc: show current git branch
+    cmd: git rev-parse --abbrev-ref HEAD
+
+  git-overview:
+    desc: show branch, local and remote diffs, last commit and date
+    spec: custom
+    target: all
+    theme: custom
+    commands:
+      - task: git-branch
+      - task: git-last-commit-msg
+      - task: git-last-commit-date
+
+specs:
+  custom:
+    output: table
+    parallel: true
+
+targets:
+  all:
+    all: true
+
+themes:
+  custom:
+    table:
+      options:
+        draw_border: true
+        separate_columns: true
+        separate_header: true
+        separate_rows: true
+

@@ -25,6 +25,12 @@ if [[ -f /opt/homebrew/bin/atuin ]]; then
   eval "$(atuin init zsh --disable-up-arrow)"
 fi
 
+# Setup mani if it is installed
+if [[ -f /opt/homebrew/bin/mani ]]; then
+  # eval "$(mani completion zsh)" i just dumped it to the zsh completion dir
+  export MANI_CONFIG="~/.config/mani/config.yaml"
+fi
+
 export PATH="/usr/local/bin:$HOME/.local/bin:$PATH"
 export CLICOLOR=1
 export EDITOR="nvim"
