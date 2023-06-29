@@ -50,15 +50,15 @@ style = "yellow"
 up_to_date = "!"
 format = "[\\($all_status\\)]($style)"
 
+{{- if eq .chezmoi.hostname "arcadia" }}
 [gcloud]
-format = '[$account(\($project\)) -](dimmed cyan)'
+format = '[$account](dimmed cyan):[$project](yellow),'
 disabled = false
 
 [kubernetes]
-format = '[kctx:$context, kns:$namespace](dimmed cyan)'
+format = '[kctx](dimmed cyan):[$context](yellow), [kns](dimmed cyan):[$namespace](yellow)'
 disabled = false
 
-{{- if eq .chezmoi.hostname "arcadia" }}
 [kubernetes.context_aliases]
 "teleport.withpersona-teleport.com-persona-web-production-us-central1" = "prod-us"
 "teleport.withpersona-teleport.com-persona-web-production-europe-west3" = "prod-eu"
