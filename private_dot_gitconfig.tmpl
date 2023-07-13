@@ -57,7 +57,8 @@
   co = checkout
   br = branch
   undo = reset --soft HEAD~1
-  yolo = "!f(){ git commit --amend --no-edit -a && git push --force-with-lease; }; f"
+  yolo = "!f() { git commit --amend --no-edit -a && git push --force-with-lease; }; f"
+  rb = "!f() { git fetch --all && git rebase -i origin/$(git main-branch); }; f"
 
   # i don't use any of this, but am keeping it around anyway
   out = log origin..HEAD
