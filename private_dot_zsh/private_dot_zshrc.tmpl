@@ -75,6 +75,10 @@ if (( $+commands[sheldon] )); then
   fi
 fi
 
+if (( $+commands[direnv] )); then
+  eval "$(direnv hook zsh)"
+fi
+
 # Load starship, for the ps1 prompt
 if (( $+commands[starship] )); then
   if ! $(command -v _starship &> /dev/null) ; then
@@ -82,10 +86,5 @@ if (( $+commands[starship] )); then
   fi
 fi
 
-if (( $+commands[direnv] )); then
-  eval "$(direnv hook zsh)"
-fi
-
 # Load all the completion stuff from a separate file
 source $ZDOTDIR/completion.zsh
-

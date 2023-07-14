@@ -1,10 +1,6 @@
 # ~/.config/starship.toml
 
-{{- if eq .chezmoi.hostname "arcadia" }}
 format = "$gcloud $kubernetes\n$time <$username@$hostname:$directory$git_branch$git_status $status > "
-{{ else }}
-format = "$time <$username@$hostname:$directory$git_branch$git_status $status > "
-{{- end }}
 
 # Disable the blank line at the start of the prompt
 add_newline = false
@@ -50,7 +46,6 @@ style = "yellow"
 up_to_date = "!"
 format = "[\\($all_status\\)]($style)"
 
-{{- if eq .chezmoi.hostname "arcadia" }}
 [gcloud]
 format = '[$account](dimmed cyan):[$project](yellow),'
 disabled = false
@@ -60,9 +55,11 @@ format = '[kctx](dimmed cyan):[$context](yellow), [kns](dimmed cyan):[$namespace
 disabled = false
 
 [kubernetes.context_aliases]
+"teleport.withpersona-teleport.com-persona-web-staging-us-central1" = "staging-us"
+"teleport.withpersona-teleport.com-persona-web-staging-europe-west3" = "staging-eu"
+
 "teleport.withpersona-teleport.com-persona-web-production-us-central1" = "prod-us"
 "teleport.withpersona-teleport.com-persona-web-production-europe-west3" = "prod-eu"
 
-"teleport.withpersona-teleport.com-persona-web-staging-us-central1" = "staging-us"
-"teleport.withpersona-teleport.com-persona-web-staging-europe-west3" = "staging-eu"
-{{- end }}
+
+
