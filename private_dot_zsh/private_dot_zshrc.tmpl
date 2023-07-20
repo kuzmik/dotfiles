@@ -86,5 +86,5 @@ if (( $+commands[starship] )); then
   fi
 fi
 
-# Load all the completion stuff from a separate file
-source $ZDOTDIR/completion.zsh
+# Load all the completion stuff from a separate file. Not using $ZDOTDIR so that kubie can continue to use completions.
+source ~/.zsh/completion.zsh
