@@ -21,4 +21,5 @@ alias fixsudo="if grep -q pam_tid /etc/pam.d/sudo; then echo 'no need'; else (ec
 alias dcom='docker compose'
 alias cpw='cd ~/Code/persona-web'
 alias cpi='cd ~/Code/persona-infrastructure'
+alias proxyexec='k exec deployments/proxysql-persona-web -it -c proxysql -- /bin/bash'
 {{- end }}
