@@ -31,6 +31,9 @@ if [[ -f /opt/homebrew/bin/mani ]]; then
   export MANI_CONFIG="~/.config/mani/config.yaml"
 fi
 
+# fucking delete key
+bindkey "^[[3~" delete-char
+
 export PATH="/usr/local/bin:$HOME/.local/bin:$PATH"
 export CLICOLOR=1
 export EDITOR="nvim"
