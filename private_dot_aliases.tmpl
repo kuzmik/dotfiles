@@ -21,8 +21,37 @@ alias hg='kitty +kitten hyperlinked_grep'
 # fix the pam file to allow touch id to auth sudo. macos updates revert this.
 alias fixsudo="if grep -q pam_tid /etc/pam.d/sudo; then echo 'no need'; else (echo 1a; echo 'auth       sufficient     pam_tid.so'; echo .; echo w) | sudo ed - /etc/pam.d/sudo; fi"
 
-# list ALL resources in a namespace, not just what `k get all` shows
-alias k8s-list-resources='function k8s_list_resources() {
+k8s-exec-all-pods() {
+  deployment="$1"
+  container="$2"
+  shift 2  # Shift the argument list to remove the deployment name and container name
+  command_to_run=("$@")  # Capture all remaining arguments as an array
+
+  echo "Deployment: $deployment"
+  echo "Container: $container"
+  echo "Command: ${command_to_run[@]}"
+
+  if [[ -z "$deployment" || -z "$container" || ${#command_to_run[@]} -eq 0 ]]; then
+    echo "Usage: k8s-exec-all-pods <deployment_name> <container_name> <command> [arg1] [arg2] ..."
+    return 1
+  fi
+
+  # Get the list of pod names belonging to the deployment
+  pod_names=($(kubectl get pods -l=app="$deployment" -o=jsonpath='{.items[*].metadata.name}'))
+
+  if [[ ${#pod_names[@]} -eq 0 ]]; then
+    echo "No pods found for deployment $deployment"
+    return 1
+  fi
+
+  for pod in "${pod_names[@]}"; do
+    echo "Running command on pod $pod in container $container:"
+    kubectl exec -it "$pod" -c "$container" -- "${command_to_run[@]}"
+    echo ""
+  done
+}
+
+k8s-list-resources() {
   namespace=$1
   if [[ -z "$namespace" ]]; then
     echo "Usage: k8s-list-resources <namespace>"
@@ -37,7 +66,7 @@ alias k8s-list-resources='function k8s_list_resources() {
       echo ""
     fi
   done
-}; k8s_list_resources'
+}
 
 {{ if eq .chezmoi.hostname "arcadia" }}
 # persona stuff
