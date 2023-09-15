@@ -21,6 +21,24 @@ alias hg='kitty +kitten hyperlinked_grep'
 # fix the pam file to allow touch id to auth sudo. macos updates revert this.
 alias fixsudo="if grep -q pam_tid /etc/pam.d/sudo; then echo 'no need'; else (echo 1a; echo 'auth       sufficient     pam_tid.so'; echo .; echo w) | sudo ed - /etc/pam.d/sudo; fi"
 
+# list ALL resources in a namespace, not just what `k get all` shows
+alias k8s-list-resources='function k8s_list_resources() {
+  namespace=$1
+  if [[ -z "$namespace" ]]; then
+    echo "Usage: k8s-list-resources <namespace>"
+    return 1
+  fi
+
+  for i in $(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq); do
+    resource_output=$(kubectl -n $namespace get --ignore-not-found ${i} 2>/dev/null)
+    if [[ -n "$resource_output" ]]; then
+      echo "Resource type:" $i
+      echo "$resource_output"
+      echo ""
+    fi
+  done
+}; k8s_list_resources'
+
 {{ if eq .chezmoi.hostname "arcadia" }}
 # persona stuff
 alias dcom='docker compose'
@@ -29,6 +47,6 @@ alias cpi='cd ~/Code/persona-infrastructure'
 alias cpk='cd ~/Code/persona-kubernetes'
 
 # get a shell on a random proxysql pod
-alias proxyexec='k exec -n proxysql deployments/proxysql-persona-web -it -c proxysql -- /bin/bash'
+alias proxyexec='k exec -n proxysql deployments/proxysql -it -c proxysql -- /bin/bash'
 alias pshell='f() { kubectl exec $1 -it -c proxysql -- /bin/bash };f'
 {{- end }}

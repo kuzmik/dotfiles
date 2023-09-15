@@ -58,7 +58,7 @@ disabled = false
 format = '[kctx](dimmed cyan):[$context](yellow), [kns](dimmed cyan):[$namespace](yellow)'
 disabled = false
 
-{{- if eq .chezmoi.hostname "arcadia" }}
+{{ if eq .chezmoi.hostname "arcadia" }}
 [kubernetes.context_aliases]
 "teleport.withpersona-teleport.com-persona-web-staging-us-central1" = "staging-us"
 "teleport.withpersona-teleport.com-persona-web-staging-europe-west3" = "staging-eu"
