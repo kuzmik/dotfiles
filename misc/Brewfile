@@ -5,6 +5,7 @@ tap "homebrew/services"
 
 brew "bat"
 brew "chezmoi"
+brew "coreutils"
 brew "exa"
 brew "fzf"
 brew "git"
