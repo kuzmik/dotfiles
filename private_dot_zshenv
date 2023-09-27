@@ -3,6 +3,7 @@
 # Dont read global configs
 unsetopt GLOBAL_RCS
 
+export SOLARGRAPH_CACHE="$HOME/.cache/solargraph"
 export ZDOTDIR="$HOME/.zsh"
 
 if [[ -f "$HOME/.zshenv.custom" ]]; then
