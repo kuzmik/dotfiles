@@ -109,9 +109,9 @@ if (( $+commands[kubectl-krew] )); then
 fi
 
 # I don't know why I need to manually source this. it's stupid and dumb.
-if [ -d /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk ]; then
-  . /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-  . /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+if [ -d /Users/nick/.local/share/rtx/installs/gcloud/ ]; then
+  . /Users/nick/.local/share/rtx/installs/gcloud/latest/path.zsh.inc
+  . /Users/nick/.local/share/rtx/installs/gcloud/latest/completion.zsh.inc
 fi
 
 # ps/kill completion

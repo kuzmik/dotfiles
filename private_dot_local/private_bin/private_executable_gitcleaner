@@ -4,6 +4,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+# NB: this has kinda been obviated with the git-delete-merged-branches package (via brew)
+
 # depends on the gitaliases defined in `~/.gitconfig`, specifically `main-branch` and `com`
 # This is a huge work in progress, as i get the motivation/inclination
 # can and will get messy if you have any dirty files, but such is life.
