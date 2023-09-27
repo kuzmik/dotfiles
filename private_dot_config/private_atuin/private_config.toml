@@ -20,7 +20,7 @@
 auto_sync = true
 
 ## enable or disable automatic update checks
-# update_check = true
+update_check = true
 
 ## how often to sync history. note that this is only triggered when a command 
 ## is ran, so sync intervals may well be longer
@@ -45,7 +45,7 @@ style = "compact"
 # exit_mode = "return-original"
 
 ## possible values: emacs, subl
-# word_jump_mode = "emacs"
+word_jump_mode = "subl"
 
 ## characters that count as a part of a word
 # word_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

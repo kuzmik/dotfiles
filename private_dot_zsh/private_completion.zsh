@@ -93,11 +93,13 @@ zstyle ':completion:*' keep-prefix true
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 # 1password cli
-if (( $+commands[op] )); then
-  if ! $(command -v _op &> /dev/null) ; then
-    eval "$(op completion zsh)"; compdef _op op
-  fi
-fi
+# maybe obviated with
+# op completion zsh > $(brew --prefix)/share/zsh/site-functions/_op
+# if (( $+commands[op] )); then
+#   if ! $(command -v _op &> /dev/null) ; then
+#     eval "$(op completion zsh)"; compdef _op op
+#   fi
+# fi
 
 # Krew
 if (( $+commands[kubectl-krew] )); then
@@ -122,7 +124,6 @@ zstyle ':fzf-tab:complete:brew-(install|uninstall|search|info):*-argument-rest' 
 
 # env vars
 zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ${(P)word}'
-
 
 if (( $+commands[fzf] )); then
   export FZF_DEFAULT_OPTS="--bind 'ctrl-k:kill-line'"
