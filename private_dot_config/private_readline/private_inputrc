@@ -1,4 +1,4 @@
-# ~/.inputrc
+# ~/.config/readlin/inputrc
 
 ## arrow up
 "\e[A":history-search-backward

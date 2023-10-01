@@ -1,4 +1,4 @@
-# ~/.zsh/completions.zsh
+# ~/.config/zsh/completions.zsh
 
 # +---------+
 # | General |
@@ -100,13 +100,6 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 #     eval "$(op completion zsh)"; compdef _op op
 #   fi
 # fi
-
-# Krew
-if (( $+commands[kubectl-krew] )); then
-  export PATH="${PATH}:${HOME}/.krew/bin"
-  eval "$(kubectl krew completion zsh)"
-  compdef _krew kubectl-krew
-fi
 
 # I don't know why I need to manually source this. it's stupid and dumb.
 if [ -d /Users/nick/.local/share/rtx/installs/gcloud/ ]; then
