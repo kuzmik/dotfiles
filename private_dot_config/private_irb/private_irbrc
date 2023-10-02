@@ -1,4 +1,6 @@
+# ~/.config/irb/irbrb
+
 require 'irb/ext/save-history'
 
 IRB.conf[:SAVE_HISTORY] = 10000
-IRB.conf[:HISTORY_FILE] = "#{ENV['XDG_CACHE_HOME']}/irb/history"
+IRB.conf[:HISTORY_FILE] = "#{ENV['XDG_STATE_HOME']}/irb_history"

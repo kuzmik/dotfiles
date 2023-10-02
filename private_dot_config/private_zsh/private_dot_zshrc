@@ -1,4 +1,4 @@
-# ~/.zsh/.zshrc
+# ~/.config/zsh/.zshrc
 
 ### User configuration specific to nick
 umask 077

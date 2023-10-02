@@ -101,10 +101,15 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 #   fi
 # fi
 
-# I don't know why I need to manually source this. it's stupid and dumb.
-if [ -d /Users/nick/.local/share/rtx/installs/gcloud/ ]; then
-  . /Users/nick/.local/share/rtx/installs/gcloud/latest/path.zsh.inc
-  . /Users/nick/.local/share/rtx/installs/gcloud/latest/completion.zsh.inc
+# gcloud via rtx
+if [ -d "$XDG_DATA_HOME/rtx/installs/gcloud" ]; then
+  . "$XDG_DATA_HOME/rtx/installs/gcloud/latest/path.zsh.inc"
+  . "$XDG_DATA_HOME/rtx/installs/gcloud/latest/completion.zsh.inc"
+fi
+
+# docker
+if command -v docker > /dev/null; then
+  eval "$(docker completion zsh)"
 fi
 
 # ps/kill completion

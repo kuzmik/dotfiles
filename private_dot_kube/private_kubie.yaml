@@ -1,3 +1,7 @@
+# ~/.kube/kubie.yaml
+
+# kubernetes does not support XDG specs yet so here we are i guess.
+
 # Force kubie to use a particular shell, if unset detect shell currently in use.
 # Possible values: bash, dash, fish, xonsh, zsh
 # Default: unset
