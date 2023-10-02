@@ -1,4 +1,4 @@
-# ~/.ripgreprc
+# ~/.config/ripgrep/config
 
 --glob=!git
 --colors=line:style:bold

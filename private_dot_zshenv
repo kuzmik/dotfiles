@@ -3,9 +3,52 @@
 # Dont read global configs
 unsetopt GLOBAL_RCS
 
-export SOLARGRAPH_CACHE="$HOME/.cache/solargraph"
-export ZDOTDIR="$HOME/.zsh"
+### XDG specific stuff, because that's a thing now
+# See also:
+#   https://github.com/b3nj5m1n/xdg-ninja
+#   https://github.com/doron-cohen/antidot
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_RUNTIME_DIR="$HOME/.local/run"
+export XDG_STATE_HOME="$HOME/.local/state"
 
-if [[ -f "$HOME/.zshenv.custom" ]]; then
-  . $HOME/.zshenv.custom
-fi
+# buncha crap to make xdg-ninja happy
+export ZDOTDIR="$HOME/.config/zsh"
+export HISTFILE="$ZDOTDIR/history"
+
+# configs
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
+export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+export GEMRC="$XDG_CONFIG_HOME/gem/config"
+export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
+export K9SCONFIG="$XDG_CONFIG_HOME/k9s"
+export PRYRC="$XDG_CONFIG_HOME/pry/config"
+export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
+export REDISCLI_RCFILE="$XDG_CONFIG_HOME/redis/redisclirc"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
+export VIMINIT="set nocp | source ${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
+export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+
+# data
+export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
+export MINIKUBE_HOME="$XDG_DATA_HOME/minikube"
+
+# caches
+export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
+export SOLARGRAPH_CACHE="$XDG_CACHE_HOME/solargraph"
+
+# states
+export ANSIBLE_HOME="$XDG_STATE_HOME/ansible"
+export LESSHISTFILE="$XDG_STATE_HOME/less_history"
+export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
+export PSQL_HISTORY="$XDG_STATE_HOME/postgresql_history"
+export REDISCLI_HISTFILE="$XDG_STATE_HOME/redis_history"
+export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
+### End XDG specific stuff
+
+# other stuff
+export USE_GKE_GCLOUD_AUTH_PLUGIN="True"

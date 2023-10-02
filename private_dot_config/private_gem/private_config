@@ -1,4 +1,4 @@
-# ~/.gemrc
+# ~/.config/gem/config
 
 ---
 benchmark: false

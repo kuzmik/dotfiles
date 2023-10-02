@@ -1,4 +1,4 @@
-# ~/.tigrc
+# ~/.config/tig/config
 
 set diff-highlight  = /opt/homebrew/share/git-core/contrib/diff-highlight/diff-highlight
 set line-graphics   = utf-8

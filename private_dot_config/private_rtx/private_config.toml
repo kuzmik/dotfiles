@@ -1,3 +1,5 @@
+# ~/.config/rtx/config.toml
+
 [settings]
 # whether to prompt to install plugins and runtimes if they're not already installed
 missing_runtime_behavior = 'prompt' # other options: 'ignore', 'warn', 'prompt', 'autoinstall'
