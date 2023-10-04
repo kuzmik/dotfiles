@@ -61,7 +61,7 @@ unsetopt SHARE_HISTORY          # Don't share history between all sessions.
 # see https://stackoverflow.com/questions/23128353/zsh-shortcut-ctrl-a-not-working
 bindkey -e
 
-source $HOME/.aliases
+source $ZDOTDIR/aliases
 
 # sheldon plugin manager
 if (( $+commands[sheldon] )); then
@@ -82,4 +82,4 @@ if (( $+commands[starship] )); then
 fi
 
 # Load all the completion stuff from a separate file. Not using $ZDOTDIR so that kubie can continue to use completions.
-source ~/.config/zsh/completion.zsh
+source $ZDOTDIR/completion.zsh
