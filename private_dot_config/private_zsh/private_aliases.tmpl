@@ -22,6 +22,10 @@ alias hg='kitty +kitten hyperlinked_grep'
 # fix the pam file to allow touch id to auth sudo. macos updates revert this.
 alias fixsudo="if grep -q pam_tid /etc/pam.d/sudo; then echo 'no need'; else (echo 1a; echo 'auth       sufficient     pam_tid.so'; echo .; echo w) | sudo ed - /etc/pam.d/sudo; fi"
 
+# Aliases to make specifica commands XDG compliant
+alias tflint='tflint -c ~/.config/tflint/config.hcl'
+
+# zsh functions for interacting with kubernetes
 k8s-exec-all-pods() {
   deployment="$1"
   container="$2"
