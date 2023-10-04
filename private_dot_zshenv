@@ -29,6 +29,7 @@ export PRYRC="$XDG_CONFIG_HOME/pry/config"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export REDISCLI_RCFILE="$XDG_CONFIG_HOME/redis/redisclirc"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
+export TF_CLI_CONFIG_FILE="$XDG_CONFIG_HOME/terraform/config.hcl"
 export VIMINIT="set nocp | source ${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
 export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
@@ -36,6 +37,7 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export MINIKUBE_HOME="$XDG_DATA_HOME/minikube"
+export TF_DATA_DIR="$XDG_DATA_HOME/terraform"
 
 # caches
 export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"

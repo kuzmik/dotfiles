@@ -112,6 +112,13 @@ if command -v docker > /dev/null; then
   eval "$(docker completion zsh)"
 fi
 
+# terraform
+if [ -d "$XDG_DATA_HOME/rtx/installs/terraform" ]; then
+  autoload -U +X bashcompinit && bashcompinit
+  complete -o nospace -C /Users/nick/.local/share/rtx/installs/terraform/latest/bin/terraform terraform
+  compdef terraform tf
+fi
+
 # ps/kill completion
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
 zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview '[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
