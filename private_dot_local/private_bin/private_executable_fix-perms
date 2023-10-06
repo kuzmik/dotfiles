@@ -1,0 +1,17 @@
+#!/bin/bash
+set -o errtrace
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# fix the owner and group for $HOME
+2>/dev/null 1>&2 chown -R "$(id -un)":"$(id -gn)" "$HOME"
+
+# make all directories 700 (where possible, some will fail on macOS, because macOS)
+find "$HOME" -type d -exec chmod 700 {} \;
+
+# set any executable files to 700
+find "$HOME" -type f -perm +111 ! -perm 700 -exec ls -al {} \;
+
+# find any file that is readable by anyone, but is not 600. correct that
+find "$HOME" -type f -perm +400 ! \( -perm 600 -o -perm 700 \) -exec chmod 600 {} \;

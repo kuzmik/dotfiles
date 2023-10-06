@@ -11,24 +11,27 @@ set -o pipefail
 # can and will get messy if you have any dirty files, but such is life.
 # Could do git stash in dirty repos, idk.
 
-OLDPWD=`pwd`
+OLDPWD=$(pwd)
 
 COLOR_BOLD="$(tput bold)"
 COLOR_REST="$(tput sgr0)"
 
-for i in $(ls -d /Users/nick/Code/*); do
-  cd $i;
-  export MAIN=$(git main-branch)
-  printf "\n%s=> Pulling %s%s\n" $COLOR_BOLD $i $COLOR_REST
+for i in /Users/nick/Code/*; do
+  cd "$i";
+  MAIN=""
+  MAIN=$(git main-branch)
+
+  printf "\n%s=> Pulling %s%s\n" "$COLOR_BOLD" "$i" "$COLOR_REST"
+
   git com > /dev/null 2>&1;
   git pull;
   git prune; 
-  for b in $(git branch --merged $MAIN | egrep -v $MAIN$); do
-    git branch -d $b
-    printf "\n%s => Delete merged branch %s%s\n" $COLOR_BOLD $b $COLOR_REST
+  for b in $(git branch --merged "$MAIN" | grep -E -v "$MAIN"$); do
+    git branch -d "$b"
+    printf "\n%s => Delete merged branch %s%s\n" "$COLOR_BOLD" "$b" "$COLOR_REST"
   done
   git gc --aggressive; 
-  unset $MAIN
+  unset "$MAIN"
 done; 
 
-cd $OLDPWD
+cd "$OLDPWD"
