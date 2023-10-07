@@ -3,7 +3,7 @@
 {{- if eq .chezmoi.hostname "arcadia" }}
 format = "$gcloud $kubernetes\n$time <$username@$hostname:$directory$git_branch$git_status $status > "
 {{ else }}
-format = "$time <$username@$hostname:$directory$git_branch$git_status $status > "
+format = "$kubernetes\n$time <$username@$hostname:$directory$git_branch$git_status $status > "
 {{- end }}
 
 # Disable the blank line at the start of the prompt
