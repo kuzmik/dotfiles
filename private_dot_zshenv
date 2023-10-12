@@ -25,6 +25,7 @@ export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 export GEMRC="$XDG_CONFIG_HOME/gem/config"
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export K9SCONFIG="$XDG_CONFIG_HOME/k9s"
+export LESSKEY="${XDG_CONFIG_HOME}/less/lesskey"
 export PRYRC="$XDG_CONFIG_HOME/pry/config"
 export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
 export REDISCLI_RCFILE="$XDG_CONFIG_HOME/redis/redisclirc"
@@ -35,12 +36,15 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 # data
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
+export GEM_HOME="${XDG_DATA_HOME}/gem"
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export MINIKUBE_HOME="$XDG_DATA_HOME/minikube"
+export npm_config_cache="${XDG_CACHE_HOME}/npm"
 export TF_DATA_DIR="$XDG_DATA_HOME/terraform"
 
 # caches
 export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
+export GEM_SPEC_CACHE="${XDG_CACHE_HOME}/gem"
 export SOLARGRAPH_CACHE="$XDG_CACHE_HOME/solargraph"
 
 # states
