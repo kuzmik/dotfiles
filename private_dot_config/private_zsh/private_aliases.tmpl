@@ -73,6 +73,15 @@ k8s-list-resources() {
   done
 }
 
+# macos date sucks, this simulates gnu date
+date() {
+  if [ "$1" = "-I" ]; then
+    command date "+%Y-%m-%dT%H:%M:%S%z"
+  else
+  command date "$@"
+  fi
+}
+
 {{ if eq .chezmoi.hostname "arcadia" }}
 # persona stuff
 alias dcom='docker compose'
