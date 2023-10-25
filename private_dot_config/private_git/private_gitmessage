@@ -1,0 +1,43 @@
+# Guidelines:
+#   1. Separate subject from body with a blank line
+#   2. Limit the subject line to 50 characters
+#   3. Capitalize the subject line
+#   4. Do not end the subject line with a period
+#   5. Use the imperative mood in the subject line
+#   6. Wrap the body at 72 characters
+#   7. Use the body to explain what and why vs. how
+
+# <CHANGE TYPES>
+# build – changes that affect the build system or external dependencies
+# chore – changes that do not relate to a fix or feature and don't modify src or test files (for example updating dependencies)
+# ci – continuous integration related
+# docs – updates to documentation such as a the README or other markdown files
+# feat – a new feature is introduced with the changes
+# fix – a bug fix has occurred
+# perf – performance improvements
+# refactor – refactored code that neither fixes a bug nor adds a feature
+# revert – reverts a previous commit # 
+# style – changes that do not affect the meaning of the code, likely related to code formatting such as white-space, missing semi-colons, and so on.
+# test – including new or correcting previous tests
+
+# No more than 50 chars. #### 50 chars is here:  #
+<CHANGE TYPE>: Title. Summary, imperative, start upper case, don't end with a period
+
+# Remember blank line between title and body.
+
+=== Estimated Risk ===
+
+# Wrap at 72 chars. ################################## which is here:  #
+SEV[0..5] - <reason>
+
+=== Description ===
+# Wrap at 72 chars. ################################## which is here:  #
+
+# Long descrition of changes, bullet points if there are many
+
+=== Testing Plan ===
+# Wrap at 72 chars. ################################## which is here:  #
+# How will this be tested?
+
+### === END === ###
+
