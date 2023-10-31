@@ -78,7 +78,7 @@ date() {
   if [ "$1" = "-I" ]; then
     command date "+%Y-%m-%dT%H:%M:%S%z"
   else
-  command date "$@"
+    command date "$@"
   fi
 }
 
@@ -90,6 +90,7 @@ alias cpi='cd ~/Code/persona-infrastructure'
 alias cpk='cd ~/Code/persona-kubernetes'
 
 # get a shell on a random proxysql pod
-alias proxyexec='k exec -n proxysql deployments/proxysql -it -c proxysql -- /bin/bash'
-alias pshell='f() { kubectl exec $1 -it -c proxysql -- /bin/bash };f'
+alias proxycore='k exec -n proxysql deployments/proxysql-core -it -c proxysql -- /bin/bash'
+alias proxysatellite='k exec -n proxysql deployments/proxysql-satellite -it -c proxysql -- /bin/bash'
+alias proxyshell='f() { kubectl exec $1 -it -c proxysql -- /bin/bash };f'
 {{- end }}

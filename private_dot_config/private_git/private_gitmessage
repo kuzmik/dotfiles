@@ -20,24 +20,27 @@
 # style – changes that do not affect the meaning of the code, likely related to code formatting such as white-space, missing semi-colons, and so on.
 # test – including new or correcting previous tests
 
+# Title
 # No more than 50 chars. #### 50 chars is here:  #
-<CHANGE TYPE>: Title. Summary, imperative, start upper case, don't end with a period
+<CHANGE TYPE>: Summary, imperative, start upper case, don't end with a period
 
 # Remember blank line between title and body.
 
 === Estimated Risk ===
-
 # Wrap at 72 chars. ################################## which is here:  #
+
 SEV[0..5] - <reason>
 
 === Description ===
 # Wrap at 72 chars. ################################## which is here:  #
-
 # Long descrition of changes, bullet points if there are many
+
+Stuff here
 
 === Testing Plan ===
 # Wrap at 72 chars. ################################## which is here:  #
 # How will this be tested?
 
-### === END === ###
+Stuff here
 
+### === END === ###
