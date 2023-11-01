@@ -112,6 +112,16 @@ if command -v docker > /dev/null; then
   eval "$(docker completion zsh)"
 fi
 
+# helm
+if command -v helm > /dev/null; then
+  eval "$(helm completion zsh)"
+fi
+
+# kubectl
+if command -v kubectl > /dev/null; then
+  eval "$(kubectl completion zsh)"
+fi
+
 # terraform
 if [ -d "$XDG_DATA_HOME/rtx/installs/terraform" ]; then
   autoload -U +X bashcompinit && bashcompinit
