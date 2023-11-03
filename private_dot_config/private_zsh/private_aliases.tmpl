@@ -90,7 +90,7 @@ alias cpi='cd ~/Code/persona-infrastructure'
 alias cpk='cd ~/Code/persona-kubernetes'
 
 # get a shell on a random proxysql pod
-alias proxycore='k exec -n proxysql deployments/proxysql-core -it -c proxysql -- /bin/bash'
-alias proxysatellite='k exec -n proxysql deployments/proxysql-satellite -it -c proxysql -- /bin/bash'
+alias proxycore='k exec deployments/proxysql-core -it -c proxysql -- /bin/bash'
+alias proxysatellite='k exec deployments/proxysql-satellite -it -c proxysql -- /bin/bash'
 alias proxyshell='f() { kubectl exec $1 -it -c proxysql -- /bin/bash };f'
 {{- end }}
