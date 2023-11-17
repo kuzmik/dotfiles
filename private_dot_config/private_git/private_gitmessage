@@ -21,26 +21,27 @@
 # test – including new or correcting previous tests
 
 # Title
-# No more than 50 chars. #### 50 chars is here:  #
-<CHANGE TYPE>: Summary, imperative, start upper case, don't end with a period
+# Summary, imperative, start upper case, don't end with a period
+# Wrap at 72 chars. ################################## which is here:  #
+<CHANGE TYPE>[optional scope]: <description>
 
 # Remember blank line between title and body.
 
-=== Estimated Risk ===
-# Wrap at 72 chars. ################################## which is here:  #
-
-SEV[0..5] - <reason>
-
-=== Description ===
+**Description**
 # Wrap at 72 chars. ################################## which is here:  #
 # Long descrition of changes, bullet points if there are many
 
 Stuff here
 
-=== Testing Plan ===
+**Potential Risk**
+# Wrap at 72 chars. ################################## which is here:  #
+
+Worst Case Incident: SEV(1|2|3|4)
+
+**Testing Strategy**
 # Wrap at 72 chars. ################################## which is here:  #
 # How will this be tested?
 
 Stuff here
 
-### === END === ###
+### === END TEMPLATE === ###
