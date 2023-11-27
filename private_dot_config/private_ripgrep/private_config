@@ -1,10 +1,9 @@
 # ~/.config/ripgrep/config
 
---glob=!git
 --colors=line:style:bold
---smart-case
+--glob=!git
 --hidden
+--hyperlink-format=kitty
 --pretty
-
-# slows it down a little but sorts by filename
+--smart-case
 --sort=path
