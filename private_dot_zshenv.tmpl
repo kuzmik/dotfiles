@@ -58,5 +58,9 @@ export REDISCLI_HISTFILE="$XDG_STATE_HOME/redis_history"
 export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
 ### End XDG specific stuff
 
-# other stuff
+{{ if eq .chezmoi.hostname "arcadia" }}
+# other work specific stuff
 export USE_GKE_GCLOUD_AUTH_PLUGIN="True"
+export OP_ACCOUNT=withpersona.1password.com
+{{- end }}
+
