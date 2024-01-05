@@ -12,12 +12,12 @@ else
   echo "you need to install brew, duh"
 fi
 
-# Switching from asdf to rtx
-# https://github.com/jdxcode/rtx
-if [[ -f /opt/homebrew/bin/rtx ]]; then
-  eval "$(/opt/homebrew/bin/rtx activate zsh)"
+# Switching from asdf to mise
+# https://github.com/jdxcode/mise
+if [[ -f /opt/homebrew/bin/mise ]]; then
+  eval "$(/opt/homebrew/bin/mise activate zsh)"
 else
-  echo "rtx is not installed, might want to handle that"
+  echo "mise is not installed, might want to handle that"
 fi
 
 # Use atuin to save shell history

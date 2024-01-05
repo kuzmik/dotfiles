@@ -36,9 +36,9 @@ if [[ -x $(command -v mas) ]]; then
   mas upgrade
 fi
 
-# Update rtx plugins
-if [[ -x $(command -v rtx) ]]; then
-  echo "=> rtx: updating all plugins"
-  rtx plugin update --all > /dev/null 2>&1
-  echo "=> rtx: plugins updated"
+# Update mise plugins
+if [[ -x $(command -v mise) ]]; then
+  echo "=> mise: updating all plugins"
+  mise plugin update --all > /dev/null 2>&1
+  echo "=> mise: plugins updated"
 fi

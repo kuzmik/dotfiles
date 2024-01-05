@@ -1,5 +1,5 @@
-# ~/.config/rtx/config.toml
-# See https://github.com/jdx/rtx/blob/main/README.md for docs
+# ~/.config/mise/config.toml
+# See https://github.com/jdx/mise/blob/main/README.md for docs
 
 [settings]
 legacy_version_file                   = true

@@ -101,10 +101,10 @@ zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f
 #   fi
 # fi
 
-# gcloud via rtx
-if [ -d "$XDG_DATA_HOME/rtx/installs/gcloud" ]; then
-  . "$XDG_DATA_HOME/rtx/installs/gcloud/latest/path.zsh.inc"
-  . "$XDG_DATA_HOME/rtx/installs/gcloud/latest/completion.zsh.inc"
+# gcloud via mise
+if [ -d "$XDG_DATA_HOME/mise/installs/gcloud" ]; then
+  . "$XDG_DATA_HOME/mise/installs/gcloud/latest/path.zsh.inc"
+  . "$XDG_DATA_HOME/mise/installs/gcloud/latest/completion.zsh.inc"
 fi
 
 # docker
@@ -123,9 +123,9 @@ if command -v kubectl > /dev/null; then
 fi
 
 # terraform
-if [ -d "$XDG_DATA_HOME/rtx/installs/terraform" ]; then
+if [ -d "$XDG_DATA_HOME/mise/installs/terraform" ]; then
   autoload -U +X bashcompinit && bashcompinit
-  complete -o nospace -C /Users/nick/.local/share/rtx/installs/terraform/latest/bin/terraform terraform
+  complete -o nospace -C /Users/nick/.local/share/mise/installs/terraform/latest/bin/terraform terraform
   compdef terraform tf
 fi
 
