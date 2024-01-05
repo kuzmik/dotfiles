@@ -55,14 +55,10 @@ format = '[$account](dimmed cyan):[$project](yellow),'
 disabled = false
 
 [kubernetes]
-format = '[kctx](dimmed cyan):[$context](yellow), [kns](dimmed cyan):[$namespace](yellow)'
+format = '[kctx](dimmed cyan):[$context]($style)$symbol, [kns](dimmed cyan):[$namespace](yellow)'
 disabled = false
-
-{{ if eq .chezmoi.hostname "arcadia" }}
-[kubernetes.context_aliases]
-"teleport.withpersona-teleport.com-persona-web-staging-us-central1" = "us-staging"
-"teleport.withpersona-teleport.com-persona-web-staging-europe-west3" = "eu-staging"
-
-"teleport.withpersona-teleport.com-persona-web-production-us-central1" = "us-prod"
-"teleport.withpersona-teleport.com-persona-web-production-europe-west3" = "eu-prod"
-{{- end }}
+style = "yellow"
+symbol = ""
+contexts = [
+  { context_pattern = ".+-prod", style = "red", symbol = "⚠️" },
+]
