@@ -4,10 +4,8 @@
 min_version = "2024.1.1"
 
 [tools]
-terraform = "latest"
-kubectl = "latest"
+gcloud = "latest"
 go = "latest"
-kubectx = "latest"
-python = "latest"
-rust = "latest"
 ruby = "latest"
+rust = "latest"
+terraform = "latest"

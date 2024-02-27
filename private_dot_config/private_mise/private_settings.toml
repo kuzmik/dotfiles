@@ -1,4 +1,4 @@
-# ~/.config/mise/config.toml
+# ~/.config/mise/settings.toml
 # See https://github.com/jdx/mise/blob/main/README.md for docs
 
 always_keep_download                  = false

@@ -1,7 +1,6 @@
 # ~/.config/git/config
 
 # Some parts of this rely on the git-delta package from homebrew
-
 [user]
   name = Nick Kuzmik
 {{- if eq .chezmoi.hostname "arcadia" }}
@@ -10,45 +9,8 @@
   email = nick@kuzmik.org
 {{- end}}
 
-[push]
-  config = default
-  default = current
-
-[commit]
-  verbose = true
-  template = /Users/nick/.config/git/gitmessage
-
-[apply]
-  whitespace = warn
-
-[diff]
-  renames = true
-  indentHeuristic = on
-  colorMoved = default
-
-[status]
-  showUntrackedFiles = all
-
-[branch]
-  autosetupmerge = true
-
-[merge]
-  summary = true
-  conflictstyle = diff3
-
-[rebase]
-  autosquash = true
-
-[color]
-  diff = auto
-  status = auto
-  branch = auto
-  interactive = auto
-
-[core]
-  excludesfile = ~/.config/git/ignore
-  pager = delta
-  editor = "subl -w"
+[add.interactive]
+  useBuiltin = false # required for git 2.37.0
 
 [alias]
   # since we use a mixture of main/master, this oughta make it easier
@@ -76,21 +38,64 @@
   pf = push --force-with-lease
   nit = commit --amend --no-edit
 
-[remote "origin"]
-  prune = true
+[apply]
+  whitespace = warn
 
-[rerere]
-  enabled = 0
+[branch]
+  autosetupmerge = true
 
-[pull]
-  rebase = true
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
 
-[interactive]
-  diffFilter = delta --color-only
+[commit]
+  verbose = true
+  template = /Users/nick/.config/git/gitmessage
 
-[add.interactive]
-  useBuiltin = false # required for git 2.37.0
+[diff]
+  renames = true
+  indentHeuristic = on
+  colorMoved = default
+
+[core]
+  excludesfile = ~/.config/git/ignore
+  pager = delta
+  editor = "subl -w"
 
 [delta]
   navigate = true    # use n and N to move between diff sections
   light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+
+[fetch]
+  prune = true
+
+[interactive]
+  diffFilter = delta --color-only
+
+[merge]
+  summary = true
+  conflictstyle = diff3
+
+[pull]
+  rebase = true
+
+[push]
+  config = default
+  default = current
+  autoSetupRemote = true
+  useForceIfIncludes = true
+
+[rebase]
+  autosquash = true
+  autoStash = true
+
+[remote "origin"]
+  prune = true
+
+[rerere]
+  enabled = true
+
+[status]
+  showUntrackedFiles = all
