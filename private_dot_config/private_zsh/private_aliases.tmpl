@@ -83,6 +83,20 @@ date() {
   fi
 }
 
+# a `kubectl apply` that (probably) won't fuck up production.
+ka() {
+  current_context=$(kubectl config current-context)
+
+  if [[ "$current_context" == *prod* ]]; then
+    echo "Error: Current context ($current_context) contains 'prod'. Exiting to prevent accidental changes to production."
+    return 1
+  else
+    # If the context does not contain 'prod', proceed with `kubectl apply` using whatever arguments are passed to it; usually that'd be `-f $file_path`
+    # NB: this will break down in stack world, but that's fine for now.
+    kubectl apply "$@"
+  fi
+}
+
 {{ if eq .chezmoi.hostname "arcadia" }}
 # persona stuff
 alias dcom='docker compose'
