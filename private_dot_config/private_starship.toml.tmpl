@@ -1,13 +1,19 @@
 # ~/.config/starship.toml
 
 {{- if eq .chezmoi.hostname "arcadia" }}
-format = "$gcloud $kubernetes\n$time <$username@$hostname:$directory$git_branch$git_status $status > "
+
+format = "$gcloud $kubernetes\n$time <$username@$hostname:$directory$git_branch$git_status $cmd_duration $status > "
 {{ else }}
-format = "$kubernetes\n$time <$username@$hostname:$directory$git_branch$git_status $status > "
+format = "$kubernetes\n$time <$username@$hostname:$directory$git_branch$git_status $cmd_duration $status > "
 {{- end }}
 
 # Disable the blank line at the start of the prompt
 add_newline = false
+
+[cmd_duration]
+disabled = false
+min_time =   20
+format = '$duration'
 
 [time]
 disabled = false
