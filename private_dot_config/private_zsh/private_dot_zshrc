@@ -28,7 +28,8 @@ fi
 # fucking delete key
 bindkey "^[[3~" delete-char
 
-export PATH="/usr/local/bin:$HOME/.local/bin:$PATH"
+export KREW_ROOT="$HOME/.local/share/krew"
+export PATH="/usr/local/bin:$HOME/.local/bin:$KREW_ROOT/bin:$PATH"
 export CLICOLOR=1
 export EDITOR="nvim"
 export GUI_EDITOR="subl"
