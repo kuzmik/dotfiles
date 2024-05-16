@@ -44,11 +44,9 @@ apply = ["defer"]
 github = "Aloxaf/fzf-tab"
 apply = ["defer"]
 
-## Using atuin, deprecating this
-# [plugins.fzf-history-search]
-# github = "joshskidmore/zsh-fzf-history-search"
-# apply = ["defer"]
-
 [plugins.jq]
 github = "reegnz/jq-zsh-plugin"
 apply = ["defer"]
+
+[plugins.shellfirm]
+remote = "https://raw.githubusercontent.com/kaplanelad/shellfirm/main/shell-plugins/shellfirm.plugin.zsh"
