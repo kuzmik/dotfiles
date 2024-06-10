@@ -92,37 +92,11 @@ zstyle ':completion:*' keep-prefix true
 
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
-# 1password cli
-# maybe obviated with
-# op completion zsh > $(brew --prefix)/share/zsh/site-functions/_op
-# if (( $+commands[op] )); then
-#   if ! $(command -v _op &> /dev/null) ; then
-#     eval "$(op completion zsh)"; compdef _op op
-#   fi
-# fi
-
 # gcloud via mise
 if [ -d "$XDG_DATA_HOME/mise/installs/gcloud" ]; then
   . "$XDG_DATA_HOME/mise/installs/gcloud/latest/path.zsh.inc"
   . "$XDG_DATA_HOME/mise/installs/gcloud/latest/completion.zsh.inc"
 fi
-
-# docker
-# if command -v docker > /dev/null; then
-#   eval "$(docker completion zsh)"
-# fi
-
-# kubectl
-# if command -v kubectl > /dev/null; then
-#  eval "$(kubectl completion zsh)"
-# fi
-
-# terraform via mise
-# if [ -d "$XDG_DATA_HOME/mise/installs/terraform" ]; then
-#   autoload -U +X bashcompinit && bashcompinit
-#   complete -o nospace -C /Users/nick/.local/share/mise/installs/terraform/latest/bin/terraform terraform
-#   compdef terraform tf
-# fi
 
 # ps/kill completion
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
@@ -145,11 +119,3 @@ if (( $+commands[fzf] )); then
     fi
   fi
 fi
-
-# # fzf-tab zsh plugin configuration for directories and files
-# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -l --color=always --no-icons $realpath'
-# zstyle ':fzf-tab:complete:cd:*' popup-pad 30 0
-# zstyle ':fzf-tab:complete:ls:*' fzf-preview 'exa -l --color=always --no-icons $realpath'
-# zstyle ':fzf-tab:complete:ls:*' popup-pad 30 0
-# zstyle ':fzf-tab:complete:*:*' fzf-preview 'bat --style=numbers,changes --wrap never --color always {} || cat {}'
-# zstyle ':fzf-tab:complete:*:*' fzf-preview 'LESSOPEN="|/Users/nick/.local/bin/lessfilter %s" less ${(Q)realpath}'
