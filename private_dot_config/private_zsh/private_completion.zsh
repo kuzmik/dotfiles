@@ -108,31 +108,21 @@ if [ -d "$XDG_DATA_HOME/mise/installs/gcloud" ]; then
 fi
 
 # docker
-if command -v docker > /dev/null; then
-  eval "$(docker completion zsh)"
-fi
-
-# helm
-if command -v helm > /dev/null; then
-  eval "$(helm completion zsh)"
-fi
+# if command -v docker > /dev/null; then
+#   eval "$(docker completion zsh)"
+# fi
 
 # kubectl
-if command -v kubectl > /dev/null; then
-  eval "$(kubectl completion zsh)"
-fi
+# if command -v kubectl > /dev/null; then
+#  eval "$(kubectl completion zsh)"
+# fi
 
 # terraform via mise
-if [ -d "$XDG_DATA_HOME/mise/installs/terraform" ]; then
-  autoload -U +X bashcompinit && bashcompinit
-  complete -o nospace -C /Users/nick/.local/share/mise/installs/terraform/latest/bin/terraform terraform
-  compdef terraform tf
-fi
-
-if command -v mise > /dev/null; then
-  eval "$(mise completion zsh)"
-fi
-
+# if [ -d "$XDG_DATA_HOME/mise/installs/terraform" ]; then
+#   autoload -U +X bashcompinit && bashcompinit
+#   complete -o nospace -C /Users/nick/.local/share/mise/installs/terraform/latest/bin/terraform terraform
+#   compdef terraform tf
+# fi
 
 # ps/kill completion
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"

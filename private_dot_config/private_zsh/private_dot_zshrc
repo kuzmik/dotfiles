@@ -1,29 +1,31 @@
 # ~/.config/zsh/.zshrc
 
+# zmodload zsh/zprof
+
 ### User configuration specific to nick
 umask 077
 
 # TODO: mac only. lots of this file is mac only i bet.
 if [[ -f /opt/homebrew/bin/brew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
-elif [[ -f /usr/local/bin/brew ]]; then
-  eval "$(/usr/local/bin/brew shellenv)"
 else
   echo "you need to install brew, duh"
 fi
 
 # Switching from asdf to mise
 # https://github.com/jdxcode/mise
-if [[ -f /opt/homebrew/bin/mise ]]; then
-  eval "$(/opt/homebrew/bin/mise activate zsh)"
-else
-  echo "mise is not installed, might want to handle that"
-fi
+# DISABLED for now as it is drastically slowing zsh down
+# if [[ -f /opt/homebrew/bin/mise ]]; then
+#   eval "$(/opt/homebrew/bin/mise activate zsh)"
+# else
+#   echo "mise is not installed, might want to handle that"
+# fi
 
 # Use atuin to save shell history
-if [[ -f /opt/homebrew/bin/atuin ]]; then
-  eval "$(atuin init zsh --disable-up-arrow)"
-fi
+# DISABLED for now as it is drastically slowing zsh down
+# if [[ -f /opt/homebrew/bin/atuin ]]; then
+#  eval "$(atuin init zsh --disable-up-arrow)"
+# fi
 
 # fucking delete key
 bindkey "^[[3~" delete-char
@@ -71,16 +73,17 @@ if (( $+commands[sheldon] )); then
   fi
 fi
 
-if (( $+commands[direnv] )); then
-  eval "$(direnv hook zsh)"
-fi
-
 # Load starship, for the ps1 prompt
 if (( $+commands[starship] )); then
   if ! $(command -v _starship &> /dev/null) ; then
     eval "$(starship init zsh)"
   fi
 fi
+
+## Disabled, as it is slowing my shell down
+# if (( $+commands[direnv] )); then
+#  eval "$(direnv hook zsh)"
+# fi
 
 # Load all the completion stuff from a separate file. Not using $ZDOTDIR so that kubie can continue to use completions.
 source $ZDOTDIR/completion.zsh

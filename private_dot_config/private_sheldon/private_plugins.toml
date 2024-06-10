@@ -22,14 +22,11 @@ defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
-[plugins.base16]
-github = "chriskempson/base16-shell"
-apply = ["defer"]
-
-[plugins.completions]
-github = "zsh-users/zsh-completions"
-use = ["zsh-completions.plugin.zsh"]
-apply = ["defer"]
+# Not really needed, i've got my completions setup already
+# [plugins.completions]
+# github = "zsh-users/zsh-completions"
+# use = ["zsh-completions.plugin.zsh"]
+# apply = ["defer"]
 
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
@@ -43,10 +40,3 @@ apply = ["defer"]
 [plugins.fzf-tab]
 github = "Aloxaf/fzf-tab"
 apply = ["defer"]
-
-[plugins.jq]
-github = "reegnz/jq-zsh-plugin"
-apply = ["defer"]
-
-[plugins.shellfirm]
-remote = "https://raw.githubusercontent.com/kaplanelad/shellfirm/main/shell-plugins/shellfirm.plugin.zsh"
