@@ -1,0 +1,6 @@
+# ~/.config/1Password/ssh/agent.toml
+{{ if eq .chezmoi.hostname "arcadia" }}
+# pin ssh keys to the employee vault on my work laptop
+[[ssh-keys]]
+vault = "Employee"
+{{- end }}

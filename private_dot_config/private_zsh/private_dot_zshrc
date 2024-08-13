@@ -14,18 +14,17 @@ fi
 
 # Switching from asdf to mise
 # https://github.com/jdxcode/mise
-# DISABLED for now as it is drastically slowing zsh down
-# if [[ -f /opt/homebrew/bin/mise ]]; then
-#   eval "$(/opt/homebrew/bin/mise activate zsh)"
-# else
-#   echo "mise is not installed, might want to handle that"
-# fi
+if [[ -f /opt/homebrew/bin/mise ]]; then
+  eval "$(/opt/homebrew/bin/mise activate zsh)"
+else
+  echo "mise is not installed, might want to handle that"
+fi
 
 # Use atuin to save shell history
 # DISABLED for now as it is drastically slowing zsh down
-# if [[ -f /opt/homebrew/bin/atuin ]]; then
-#  eval "$(atuin init zsh --disable-up-arrow)"
-# fi
+if [[ -f /opt/homebrew/bin/atuin ]]; then
+  eval "$(atuin init zsh --disable-up-arrow)"
+fi
 
 # fucking delete key
 bindkey "^[[3~" delete-char

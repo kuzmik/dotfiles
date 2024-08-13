@@ -4,8 +4,9 @@
 	"color_scheme": "Packages/Boxy Theme/schemes/Boxy Tomorrow.tmTheme",
 	"draw_minimap_border": true,
 	"ensure_newline_at_eof_on_save": true,
-	"font-size": 12.0,
-	"font_size": 14,
+	"font_face": "MonoLisa",
+	"font-size": 17.0,
+	"font_size": 17,
 	"ignored_packages":
 	[
 		"Vintage",
