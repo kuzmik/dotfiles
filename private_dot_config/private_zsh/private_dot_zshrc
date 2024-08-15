@@ -21,7 +21,6 @@ else
 fi
 
 # Use atuin to save shell history
-# DISABLED for now as it is drastically slowing zsh down
 if [[ -f /opt/homebrew/bin/atuin ]]; then
   eval "$(atuin init zsh --disable-up-arrow)"
 fi
