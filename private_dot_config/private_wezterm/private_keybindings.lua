@@ -1,9 +1,19 @@
+-- ~/.config/wezterm/keybindings.lua
+
 local wezterm = require 'wezterm'
 
-local config = {}
+local leader = {
+  key = 'a',
+  mods = 'CMD',
+  timeout_milliseconds = 1000
+}
 
-config.leader = { key = 'a', mods = 'CMD', timeout_milliseconds = 1000 }
-config.keys = {
+local keys = {
+  {
+    key = 'r',
+    mods = 'CMD|SHIFT',
+    action = wezterm.action.ReloadConfiguration,
+  },
   {
     key = ',',
     mods = 'SUPER',
@@ -12,24 +22,34 @@ config.keys = {
       args = { '/opt/homebrew/bin/subl', wezterm.config_file },
     },
   },
+  -- force new tabs to open in ~, otherwise they will open in the CWD of whatever tab
+  -- you were in when you spawned the new one
+  {
+    key = 't',
+    mods = 'CMD',
+    action = wezterm.action.SpawnCommandInNewTab {
+      cwd = wezterm.home_dir,
+    },
+  },
+  -- make alt+left/right move to start/end of words, like a sane shell
   {
     key = 'LeftArrow',
     mods = 'OPT',
-    action = wezterm.action{SendString="\x1bb"}
+    action = wezterm.action { SendString="\x1bb" }
   },
   {
     key = "RightArrow",
     mods = "OPT",
-    action = wezterm.action{SendString="\x1bf"}
+    action = wezterm.action { SendString="\x1bf" }
   },
-  -- kitty-like bindings
+  -- kitty-like pane bindings
   {
-    key = 'd',
+    key = 'D',
     mods = 'SUPER',
     action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
   },
   {
-    key = 'D',
+    key = 'd',
     mods = 'SUPER',
     action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
   },
@@ -41,14 +61,6 @@ config.keys = {
        one_shot = false,
        timemout_miliseconds = 1000,
     }),
-  },
-  {
-    key = 'a',
-    mods = 'LEADER',
-    action = wezterm.action.ActivateKeyTable {
-      name = 'activate_pane',
-      timeout_milliseconds = 1000,
-    },
   },
   -- pane navigation
   {
@@ -71,9 +83,21 @@ config.keys = {
     mods = 'CMD|ALT',
     action = wezterm.action.ActivatePaneDirection 'Right'
   },
+  -- tab manipulation (move them around)
+  {
+    key = '{',
+    mods = 'SHIFT|ALT',
+    action = wezterm.action.MoveTabRelative(-1)
+  },
+  {
+    key = '}',
+    mods = 'SHIFT|ALT',
+    action = wezterm.action.MoveTabRelative(1)
+  },
 }
 
-config.key_tables = {
+local key_tables = {
+  -- kitty like pane resizing. CMD-R and up/down/left/right to size the selected pane
   resize_pane = {
     { key = 'UpArrow', action = wezterm.action.AdjustPaneSize({ 'Up', 1 }) },
     { key = 'DownArrow', action = wezterm.action.AdjustPaneSize({ 'Down', 1 }) },
@@ -83,4 +107,24 @@ config.key_tables = {
   },
 }
 
-return config
+local mouse_bindings = {
+  -- overide single click so that it doesnt open links without CMD
+  {
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'NONE',
+    action = wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection',
+  },
+  -- cmd-click will open the link under the mouse cursor
+  {
+    event = { Up = { streak = 1, button = "Left" } },
+    mods = "CMD",
+    action = wezterm.action.OpenLinkAtMouseCursor,
+  },
+}
+
+return {
+  key_tables = key_tables,
+  keys = keys,
+  mouse_bindings = mouse_bindings,
+  leader = leader,
+}
