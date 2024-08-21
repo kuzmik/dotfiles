@@ -116,9 +116,20 @@ local mouse_bindings = {
   },
   -- cmd-click will open the link under the mouse cursor
   {
-    event = { Up = { streak = 1, button = "Left" } },
-    mods = "CMD",
+    event = { Down = { streak = 1, button = 'Left' } },
+    mods = 'CMD',
     action = wezterm.action.OpenLinkAtMouseCursor,
+  },
+  -- stop the window dragging
+  {
+    event = { Drag = { streak = 1, button = 'Left' } },
+    mods = 'CMD',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
+  {
+    event = { Drag = { streak = 1, button = 'Left' } },
+    mods = 'SHIFT|CTRL',
+    action = wezterm.action.DisableDefaultAssignment,
   },
 }
 
