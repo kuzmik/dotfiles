@@ -19,7 +19,7 @@ local keys = {
     mods = 'SUPER',
     action = wezterm.action.SpawnCommandInNewTab {
       cwd = wezterm.home_dir,
-      args = { '/opt/homebrew/bin/subl', wezterm.config_file },
+      args = { '/opt/homebrew/bin/subl', wezterm.config_dir },
     },
   },
   -- force new tabs to open in ~, otherwise they will open in the CWD of whatever tab
