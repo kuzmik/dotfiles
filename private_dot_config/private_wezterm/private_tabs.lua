@@ -65,9 +65,9 @@ wezterm.on("format-tab-title", function(tab, _, _, _, _, _)
 end)
 
 -- function(tab, pane, tabs, panes, config)
-wezterm.on("format-window-title", function(tab, _, _, _, _)
-  return tab_title(tab)
-end)
+-- wezterm.on("format-window-title", function(tab, _, _, _, _)
+--   return tab_title(tab)
+-- end)
 
 
 return config

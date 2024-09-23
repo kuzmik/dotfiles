@@ -2,5 +2,6 @@
 {{ if eq .chezmoi.hostname "arcadia" }}
 # pin ssh keys to the employee vault on my work laptop
 [[ssh-keys]]
-vault = "Employee"
+# pinning to personal for now, so i dont have to okta auth every god damned push/pull
+vault = "Personal"
 {{- end }}
