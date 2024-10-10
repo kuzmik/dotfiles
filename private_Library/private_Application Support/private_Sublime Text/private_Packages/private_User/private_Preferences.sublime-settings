@@ -5,6 +5,7 @@
 	"draw_minimap_border": true,
 	"ensure_newline_at_eof_on_save": true,
 	"font_face": "MonoLisa",
+	"font_options": ["no_liga"],
 	"font-size": 17.0,
 	"font_size": 17,
 	"ignored_packages":
