@@ -80,9 +80,9 @@ if (( $+commands[starship] )); then
 fi
 
 ## Disabled, as it is slowing my shell down
-# if (( $+commands[direnv] )); then
-#  eval "$(direnv hook zsh)"
-# fi
+if (( $+commands[direnv] )); then
+  eval "$(direnv hook zsh)"
+fi
 
 # Load all the completion stuff from a separate file. Not using $ZDOTDIR so that kubie can continue to use completions.
 source $ZDOTDIR/completion.zsh
