@@ -4,7 +4,10 @@
 min_version = "2024.8.1"
 
 [tools]
-gcloud = "latest"
-go = "latest"
 ruby = "latest"
+go = "latest"
 terraform = "latest"
+gcloud = "latest"
+
+[settings]
+experimental = true

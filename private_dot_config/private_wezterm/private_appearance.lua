@@ -10,6 +10,7 @@ config.cursor_thickness = "1"
 config.default_cursor_style = "BlinkingBlock"
 config.font = wezterm.font_with_fallback { "MonoLisa", "MonaSpace" }
 config.font_size = 15
+config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
 config.inactive_pane_hsb = {
   saturation = 0.5,
