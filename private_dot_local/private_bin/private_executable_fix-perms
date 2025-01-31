@@ -11,7 +11,7 @@ set -o pipefail
 find "$HOME" -type d -exec chmod 700 {} \;
 
 # set any executable files to 700
-find "$HOME" -type f -perm +111 ! -perm 700 -exec ls -al {} \;
+find "$HOME" -type f -perm +111 ! -perm 700 -exec chmod 700 {} \;
 
 # find any file that is readable by anyone, but is not 600. correct that
 find "$HOME" -type f -perm +400 ! \( -perm 600 -o -perm 700 \) -exec chmod 600 {} \;
