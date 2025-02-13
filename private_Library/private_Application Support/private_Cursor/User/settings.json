@@ -51,4 +51,5 @@
         "editor.defaultFormatter": "hashicorp.terraform",
         "editor.formatOnSave": false
     },
+    "cursor.cpp.enablePartialAccepts": true,
 }

@@ -55,19 +55,19 @@
   verbose = true
   template = /Users/nick/.config/git/gitmessage
 
-[diff]
-  renames = true
-  indentHeuristic = on
-  colorMoved = default
-
 [core]
+  editor = ~/.local/bin/git-editor.sh
   excludesfile = ~/.config/git/ignore
-  pager = delta
-  editor = "subl -w"
+  pager = "f() { if which delta>/dev/null; then pre=delta; else pre=cat; fi; $pre | less --tabs=4 -RFX;  }; f"
 
 [delta]
   navigate = true    # use n and N to move between diff sections
   light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+
+[diff]
+  renames = true
+  indentHeuristic = on
+  colorMoved = default
 
 [fetch]
   prune = true
