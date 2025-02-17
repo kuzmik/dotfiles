@@ -33,6 +33,7 @@ export PATH="/usr/local/bin:$HOME/.local/bin:$KREW_ROOT/bin:$PATH"
 export CLICOLOR=1
 export EDITOR="nvim"
 export GUI_EDITOR="cursor"
+export HISTIGNORE='ls:cd:cd -:pwd:exit:date:* --help'
 export HISTSIZE=1000000000
 export HOMEBREW_NO_ENV_HINTS=1
 export LANG=en_US.UTF-8
@@ -55,9 +56,9 @@ setopt HIST_IGNORE_SPACE        # Do not record an event starting with a space.
 setopt HIST_SAVE_NO_DUPS        # Do not write a duplicate event to the history file.
 setopt PUSHD_IGNORE_DUPS        # Do not store duplicates in the stack.
 setopt PUSHD_SILENT             # Do not print the directory stack after pushd or popd.
+setopt SHARE_HISTORY            # Don't share history between all sessions.
 unsetopt CORRECT                # Spelling correction
 unsetopt FLOW_CONTROL           # Ctrl+S and Ctrl+Q usually disable/enable tty input. This disables those inputs
-unsetopt SHARE_HISTORY          # Don't share history between all sessions.
 
 # go back to normal keybindings
 # see https://stackoverflow.com/questions/23128353/zsh-shortcut-ctrl-a-not-working
@@ -67,16 +68,12 @@ source $ZDOTDIR/aliases
 
 # sheldon plugin manager
 if (( $+commands[sheldon] )); then
-  if ! $(command -v _sheldon &> /dev/null) ; then
-    eval "$(sheldon source)"
-  fi
+  eval "$(sheldon source)"
 fi
 
 # Load starship, for the ps1 prompt
 if (( $+commands[starship] )); then
-  if ! $(command -v _starship &> /dev/null) ; then
-    eval "$(starship init zsh)"
-  fi
+  eval "$(starship init zsh)"
 fi
 
 ## Disabled, as it is slowing my shell down

@@ -1,11 +1,14 @@
 # ~/.config/ripgrep/config
 
 --colors=line:style:bold
+--follow
 --glob=!.git
 --glob=!.terraform
 --hidden
-# --hyperlink-format=kitty
 --hyperlink-format=file-line-column://{path}:{line}:{column}
+--max-columns-preview
+--max-columns=150
 --pretty
 --smart-case
 --sort=path
+--trim
