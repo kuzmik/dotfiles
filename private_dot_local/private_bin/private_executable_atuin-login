@@ -1,0 +1,14 @@
+#!/bin/bash
+set -o errtrace
+set -o errexit
+set -o nounset
+set -o pipefail
+
+# Login to the atuin remote server
+# Requires the 1password cli to be installed and logged in
+# NB: only use on personal machines
+
+atuin login \
+    -u "$(op read --account=my.1password.com 'op://personal/atuin - remote/username')" \
+    -p "$(op read --account=my.1password.com 'op://personal/atuin - remote/password')" \
+    -k "$(op read --account=my.1password.com 'op://personal/atuin - remote/encryption key')"

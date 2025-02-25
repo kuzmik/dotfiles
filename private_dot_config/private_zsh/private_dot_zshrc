@@ -25,9 +25,6 @@ if [[ -f /opt/homebrew/bin/atuin ]]; then
   eval "$(atuin init zsh --disable-up-arrow)"
 fi
 
-# fucking delete key
-bindkey "^[[3~" delete-char
-
 export KREW_ROOT="$HOME/.local/share/krew"
 export PATH="/usr/local/bin:$HOME/.local/bin:$KREW_ROOT/bin:$PATH"
 export CLICOLOR=1
@@ -63,6 +60,8 @@ unsetopt FLOW_CONTROL           # Ctrl+S and Ctrl+Q usually disable/enable tty i
 # go back to normal keybindings
 # see https://stackoverflow.com/questions/23128353/zsh-shortcut-ctrl-a-not-working
 bindkey -e
+# fucking delete key
+bindkey "^[[3~" delete-char
 
 source $ZDOTDIR/aliases
 
