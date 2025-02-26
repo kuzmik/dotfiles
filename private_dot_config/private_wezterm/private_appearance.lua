@@ -1,3 +1,5 @@
+-- ~/.config/wezterm/appearances.lua
+
 local wezterm = require "wezterm"
 
 local config = {}

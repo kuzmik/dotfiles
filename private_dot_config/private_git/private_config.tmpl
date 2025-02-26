@@ -44,16 +44,20 @@
 
 [branch]
   autosetupmerge = true
+  sort = -committerdate # new
 
 [color]
-  diff = auto
-  status = auto
   branch = auto
+  diff = auto
   interactive = auto
+  status = auto
+
+[column]
+  ui = auto
 
 [commit]
-  verbose = true
   template = /Users/nick/.config/git/gitmessage
+  verbose = true
 
 [core]
   editor = ~/.local/bin/git-editor.sh
@@ -61,41 +65,54 @@
   pager = "f() { if which delta>/dev/null; then pre=delta; else pre=cat; fi; $pre | less --tabs=4 -RFX;  }; f"
 
 [delta]
-  navigate = true    # use n and N to move between diff sections
   light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+  navigate = true    # use n and N to move between diff sections
 
 [diff]
+  algorithm = histogram   # new
+  colorMoved = plain      # new
+  indentHeuristic = on    # new
+  mnemonicPrefix = true   # new
   renames = true
-  indentHeuristic = on
-  colorMoved = default
 
 [fetch]
+  all = true
   prune = true
+  pruneTags = true
+
+[init]
+  defaultBranch = main
 
 [interactive]
   diffFilter = delta --color-only
 
 [merge]
   summary = true
-  conflictstyle = diff3
+  conflictstyle = zdiff3
 
 [pull]
   rebase = true
 
 [push]
-  config = default
-  default = current
   autoSetupRemote = true
+  config = default
+  default = simple
+  followTags = true
 
 [rebase]
   autosquash = true
   autoStash = true
+  updateRefs = true
 
 [remote "origin"]
   prune = true
 
 [rerere]
+  autoupdate = true
   enabled = true
 
 [status]
   showUntrackedFiles = all
+
+[tag]
+  sort = version:refname

@@ -1,3 +1,5 @@
+-- ~/.config/wezterm/customlib.lua
+
 local configtable = {}
 
 function configtable.merge_all(...)

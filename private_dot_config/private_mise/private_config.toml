@@ -6,7 +6,7 @@ min_version = "2024.8.1"
 [tools]
 ruby = "latest"
 go = "latest"
-terraform = "latest"
+# terraform = "1.9.8"
 gcloud = "latest"
 
 [settings]

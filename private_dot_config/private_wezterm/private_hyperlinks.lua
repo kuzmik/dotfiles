@@ -1,3 +1,5 @@
+-- ~/.config/wezterm/hyperlinks.lua
+
 local wezterm = require 'wezterm'
 
 local config = {}
