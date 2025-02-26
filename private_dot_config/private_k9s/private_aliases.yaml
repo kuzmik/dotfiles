@@ -1,0 +1,16 @@
+aliases:
+  cr: clusterroles
+  crb: clusterrolebindings
+  dp: deployments
+  jo: jobs
+  np: networkpolicies
+  po: pods
+  rb: rolebindings
+  ro: roles
+  sec: v1/secrets
+  svc: services
+  sts: statefulsets
+  cm: configmaps
+  sa: serviceaccounts
+  evt: events
+

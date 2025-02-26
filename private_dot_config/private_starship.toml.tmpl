@@ -1,7 +1,6 @@
 # ~/.config/starship.toml
 
 {{- if eq .chezmoi.hostname "adro" }}
-
 format = "$gcloud $kubernetes\n$time <$username@$hostname:$directory$git_branch$git_status $cmd_duration $status > "
 {{ else }}
 format = "$kubernetes\n$time <$username@$hostname:$directory$git_branch$git_status $cmd_duration $status > "

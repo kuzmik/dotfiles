@@ -1,0 +1,35 @@
+# ~/.config/k9s/config.yaml
+
+k9s:
+  liveViewAutoRefresh: true
+  refreshRate: 1
+  maxConnRetry: 15
+  # Specifies if modification commands like delete/kill/edit are disabled. Default is false
+  # If set to true, there's no cli flag to enable read/write
+  readOnly: false
+  noExitOnCtrlC: false
+  ui:
+    enableMouse: true
+    headless: false
+    logoless: true
+    crumbsless: false
+    reactive: true
+    noIcons: false
+  skipLatestRevCheck: true
+  disablePodCounting: false
+  imageScans:
+    enable: false
+  logger:
+    tail: 5000
+    buffer: 10000
+    sinceSeconds: 600
+    fullScreen: false
+    textWrap: false
+    showTime: false
+  thresholds:
+    cpu:
+      critical: 90
+      warn: 70
+    memory:
+      critical: 90
+      warn: 70
