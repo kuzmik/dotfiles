@@ -6,22 +6,50 @@ local config = {}
 
 -- open hyperlinks from rg (and others hopefully)
 local function filelink_click(win, pane, uri)
-  local prefix  = 'file-line-column://' -- 'file-line-column:///path/to/file.txt:ln:col'
-  -- the exact scheme of the URL depends on the editor, so ↑ and editor arguments ↓ need to be adjusted to reflect that
-  -- https://github.com/dandavison/open-in-editor/blob/master/open-in-editor
-  local prefix_re = prefix:gsub("([^%w])", "%%%1") -- escape -:/
+  local prefix = 'file-line-column://'
+  local prefix_re = prefix:gsub("([^%w])", "%%%1") -- escape special chars
   local prefix_beg, prefix_end = uri:find('^' .. prefix_re)
 
-  if prefix_beg == 1 then
-    local editor_cli = '/opt/homebrew/bin/subl'
-    local uri_target = uri:sub(prefix_end + 1)
-    -- spawncommandinnewwindow will popup a new window, but it will disappear. less annotying than
-    -- switching to the last tab
-    win:perform_action(wezterm.action.SpawnCommandInNewWindow {
-      args = { editor_cli, uri_target }
-    }, pane)
+  -- Check if this is our file URI format
+  if not uri:find('^' .. prefix_re) then
+    return true -- Not our URI scheme, let something else handle it
+  end
 
-    return false
+  local uri_target = uri:sub(#prefix + 1)
+
+  -- Extract path, line, column using pattern matching
+  local path, line, column = uri_target:match("(.+):(%d+):(%d+)$")
+
+  if not path then
+    path, line = uri_target:match("(.+):(%d+)$")
+    column = "1"
+  end
+
+  if not path then
+    -- No line or column info, use some default values
+    path = uri_target
+    line = "1"
+    column = "1"
+  end
+
+  -- Choose editor based on availability
+  local editors = {
+    { cmd = '/usr/local/bin/cursor', args = {'-g', path .. ":" .. line .. ":" .. column} },
+    { cmd = '/opt/homebrew/bin/subl', args = {path .. ":" .. line .. ":" .. column} },
+    { cmd = '/opt/homebrew/bin/nvim', args = {'+' .. line, path} }
+  }
+
+  for _, editor in ipairs(editors) do
+    local exists = editor.cmd == 'vim' or io.open(editor.cmd, "r")
+    if exists then
+      if io.type(exists) == 'file' then io.close(exists) end
+
+      win:perform_action(wezterm.action.SpawnCommandInNewWindow {
+        args = { editor.cmd, table.unpack(editor.args) }
+      }, pane)
+
+      return false
+    end
   end
 end
 
