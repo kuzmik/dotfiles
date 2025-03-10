@@ -57,9 +57,9 @@
     "terraform.experimentalFeatures.prefillRequiredFields": true,
     "workbench.preferredDarkColorTheme": "Boxy Monokai",
     "window.autoDetectColorScheme": true,
-    "workbench.preferredLightColorTheme": "Boxy Monokai",
     "redhat.telemetry.enabled": false,
     "vs-kubernetes": {
         "vs-kubernetes.crd-code-completion": "disabled"
     },
+    "workbench.preferredLightColorTheme": "Default Dark Modern",
 }
