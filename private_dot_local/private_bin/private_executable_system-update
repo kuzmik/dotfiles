@@ -39,7 +39,7 @@ fi
 # Update mise plugins and tools
 if [[ -x $(command -v mise) ]]; then
   echo "=> mise: updating all plugins"
-  mise plugin update --all > /dev/null 2>&1
+  mise plugin update > /dev/null 2>&1
   echo "=> mise: plugins updated"
 
   echo "=> mise: updating all tools"
