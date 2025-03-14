@@ -7,7 +7,7 @@ set -o pipefail
 # Required parameters:
 # @raycast.schemaVersion 1
 # @raycast.title Cursor - Persona Infrastructure
-# @raycast.mode compact
+# @raycast.mode silent
 
 # Optional parameters:
 # @raycast.icon 🏗️
@@ -18,4 +18,3 @@ set -o pipefail
 # @raycast.authorURL https://raycast.com/kuzmik
 
 /usr/local/bin/cursor ~/Code/persona-infrastructure
-
