@@ -3,16 +3,8 @@
 # https://www.chezmoi.io/reference/configuration-file/
 # Requires `delta` to do the diff, and sublime to run edit
 
-diff:
-    command: delta
-edit:
-    command: subl
-    args: -w
-    minDuration: 0
 encryption: age
-git:
-    autoAdd: true
-    autoPush: false
+# mode: symlink
 progress: true
 sourceDir: {{ .chezmoi.homeDir }}/.local/share/chezmoi
 verbose: false
@@ -20,3 +12,17 @@ verbose: false
 age:
     identity: "~/.ssh/id_ed25519"
     recipient: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBiEzhSMxThq5Gu42sm6ePSpYTezqq4PF6PGEtZ0qmZM"
+
+diff:
+    command: delta
+
+edit:
+    command: subl
+    args: -w
+    minDuration: 0
+    watch: true
+    apply: true
+
+git:
+    autoAdd: true
+    autoPush: false

@@ -6,8 +6,11 @@ min_version = "2024.8.1"
 [tools]
 ruby = "latest"
 go = "latest"
-# terraform = "1.9.8"
+terraform = "latest"
+{{- if eq .chezmoi.hostname "adro" }}
 gcloud = "latest"
+{{- end }}
 
 [settings]
 experimental = true
+
