@@ -62,6 +62,11 @@ local keys = {
        timemout_miliseconds = 1000,
     }),
   },
+ {
+    key = 'r',
+    mods = 'CTRL|ALT',
+    action = wezterm.action.ResetTerminal,
+  },
   -- pane navigation
   {
     key = 'UpArrow',
