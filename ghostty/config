@@ -1,0 +1,55 @@
+# Ghostty Terminal Configuration
+
+# Font configuration
+font-family = MonoLisa
+font-family-bold = MonoLisa
+font-family-italic = MonoLisa
+font-family-bold-italic = MonoLisa
+font-size = 15
+# Disable ligatures
+font-feature = -calt, -clig, -liga
+
+# Window appearance
+background-opacity = 0.85
+window-padding-x = 10
+window-padding-y = 10
+unfocused-split-opacity = 0.5
+split-divider-color = #444444
+
+# Window behavior
+window-inherit-working-directory = true
+
+# Terminal behavior
+scrollback-limit = 100000000
+copy-on-select = false
+mouse-hide-while-typing = true
+clipboard-trim-trailing-spaces = true
+
+# Default shell
+command = /bin/zsh
+
+# Color theme
+# Note: Colors will be set in the theme file. Only set specific overrides here.
+theme = Dark Pastel
+
+# Cursor settings
+cursor-style = block
+cursor-style-blink = true
+
+# Tab settings
+window-decoration = true
+macos-titlebar-style = tabs
+
+# Alt+arrow keys for word navigation
+keybind = alt+left=esc:b
+keybind = alt+right=esc:f
+
+# File links handling (similar to filelink_click in wezterm)
+link-url = true
+
+# Terminal configuration
+term = xterm-256color
+
+# Shell integration
+shell-integration = detect
+shell-integration-features = cursor,sudo,title

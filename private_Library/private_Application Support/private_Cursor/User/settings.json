@@ -1,6 +1,6 @@
 {
     "chat.commandCenter.enabled": false,
-    "dev.containers.defaultExtensionsIfInstalledLocally": [],
+    "dev.containers.defaultExtensionsIfInstalledLocally": [ ],
     "editor.fontFamily": "MonoLisa",
     "editor.fontLigatures": false,
     "editor.fontSize": 14,
@@ -16,7 +16,7 @@
     "go.lintTool": "golangci-lint",
     "go.showWelcome": false,
     "go.survey.prompt": false,
-    "go.toolsEnvVars": {},
+    "go.toolsEnvVars": { },
     "go.toolsManagement.autoUpdate": true,
     "go.useLanguageServer": true,
     "html.format.enable": false,
@@ -62,4 +62,6 @@
         "vs-kubernetes.crd-code-completion": "disabled"
     },
     "workbench.preferredLightColorTheme": "Default Dark Modern",
+    "json.format.keepLines": true,
+    "json.format.enable": false,
 }
