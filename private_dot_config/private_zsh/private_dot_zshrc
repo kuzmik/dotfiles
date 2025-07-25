@@ -41,6 +41,7 @@ export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export SAVEHIST=1000000000
 export WORDCHARS="*?[]~&;!$%^<>"
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
 
 setopt AUTO_PUSHD               # Push the old directory onto the stack on cd.
 setopt CDABLE_VARS              # Change directory to a path stored in a variable.
@@ -61,6 +62,7 @@ unsetopt FLOW_CONTROL           # Ctrl+S and Ctrl+Q usually disable/enable tty i
 # go back to normal keybindings
 # see https://stackoverflow.com/questions/23128353/zsh-shortcut-ctrl-a-not-working
 bindkey -e
+
 # fucking delete key
 bindkey "^[[3~" delete-char
 
@@ -76,7 +78,7 @@ if (( $+commands[starship] )); then
   eval "$(starship init zsh)"
 fi
 
-## Disabled, as it is slowing my shell down
+# load direnv
 if (( $+commands[direnv] )); then
   eval "$(direnv hook zsh)"
 fi

@@ -27,8 +27,14 @@ bindkey -M menuselect '^xh' accept-and-hold                # Hold
 bindkey -M menuselect '^xn' accept-and-infer-next-history  # Next
 bindkey -M menuselect '^xu' undo                           # Undo
 
-autoload -U compinit; compinit
-_comp_options+=(globdots) # With hidden files
+autoload -Uz compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.config/zsh/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C
+fi
+
+_comp_options+=(globdots)   # With hidden files
 
 compdef vman="man"
 
@@ -119,3 +125,5 @@ if (( $+commands[fzf] )); then
     fi
   fi
 fi
+
+# zprof
