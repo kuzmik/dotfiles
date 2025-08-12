@@ -44,7 +44,7 @@
 
 [branch]
   autosetupmerge = true
-  sort = -committerdate # new
+  sort = -committerdate
 
 [color]
   branch = auto
@@ -63,16 +63,17 @@
   editor = ~/.local/bin/git-editor.sh
   excludesfile = ~/.config/git/ignore
   pager = "f() { if which delta>/dev/null; then pre=delta; else pre=cat; fi; $pre | less --tabs=4 -RFX;  }; f"
+  whitespace = trailing-space
 
 [delta]
   light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
   navigate = true    # use n and N to move between diff sections
 
 [diff]
-  algorithm = histogram   # new
-  colorMoved = plain      # new
-  indentHeuristic = on    # new
-  mnemonicPrefix = true   # new
+  algorithm = histogram
+  colorMoved = plain
+  indentHeuristic = on
+  mnemonicPrefix = true
   renames = true
 
 [fetch]
@@ -80,11 +81,18 @@
   prune = true
   pruneTags = true
 
+[help]
+  autocorrect = prompt
+
 [init]
   defaultBranch = main
 
 [interactive]
   diffFilter = delta --color-only
+
+[maintenance]
+  auto = true
+  strategy = incremental
 
 [merge]
   summary = true
@@ -113,7 +121,21 @@
   enabled = true
 
 [status]
+  branch = true
   showUntrackedFiles = all
 
 [tag]
   sort = version:refname
+
+# GPG signing stuff
+[user]
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBiEzhSMxThq5Gu42sm6ePSpYTezqq4PF6PGEtZ0qmZM
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  gpgsign = true

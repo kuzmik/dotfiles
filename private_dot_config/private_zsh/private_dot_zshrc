@@ -26,8 +26,7 @@ if [[ -f /opt/homebrew/bin/atuin ]]; then
   eval "$(atuin init zsh --disable-up-arrow)"
 fi
 
-export KREW_ROOT="$HOME/.local/share/krew"
-export PATH="/usr/local/bin:$HOME/.local/bin:$KREW_ROOT/bin:$PATH"
+export PATH="$PATH:/usr/local/bin:$HOME/.local/bin"
 export CLICOLOR=1
 export EDITOR="nvim"
 export GUI_EDITOR="cursor"
