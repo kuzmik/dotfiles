@@ -1,0 +1,26 @@
+# ~/.config/k9s/views.yaml
+
+views:
+  # Alters the service view column layout
+  v1/services:
+    columns:
+      - AGE
+      - NAMESPACE
+      - NAME
+      - TYPE
+      - CLUSTER-IP
+      - EXTERNAL-IP
+
+  # Alters the pod view column layout. Uses GVR as key
+  # v1/pods:
+  #   # Overrides default sort column
+  #   sortColumn: AGE:asc
+  #   columns:
+  #     - AGE
+  #     - NAME
+  #     - IP
+  #     - STATUS
+  #     - READY
+  #     - MEM/RL|S # => 🌚 Overrides std resource default wide attribute via `S` for `Show`
+  #     - "%MEM/R|" # => NOTE! column names with non alpha names need to be quoted as columns must be strings!
+  #     - NODE

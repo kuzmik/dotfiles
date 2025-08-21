@@ -15,4 +15,3 @@ aliases:
   cm: configmaps
   sa: serviceaccounts
   evt: events
-

@@ -9,23 +9,23 @@ k9s:
   readOnly: false
   noExitOnCtrlC: false
   ui:
+    crumbsless: false
     enableMouse: false
     headless: false
     logoless: true
-    crumbsless: false
-    reactive: true
     noIcons: false
+    reactive: true
+    skin: default
   skipLatestRevCheck: true
   disablePodCounting: false
   imageScans:
     enable: false
   logger:
-    tail: 5000
     buffer: 10000
-    sinceSeconds: 600
-    fullScreen: false
-    textWrap: false
     showTime: false
+    sinceSeconds: 600
+    tail: 5000
+    textWrap: false
   thresholds:
     cpu:
       critical: 90

@@ -1,0 +1,38 @@
+# ~/.config/k9s/plugins/send-signals.yaml
+
+# Seng SIGUSR1 or SIGUSR2 to a container
+plugins:
+  usr1:
+    shortCut: Ctrl-U
+    description: Send signal SIGUSR1 to container
+    scopes:
+      - container
+    command: bash
+    background: false
+    confirm: false
+    args:
+      - -c
+      - kubectl
+      - exec
+      - --context=$CONTEXT
+      - --namespace=$NAMESPACE
+      - $POD
+      - --container=$NAME
+      - -- kill -USR1 1
+  usr2:
+    shortCut: Ctrl-I
+    description: Send signal SIGUSR2 to container
+    scopes:
+      - container
+    command: bash
+    background: false
+    confirm: false
+    args:
+      - -c
+      - kubectl
+      - exec
+      - --context=$CONTEXT
+      - --namespace=$NAMESPACE
+      - $POD
+      - --container=$NAME
+      - -- kill -USR2 1
