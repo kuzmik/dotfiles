@@ -1,0 +1,91 @@
+{
+  "activateAllWindows": true,
+  "allowWindowSwitcher": false,
+  "alwaysHideOthers": false,
+  "appKeyAssignments": [],
+  "appSort": "name",
+  "appSortReverse": false,
+  "appSwitcherFeatures": 38,
+  "appSwitcherUseNumbersForWindows": false,
+  "enableAssignHotkey": true,
+  "enableCycleHotkey": true,
+  "enableHideOnFocusHotkey": false,
+  "enableStaticCycle": false,
+  "fnWindowSwitching": false,
+  "focusOnKeyUp": false,
+  "hideOnlyFocusedAppOnMinus": false,
+  "hideStaticSettings": false,
+  "ignoredApps": [
+    "com.apple.finder",
+    "com.google.Chrome"
+  ],
+  "ignoredKeys": [],
+  "keyTapThreshold": 0.14,
+  "minimizeKey": "minus",
+  "minimizeOnlyFocusedWindowOnMinus": true,
+  "notificationsPermissionsGranted": false,
+  "showAppSwitcher": true,
+  "showWindowSwitcher": true,
+  "specialKey": "equal",
+  "switcherScreenPlacement": 5,
+  "triggerKeys": [
+    4
+  ],
+  "whenAlreadyFocusedAction": 2,
+  "windowKeyAssignments": [],
+  "windowKeyPatterns": [
+    {
+      "id": "com.sublimetext.4",
+      "pattern": ".* — [^\\w\\d]*(.)"
+    },
+    {
+      "id": "com.sublimetext.3",
+      "pattern": ".* — [^\\w\\d]*(.)"
+    },
+    {
+      "id": "com.sublimetext.2",
+      "pattern": ".* — [^\\w\\d]*(.)"
+    },
+    {
+      "id": "com.sublimetext.",
+      "pattern": ".* — [^\\w\\d]*(.)"
+    },
+    {
+      "id": "com.visualstudio.code.oss",
+      "pattern": ".* — [^\\w\\d]*(.)"
+    },
+    {
+      "id": "com.visualstudio.code",
+      "pattern": ".* — [^\\w\\d]*(.)"
+    },
+    {
+      "id": "com.microsoft.VSCodiumInsiders",
+      "pattern": ".* — [^\\w\\d]*(.)"
+    },
+    {
+      "id": "com.microsoft.VSCode",
+      "pattern": ".* — [^\\w\\d]*(.)"
+    },
+    {
+      "id": "com.microsoft.VSCodeInsiders",
+      "pattern": ".* — [^\\w\\d]*(.)"
+    },
+    {
+      "id": "com.microsoft.VSCod",
+      "pattern": ".* — [^\\w\\d]*(.)"
+    },
+    {
+      "id": "com.todesktop.",
+      "pattern": ".* — [^\\w\\d]*(.)"
+    }
+  ],
+  "windowOnlySwitchOSDDelay": 0,
+  "windowSwitcherAppearance": "comfortable",
+  "windowSwitcherDimFocused": false,
+  "windowSwitcherFeatures": 57,
+  "windowSwitchOSDDelay": 350,
+  "windowTriggerKeys": [
+    5
+  ],
+  "zeroAsLastFocusedWindow": false
+}
