@@ -1,0 +1,15 @@
+# ~/.config/k9s/plugins/send-signals.yaml
+
+# Seng SIGUSR1 or SIGUSR2 to a container
+plugins:
+  usr1:
+    shortCut: Ctrl-U
+    description: Send signal SIGUSR1 to container
+    scopes:
+      - container
+    command: bash
+    background: true
+    confirm: false
+    args:
+      - -c
+      - "kubectl exec -it --context=$CONTEXT --namespace=$NAMESPACE $POD --container=$NAME -- sh -c 'kill -USR1 1'"

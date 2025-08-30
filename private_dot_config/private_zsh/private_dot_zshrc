@@ -67,6 +67,11 @@ bindkey "^[[3~" delete-char
 
 source $ZDOTDIR/aliases
 
+# try, which is a symlink in ~/.local/bin
+if (( $+commands[try] )); then
+  eval "$(try init --path=~/Code/experiments)"
+fi
+
 # sheldon plugin manager
 if (( $+commands[sheldon] )); then
   eval "$(sheldon source)"

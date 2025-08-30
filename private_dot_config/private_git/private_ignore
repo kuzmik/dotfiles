@@ -88,3 +88,5 @@ Temporary Items
 /lib/bundler/man/
 
 # End of https://www.toptal.com/developers/gitignore/api/ruby,go,macos.DS_Store
+
+**/.claude/settings.local.json
