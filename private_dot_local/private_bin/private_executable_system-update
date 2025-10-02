@@ -52,15 +52,15 @@ fi
 
 # 1pw cli
 if [[ -x $(command -v op) ]]; then
-  op completion zsh > $(brew --prefix)/share/zsh/site-functions/_op
+  op completion zsh > "$(brew --prefix)"/share/zsh/site-functions/_op
 fi
 
 # docker cli
 if [[ -x $(command -v docker) ]]; then
-  docker completion zsh > $(brew --prefix)/share/zsh/site-functions/_docker
+  docker completion zsh > "$(brew --prefix)"/share/zsh/site-functions/_docker
 fi
 
 # orb cli
 if [[ -x $(command -v orb) ]]; then
-  orb completion zsh > $(brew --prefix)/share/zsh/site-functions/_orb
+  orb completion zsh > "$(brew --prefix)"/share/zsh/site-functions/_orb
 fi
