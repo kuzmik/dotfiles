@@ -117,4 +117,22 @@ alias cpk='cd ~/Code/persona-kubernetes'
 alias proxycore='k exec deployments/proxysql-core -it -c proxysql -- /bin/bash'
 alias proxysatellite='k exec deployments/proxysql-satellite -it -c proxysql -- /bin/bash'
 alias proxyshell='f() { kubectl exec $1 -it -c proxysql -- /bin/bash };f'
+
+# alias to list google cloud secrets
+gsl() {
+  if [ -z "$1" ]; then
+    echo "Usage: gsl <project-name>"
+    return 1
+  fi
+  gcloud secrets list --project="$1"
+}
+
+# alias to access the latest version of a google cloud secret
+gsa() {
+  if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Usage: gsa <project-name> <secret-name>"
+    return 1
+  fi
+  gcloud secrets versions access latest --project="$1" --secret="$2"
+}
 {{- end }}

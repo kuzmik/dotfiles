@@ -126,4 +126,41 @@ if (( $+commands[fzf] )); then
   fi
 fi
 
+{{ if eq .chezmoi.hostname "adro" }}
+# Completion function to list gcp projects for the gsl function
+_gcloud-secrets-list() {
+  local projects
+  projects=($(gcloud projects list --filter="NOT (projectId:gam-* OR projectId:sys-*)" --format="value(projectId)" 2>/dev/null))
+
+  _describe 'projects' projects
+}
+compdef _gcloud-secrets-list gsl
+
+# Completion function for gcloud-secrets-access
+_gcloud-secrets-access() {
+  local context state line
+
+  _arguments \
+    '1:project:->projects' \
+    '2:secret:->secrets' \
+    '*::arguments:->args'
+
+  case $state in
+    projects)
+      local projects
+      projects=($(gcloud projects list --format="value(projectId)" --filter="NOT (projectId:gam-* OR projectId:sys-*)" 2>/dev/null))
+      _describe 'projects' projects
+    ;;
+    secrets)
+      if [[ -n $line[1] ]]; then
+        local secrets
+        secrets=($(gcloud secrets list --project="$line[1]" --format="value(name)" 2>/dev/null))
+        _describe 'secrets' secrets
+      fi
+    ;;
+  esac
+}
+compdef _gcloud-secrets-access gsa
+{{- end }}
+
 # zprof
