@@ -4,24 +4,16 @@
 min_version = "2025.5.15"
 
 [tools]
+go = "latest"
 ruby = "latest"
+terraform = "latest"
 {{- if eq .chezmoi.hostname "adro" }}
 gcloud = "latest"
 {{- end }}
-go = "latest"
-terraform = "latest"
 
 [settings]
 always_keep_download                  = false
 always_keep_install                   = false
-asdf_compat                           = false
-disable_default_shorthands            = false
-experimental                          = true
-go_set_gopath                         = true
 go_set_goroot                         = true
 idiomatic_version_file_enable_tools   = ["ruby"]
-jobs                                  = 6
-legacy_version_file                   = true
-plugin_autoupdate_last_check_duration = '1 week'
-raw                                   = false
 verbose                               = false

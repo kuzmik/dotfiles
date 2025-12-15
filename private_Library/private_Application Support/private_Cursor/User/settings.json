@@ -1,8 +1,18 @@
 {
+    "[dockercompose]": {
+        "editor.autoIndent": "advanced",
+        "editor.defaultFormatter": "redhat.vscode-yaml",
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
     "[go]": {
         "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit"
         },
+        "editor.codeLens": true,
         "editor.formatOnSave": true,
         "editor.insertSpaces": false
     },
@@ -20,6 +30,8 @@
         "editor.defaultFormatter": "hashicorp.terraform",
         "editor.formatOnSave": false
     },
+    "breadcrumbs.enabled": false,
+    "cursor.composer.usageSummaryDisplay": "always",
     "cursor.cpp.enablePartialAccepts": true,
     "cursor.preferNotificationsSameAsChat": true,
     "dev.containers.defaultExtensionsIfInstalledLocally": [],
@@ -32,24 +44,36 @@
     "editor.suggest.preview": true,
     "editor.tabSize": 2,
     "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
     "extensions.ignoreRecommendations": true,
     "files.trimTrailingWhitespace": true,
     "git.openRepositoryInParentFolders": "never",
     "go.alternateTools": {},
+    "go.delveConfig": {},
     "go.formatTool": "gofumpt",
+    "go.lintOnSave": "workspace",
     "go.lintTool": "golangci-lint-v2",
     "go.showWelcome": false,
     "go.survey.prompt": false,
+    "go.testFlags": [],
     "go.toolsEnvVars": {},
     "go.toolsManagement.autoUpdate": true,
     "go.useLanguageServer": true,
-    "gopls": {},
+    "gopls": {
+        "formatting.gofumpt": true
+    },
     "html.format.enable": false,
     "json.format.enable": false,
     "json.format.keepLines": true,
     "keyboard.touchbar.enabled": false,
+    "markdown.validate.enabled": true,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "runme": "right"
+    },
     "redhat.telemetry.enabled": false,
     "security.workspace.trust.enabled": false,
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
     "terraform.experimentalFeatures.prefillRequiredFields": true,
     "terraform.experimentalFeatures.validateOnSave": true,
     "terraform.languageServer.enable": true,
@@ -64,6 +88,5 @@
         "*.db": "default"
     },
     "workbench.preferredDarkColorTheme": "Default Dark Modern",
-    "workbench.preferredLightColorTheme": "Default Dark Modern",
-    "datadog.connection.notification.suppressSignInNotification": true
+    "workbench.preferredLightColorTheme": "Default Dark Modern"
 }

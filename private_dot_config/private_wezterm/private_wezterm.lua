@@ -34,6 +34,7 @@ end)
 return configtable.merge_all(
   config,
   require("appearance"),
+  require("clipboard"),
   require("hyperlinks"),
   require("keybindings"),
   require("tabs"),

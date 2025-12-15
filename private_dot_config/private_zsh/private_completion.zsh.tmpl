@@ -161,6 +161,11 @@ _gcloud-secrets-access() {
   esac
 }
 compdef _gcloud-secrets-access gsa
+
+# setup completion for the context command, if it exists
+if (( $+commands[context] )); then
+  eval "$(context --completion-setup)"
+fi
 {{- end }}
 
 # zprof
