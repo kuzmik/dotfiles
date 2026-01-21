@@ -1,9 +1,9 @@
 # ~/.config/starship.toml
 
 {{- if eq .chezmoi.hostname "adro" }}
-format = "$gcloud $kubernetes\n$time <$username@$hostname:$directory$git_branch$git_status $cmd_duration $status > "
+format = "$gcloud $kubernetes$python\n$time <$username@$hostname:$directory$git_branch$git_status $cmd_duration $status > "
 {{ else }}
-format = "$kubernetes\n$time <$username@$hostname:$directory$git_branch$git_status $cmd_duration $status > "
+format = "$kubernetes$python\n$time <$username@$hostname:$directory$git_branch$git_status $cmd_duration $status > "
 {{- end }}
 
 # Disable the blank line at the start of the prompt
@@ -67,3 +67,11 @@ symbol = ""
 contexts = [
   { context_pattern = ".+-prod", style = "red", symbol = "⚠️" },
 ]
+
+[python]
+disabled = false
+pyenv_version_name = true
+pyenv_prefix = 'pyenv'
+style = "dimmed green"
+symbol = ""
+format = ', [${pyenv_prefix}](dimmed cyan):[(${version})($virtualenv)](yellow)'
