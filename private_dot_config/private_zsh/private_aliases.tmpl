@@ -108,10 +108,12 @@ bindkey '^L' my-clear
 
 {{ if eq .chezmoi.hostname "adro" }}
 # persona stuff
-alias dcom='docker compose'
 alias cpw='cd ~/Code/persona-web'
 alias cpi='cd ~/Code/persona-infrastructure'
 alias cpk='cd ~/Code/persona-kubernetes'
+alias cpa='cd ~/Code/persona-access'
+alias dcom='docker compose'
+alias mg='make generate && git status'
 
 # get a shell on a random proxysql pod
 alias proxycore='k exec deployments/proxysql-core -it -c proxysql -- /bin/bash'

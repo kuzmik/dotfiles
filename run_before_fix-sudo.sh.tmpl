@@ -7,4 +7,10 @@ if ! grep -q pam_tid /etc/pam.d/sudo; then
 else
   echo '=> macOS: no need to update sudoers'
 fi
+
+# disable stupid smart quotes too, while we're at it.
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write com.apple.TextEdit SmartQuotes -bool false
+defaults write com.apple.TextEdit SmartDashes -bool false
 {{ end }}

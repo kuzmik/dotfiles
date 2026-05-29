@@ -13,6 +13,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_RUNTIME_DIR="$HOME/.local/run"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+export DO_NOT_TRACK=1
+
 # buncha crap to make xdg-ninja happy
 export ZDOTDIR="$HOME/.config/zsh"
 export HISTFILE="$ZDOTDIR/history"
@@ -37,22 +39,22 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 
 # data
 export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
+export BUNDLE_CACHE_PATH=$BUNDLE_USER_CACHE
 # export GEM_HOME="${XDG_DATA_HOME}/gem"
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 # export GOPATH="${XDG_DATA_HOME}/go"
 export MINIKUBE_HOME="$XDG_DATA_HOME/minikube"
-export npm_config_cache="${XDG_CACHE_HOME}/npm"
 # export TERMINFO="$XDG_DATA_HOME/terminfo"
 # export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
 # export TF_DATA_DIR="$XDG_DATA_HOME/terraform"
 
 # caches
 export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
-export BUNDLE_CACHE_PATH=$BUNDLE_USER_CAHCE
 # export GEM_SPEC_CACHE="${XDG_CACHE_HOME}/gem"
 export GOCACHE="${XDG_CACHE_HOME}/go/build"
 export GOMODCACHE="${XDG_CACHE_HOME}/go/pkg/mod"
 export SOLARGRAPH_CACHE="$XDG_CACHE_HOME/solargraph"
+export npm_config_cache="${XDG_CACHE_HOME}/npm"
 
 # states
 export ANSIBLE_HOME="$XDG_STATE_HOME/ansible"

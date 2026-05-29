@@ -5,7 +5,7 @@
 --glob=!.git
 --glob=!.terraform
 --hidden
---hyperlink-format=file-line-column://{path}:{line}:{column}
+--hyperlink-format=cursor://file{path}:{line}:{column}
 --max-columns-preview
 --max-columns=150
 --pretty
