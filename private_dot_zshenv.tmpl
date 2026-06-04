@@ -1,5 +1,8 @@
 # ~/.zshenv
 
+# set umask to pretty restrictive
+umask 077
+
 # Dont read global configs
 unsetopt GLOBAL_RCS
 
@@ -7,68 +10,72 @@ unsetopt GLOBAL_RCS
 # See also:
 #   https://github.com/b3nj5m1n/xdg-ninja
 #   https://github.com/doron-cohen/antidot
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_RUNTIME_DIR="$HOME/.local/run"
-export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_RUNTIME_DIR="${HOME}/.local/run"
+export XDG_STATE_HOME="${HOME}/.local/state"
 
 export DO_NOT_TRACK=1
 
 # buncha crap to make xdg-ninja happy
-export ZDOTDIR="$HOME/.config/zsh"
-export HISTFILE="$ZDOTDIR/history"
+export ZDOTDIR="${HOME}/.config/zsh"
+export HISTFILE="${ZDOTDIR}/history"
 
 # configs
-export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
-export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
-export BUNDLE_USER_CONFIG="$XDG_CONFIG_HOME/bundle"
-export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
-export GEMRC="$XDG_CONFIG_HOME/gem/config"
-export HOMEBREW_BUNDLE_FILE_GLOBAL="$XDG_CONFIG_HOME/homebrew/Brewfile"
-export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
-export K9SCONFIG="$XDG_CONFIG_HOME/k9s"
+export AWS_CONFIG_FILE="${XDG_CONFIG_HOME}/aws/config"
+export AWS_SHARED_CREDENTIALS_FILE="${XDG_CONFIG_HOME}/aws/credentials"
+export BUNDLE_USER_CONFIG="${XDG_CONFIG_HOME}/bundle"
+export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
+export GEMRC="${XDG_CONFIG_HOME}/gem/config"
+export HOMEBREW_BUNDLE_FILE_GLOBAL="${XDG_CONFIG_HOME}/homebrew/Brewfile"
+export INPUTRC="${XDG_CONFIG_HOME}/readline/inputrc"
+export K9SCONFIG="${XDG_CONFIG_HOME}/k9s"
 export LESSKEY="${XDG_CONFIG_HOME}/less/lesskey"
-export PRYRC="$XDG_CONFIG_HOME/pry/config"
-export PYTHONSTARTUP="$XDG_CONFIG_HOME/python/pythonrc"
-export REDISCLI_RCFILE="$XDG_CONFIG_HOME/redis/redisclirc"
-export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
-export TF_CLI_CONFIG_FILE="$XDG_CONFIG_HOME/terraform/config.hcl"
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
+export PRYRC="${XDG_CONFIG_HOME}/pry/config"
+export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
+export REDISCLI_RCFILE="${XDG_CONFIG_HOME}/redis/redisclirc"
+export RIPGREP_CONFIG_PATH="${XDG_CONFIG_HOME}/ripgrep/config"
+export TF_CLI_CONFIG_FILE="${XDG_CONFIG_HOME}/terraform/config.hcl"
 export VIMINIT="set nocp | source ${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
-export WGETRC="$XDG_CONFIG_HOME/wgetrc"
+export WGETRC="${XDG_CONFIG_HOME}/wgetrc"
 
 # data
-export BUNDLE_USER_PLUGIN="$XDG_DATA_HOME/bundle"
-export BUNDLE_CACHE_PATH=$BUNDLE_USER_CACHE
+export BUNDLE_USER_PLUGIN="${XDG_DATA_HOME}/bundle"
 # export GEM_HOME="${XDG_DATA_HOME}/gem"
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 # export GOPATH="${XDG_DATA_HOME}/go"
-export MINIKUBE_HOME="$XDG_DATA_HOME/minikube"
-# export TERMINFO="$XDG_DATA_HOME/terminfo"
-# export TERMINFO_DIRS="$XDG_DATA_HOME/terminfo:/usr/share/terminfo"
-# export TF_DATA_DIR="$XDG_DATA_HOME/terraform"
+export MINIKUBE_HOME="${XDG_DATA_HOME}/minikube"
+# export TERMINFO="${XDG_DATA_HOME}/terminfo"
+# export TERMINFO_DIRS="${XDG_DATA_HOME}/terminfo:/usr/share/terminfo"
+# export TF_DATA_DIR="${XDG_DATA_HOME}/terraform"
 
 # caches
-export BUNDLE_USER_CACHE="$XDG_CACHE_HOME/bundle"
+export BUNDLE_CACHE_PATH="${XDG_CACHE_HOME}/bundle"
+export BUNDLE_USER_CACHE="${XDG_CACHE_HOME}/bundle"
 # export GEM_SPEC_CACHE="${XDG_CACHE_HOME}/gem"
 export GOCACHE="${XDG_CACHE_HOME}/go/build"
 export GOMODCACHE="${XDG_CACHE_HOME}/go/pkg/mod"
-export SOLARGRAPH_CACHE="$XDG_CACHE_HOME/solargraph"
-export npm_config_cache="${XDG_CACHE_HOME}/npm"
+export SOLARGRAPH_CACHE="${XDG_CACHE_HOME}/solargraph"
+export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
+export npm_config_cache="${NPM_CONFIG_CACHE}"
+export UV_CACHE_DIR="${XDG_CACHE_HOME}/uv"
 
 # states
-export ANSIBLE_HOME="$XDG_STATE_HOME/ansible"
-export LESSHISTFILE="$XDG_STATE_HOME/less_history"
-export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
-export PSQL_HISTORY="$XDG_STATE_HOME/postgresql_history"
-export REDISCLI_HISTFILE="$XDG_STATE_HOME/redis_history"
-export SHM_DIR="$XDG_RUNTIME_DIR/shm"
-export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
+export ANSIBLE_HOME="${XDG_STATE_HOME}/ansible"
+export LESSHISTFILE="${XDG_STATE_HOME}/less_history"
+export MYSQL_HISTFILE="${XDG_STATE_HOME}/mysql_history"
+export PSQL_HISTORY="${XDG_STATE_HOME}/postgresql_history"
+export REDISCLI_HISTFILE="${XDG_STATE_HOME}/redis_history"
+export SQLITE_HISTORY="${XDG_STATE_HOME}/sqlite_history"
+
+# runtime
+export SHM_DIR="${XDG_RUNTIME_DIR}/shm"
 ### End XDG specific stuff
 
-{{ if eq .chezmoi.hostname "adro" }}
+{{ if eq .chezmoi.hostname "nick-kuzmik-ML-L2KCW7KQTD" }}
 # other work specific stuff
 export USE_GKE_GCLOUD_AUTH_PLUGIN="True"
 export OP_ACCOUNT=withpersona.1password.com
 {{- end }}
-

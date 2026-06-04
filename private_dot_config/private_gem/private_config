@@ -1,6 +1,5 @@
 # ~/.config/gem/config
 
 ---
-benchmark: false
 verbose: true
 gem: --no-document

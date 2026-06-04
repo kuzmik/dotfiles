@@ -1,92 +1,91 @@
 {
-    "[dockercompose]": {
-        "editor.autoIndent": "advanced",
-        "editor.defaultFormatter": "redhat.vscode-yaml",
-        "editor.insertSpaces": true,
-        "editor.tabSize": 2
-    },
-    "[github-actions-workflow]": {
-        "editor.defaultFormatter": "redhat.vscode-yaml"
-    },
-    "[go]": {
-        "editor.codeActionsOnSave": {
-            "source.organizeImports": "explicit"
-        },
-        "editor.codeLens": true,
-        "editor.formatOnSave": true,
-        "editor.insertSpaces": false
-    },
-    "[terraform-vars]": {
-        "editor.codeActionsOnSave": {
-            "source.formatAll.terraform": "explicit"
-        },
-        "editor.defaultFormatter": "hashicorp.terraform",
-        "editor.formatOnSave": false
-    },
-    "[terraform]": {
-        "editor.codeActionsOnSave": {
-            "source.formatAll.terraform": "explicit"
-        },
-        "editor.defaultFormatter": "hashicorp.terraform",
-        "editor.formatOnSave": false
-    },
-    "breadcrumbs.enabled": false,
-    "cursor.composer.usageSummaryDisplay": "always",
-    "cursor.cpp.enablePartialAccepts": true,
-    "cursor.preferNotificationsSameAsChat": true,
-    "dev.containers.defaultExtensionsIfInstalledLocally": [],
-    "editor.fontFamily": "MonoLisa",
-    "editor.fontLigatures": false,
-    "editor.fontSize": 14,
-    "editor.formatOnSave": true,
-    "editor.minimap.autohide": true,
-    "editor.stickyScroll.enabled": true,
-    "editor.suggest.preview": true,
+  "[dockercompose]": {
+    "editor.autoIndent": "advanced",
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "explorer.confirmDelete": false,
-    "explorer.confirmDragAndDrop": false,
-    "extensions.ignoreRecommendations": true,
-    "files.trimTrailingWhitespace": true,
-    "git.openRepositoryInParentFolders": "never",
-    "go.alternateTools": {},
-    "go.delveConfig": {},
-    "go.formatTool": "gofumpt",
-    "go.lintOnSave": "workspace",
-    "go.lintTool": "golangci-lint-v2",
-    "go.showWelcome": false,
-    "go.survey.prompt": false,
-    "go.testFlags": [],
-    "go.toolsEnvVars": {},
-    "go.toolsManagement.autoUpdate": true,
-    "go.useLanguageServer": true,
-    "gopls": {
-        "formatting.gofumpt": true
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+  },
+  "[go]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
     },
-    "html.format.enable": false,
-    "json.format.enable": false,
-    "json.format.keepLines": true,
-    "keyboard.touchbar.enabled": false,
-    "markdown.validate.enabled": true,
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "runme": "right"
+    "editor.codeLens": true,
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": false,
+  },
+  "[terraform-vars]": {
+    "editor.codeActionsOnSave": {
+      "source.formatAll.terraform": "explicit",
     },
-    "redhat.telemetry.enabled": false,
-    "security.workspace.trust.enabled": false,
-    "terminal.integrated.enableMultiLinePasteWarning": "never",
-    "terraform.experimentalFeatures.prefillRequiredFields": true,
-    "terraform.experimentalFeatures.validateOnSave": true,
-    "terraform.languageServer.enable": true,
-    "update.showReleaseNotes": false,
-    "vs-kubernetes": {
-        "vs-kubernetes.crd-code-completion": "disabled"
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": false,
+  },
+  "[terraform]": {
+    "editor.codeActionsOnSave": {
+      "source.formatAll.terraform": "explicit",
     },
-    "window.autoDetectColorScheme": true,
-    "window.commandCenter": true,
-    "workbench.colorTheme": "Default Dark Modern",
-    "workbench.editorAssociations": {
-        "*.db": "default"
+    "editor.defaultFormatter": "hashicorp.terraform",
+    "editor.formatOnSave": false,
+  },
+  "breadcrumbs.enabled": false,
+  "cursor.composer.usageSummaryDisplay": "always",
+  "cursor.cpp.enablePartialAccepts": true,
+  "cursor.preferNotificationsSameAsChat": true,
+  "dev.containers.defaultExtensionsIfInstalledLocally": [ ],
+  "editor.fontFamily": "MonoLisa",
+  "editor.fontLigatures": false,
+  "editor.fontSize": 14,
+  "editor.formatOnSave": true,
+  "editor.minimap.autohide": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.suggest.preview": true,
+  "editor.tabSize": 2,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "extensions.ignoreRecommendations": true,
+  "files.trimTrailingWhitespace": true,
+  "git.openRepositoryInParentFolders": "never",
+  "html.format.enable": false,
+  "json.format.keepLines": true,
+  "keyboard.touchbar.enabled": false,
+  "markdown.validate.enabled": true,
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "runme": "right",
+  },
+  "redhat.telemetry.enabled": false,
+  "security.workspace.trust.enabled": false,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terraform.experimentalFeatures.prefillRequiredFields": true,
+  "terraform.experimentalFeatures.validateOnSave": true,
+  "terraform.languageServer.enable": true,
+  "update.showReleaseNotes": false,
+  "vs-kubernetes": {
+    "vs-kubernetes.crd-code-completion": "disabled",
+  },
+  "window.autoDetectColorScheme": true,
+  "window.commandCenter": true,
+  "workbench.colorTheme": "Default Dark Modern",
+  "workbench.editorAssociations": {
+    "*.db": "default",
+  },
+  "workbench.preferredDarkColorTheme": "Default Dark Modern",
+  "workbench.preferredLightColorTheme": "Default Dark Modern",
+  "python.languageServer": "None",
+  "gitblame.ignoreWhitespace": true,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "[json]": {
+    "editor.quickSuggestions": {
+      "strings": true,
     },
-    "workbench.preferredDarkColorTheme": "Default Dark Modern",
-    "workbench.preferredLightColorTheme": "Default Dark Modern"
+    "editor.suggest.insertMode": "replace",
+  },
+  "files.associations": {
+    "*.hujson": "jsonc",
+  },
+  "security.promptForLocalFileProtocolHandling": false,
+  "workbench.agentsWindowButton.enabled": false,
 }

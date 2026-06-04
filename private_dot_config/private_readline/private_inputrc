@@ -1,5 +1,7 @@
 # ~/.config/readline/inputrc
 
+## zsh ignores all of this, so don't be surprised if things here don't work.
+
 ## arrow up
 "\e[A":history-search-backward
 

@@ -1,6 +1,6 @@
 # ~/.config/starship.toml
 
-{{- if eq .chezmoi.hostname "adro" }}
+{{- if eq .chezmoi.hostname "nick-kuzmik-ML-L2KCW7KQTD" }}
 format = "$gcloud $kubernetes$python\n$time <$username@$hostname:$directory$git_branch$git_status $cmd_duration $status > "
 {{ else }}
 format = "$kubernetes$python\n$time <$username@$hostname:$directory$git_branch$git_status $cmd_duration $status > "
@@ -28,6 +28,9 @@ format = "[$user](cyan)"
 disabled = false
 ssh_only = false
 format = "[$hostname](cyan)"
+aliases = {
+  "nick-kuzmik-ML-L2KCW7KQTD" = "adro",
+}
 
 [directory]
 disabled = false
@@ -64,9 +67,6 @@ format = '[kctx](dimmed cyan):[$context]($style)$symbol, [kns](dimmed cyan):[$na
 disabled = false
 style = "yellow"
 symbol = ""
-contexts = [
-  { context_pattern = ".+-prod", style = "red", symbol = "⚠️" },
-]
 
 [python]
 disabled = false
@@ -75,3 +75,28 @@ pyenv_prefix = 'pyenv'
 style = "dimmed green"
 symbol = ""
 format = ', [${pyenv_prefix}](dimmed cyan):[(${version})($virtualenv)](yellow)'
+
+# assumes all stacks are prod, even though we have some test stacks; to deal with later
+[[kubernetes.contexts]]
+context_pattern = "(?<cluster>stack-\\d{4})-(?P<region>.+)-\\d{2}.+"
+context_alias = "$region/prod-$cluster"
+style = "bold red"
+
+# filter out the data-products-staging cluster from the prod grouping
+[[kubernetes.contexts]]
+context_pattern = ".+-(prod|production)-.+"
+style = "bold red"
+
+[[kubernetes.contexts]]
+context_pattern = ".+fedramp-demo.+"
+context_alias = "fedramp-prod"
+style = "bold red"
+
+[[kubernetes.contexts]]
+context_pattern = ".+fedramp-test.+"
+context_alias = "fedramp-staging"
+
+# [[kubernetes.contexts]]
+# context_pattern = ""
+# context_alias = ""
+# style = "bold red"

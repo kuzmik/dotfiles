@@ -1,19 +1,33 @@
 # ~/.config/mise/config.toml
 # See https://github.com/jdx/mise/blob/main/README.md for docs
 
-min_version = "2025.5.15"
-
-[tools]
-go = "latest"
-ruby = "latest"
-terraform = "latest"
-{{- if eq .chezmoi.hostname "adro" }}
-gcloud = "latest"
-{{- end }}
+min_version = "2026.6.0"
 
 [settings]
 always_keep_download                  = false
 always_keep_install                   = false
 go_set_goroot                         = true
 idiomatic_version_file_enable_tools   = ["ruby"]
+minimum_release_age                   = "7d"
 verbose                               = false
+
+# try to isntall binaries first
+ruby.compile                          = false
+
+[tools]
+go            = {
+  version     = "latest"
+}
+ruby          = {
+  version     = "latest",
+  postinstall = "gem install pry"
+}
+terraform     = {
+  version     = "latest"
+}
+{{- if eq .chezmoi.hostname "nick-kuzmik-ML-L2KCW7KQTD" }}
+gcloud        = {
+  version     = "latest",
+  postinstall = "gcloud components install gke-gcloud-auth-plugin"
+}
+{{- end }}

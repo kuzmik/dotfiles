@@ -3,44 +3,22 @@
 # zmodload zsh/zprof
 
 ### User configuration specific to nick
-umask 077
-
-# TODO: mac only. lots of this file is mac only i bet.
-if [[ -f /opt/homebrew/bin/brew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-else
-  echo "you need to install brew, duh"
-fi
-
-# Switching from asdf to mise
-# https://github.com/jdxcode/mise
-if [[ -f /opt/homebrew/bin/mise ]]; then
-  eval "$(/opt/homebrew/bin/mise activate zsh)"
-  # export MISE_GO_SET_GOPATH=true
-else
-  echo "mise is not installed, might want to handle that"
-fi
-
-# Use atuin to save shell history
-if [[ -f /opt/homebrew/bin/atuin ]]; then
-  eval "$(atuin init zsh --disable-up-arrow)"
-fi
-
-export PATH="$PATH:/usr/local/bin:$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$PATH:/usr/local/bin"
 export CLICOLOR=1
 export EDITOR="nvim"
 export GUI_EDITOR="cursor"
-export HISTIGNORE='ls:cd:cd -:pwd:exit:date:* --help'
-export HISTSIZE=1000000000
+export HISTORY_IGNORE='(ls|cd|cd -|pwd|exit|date|* --help)'
 export HOMEBREW_NO_ENV_HINTS=1
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LC_COLLATE=C
 export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export SAVEHIST=1000000000
-export WORDCHARS="*?[]~&;!$%^<>"
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE="20"
+
+HISTSIZE=50000
+SAVEHIST=1000000000
+WORDCHARS="*?[]~&;!$%^<>"
 
 setopt AUTO_PUSHD               # Push the old directory onto the stack on cd.
 setopt CDABLE_VARS              # Change directory to a path stored in a variable.
@@ -54,7 +32,7 @@ setopt HIST_IGNORE_SPACE        # Do not record an event starting with a space.
 setopt HIST_SAVE_NO_DUPS        # Do not write a duplicate event to the history file.
 setopt PUSHD_IGNORE_DUPS        # Do not store duplicates in the stack.
 setopt PUSHD_SILENT             # Do not print the directory stack after pushd or popd.
-setopt SHARE_HISTORY            # Don't share history between all sessions.
+setopt SHARE_HISTORY            # Share history between all sessions.
 unsetopt CORRECT                # Spelling correction
 unsetopt FLOW_CONTROL           # Ctrl+S and Ctrl+Q usually disable/enable tty input. This disables those inputs
 
@@ -65,7 +43,14 @@ bindkey -e
 # fucking delete key
 bindkey "^[[3~" delete-char
 
-source $ZDOTDIR/aliases
+source "$ZDOTDIR/aliases"
+
+# TODO: mac only. lots of this repo is mac only i'd bet.
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  echo "you need to install brew, duh"
+fi
 
 # try, which is a symlink in ~/.local/bin
 if (( $+commands[try] )); then
@@ -87,5 +72,27 @@ if (( $+commands[direnv] )); then
   eval "$(direnv hook zsh)"
 fi
 
-# Load all the completion stuff from a separate file. Not using $ZDOTDIR so that kubie can continue to use completions.
-source $ZDOTDIR/completion.zsh
+# This should run AFTER path is modified
+if (( $+commands[mise] )); then
+  eval "$(mise activate zsh)"
+else
+  echo "mise is not installed, might want to handle that"
+fi
+
+# Use atuin to save shell history
+if (( $+commands[atuin] )); then
+  eval "$(atuin init zsh --disable-up-arrow)"
+fi
+
+# Prefix history search on Up/Down. These need to go after atuin init.
+# up and down search history when there is a character on the line.
+autoload -U up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search    # Up
+bindkey "^[OA" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search  # Down
+bindkey "^[OB" down-line-or-beginning-search
+
+# Load all the completion stuff from a separate file.
+source "$ZDOTDIR/completion.zsh"

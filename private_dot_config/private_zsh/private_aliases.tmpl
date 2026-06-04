@@ -93,20 +93,7 @@ ka() {
   fi
 }
 
-# https://vrongmeal.com/blog/clear-screen-preserve-buffer
-# wezterm loses what's on the screen on ^L, so this prevents that
-my-clear() {
-  for i in {3..$(tput lines)}
-  do
-    printf '\n'
-  done
-  printf '\33[H\33[2J'
-  zle reset-prompt
-}
-zle -N my-clear
-bindkey '^L' my-clear
-
-{{ if eq .chezmoi.hostname "adro" }}
+{{ if eq .chezmoi.hostname "nick-kuzmik-ML-L2KCW7KQTD" }}
 # persona stuff
 alias cpw='cd ~/Code/persona-web'
 alias cpi='cd ~/Code/persona-infrastructure'

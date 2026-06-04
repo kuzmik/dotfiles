@@ -100,10 +100,14 @@ word_jump_mode = "subl"
 ## with ^ or end with $, they'll match anywhere in the command.
 ## For details on the supported regular expression syntax, see
 ## https://docs.rs/regex/latest/regex/#syntax
-# history_filter = [
-#   "^secret-cmd",
-#   "^innocuous-cmd .*--secret=.+"
-# ]
+history_filter = [
+  "^ls($| )",
+  "^cd($| )",
+  "^pwd($| )",
+  "^exit$",
+  "^date($| )",
+  " --help",
+]
 
 ## prevent commands run with cwd matching any of these regexes from being written
 ## to history. Note that these regular expressions are unanchored, i.e. if they don't
@@ -130,12 +134,11 @@ show_help = true
 ## 3. Slack oauth tokens (bot, user)
 ## 4. Slack webhooks
 ## 5. Stripe live/test keys
-# secrets_filter = true
+secrets_filter = true
 
 ## Defaults to true. If enabled, upon hitting enter Atuin will immediately execute the command. Press tab to return to the shell and edit.
 # This applies for new installs. Old installs will keep the old behaviour unless configured otherwise.
-enter_accept = true
-
+enter_accept = false
 
 ## Defaults to "emacs".  This specifies the keymap on the startup of `atuin
 ## search`.  If this is set to "auto", the startup keymap mode in the Atuin
@@ -162,16 +165,15 @@ enter_accept = true
 
 [stats]
 # Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
-# common_subcommands = [
-#   "docker",
-#   "go",
-#   "git",
-#   "kubectl",
-#   "k",
-#   "terraform",
-#   "tf",
-# ]
+common_subcommands = [
+  "docker",
+  "go",
+  "git",
+  "kubectl",
+  "k",
+  "terraform",
+  "tf",
+]
 
 # Set commands that should be totally stripped and ignored from stats
 #common_prefix = ["sudo"]
-

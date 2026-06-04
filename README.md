@@ -13,3 +13,5 @@ Just run `brew bundle` and it will install all of the base utilities I need.
 ### Work/home differences
 
 NB: I use some templating in here that detects if I am on my work laptop via hostname `adro`. If I ever get a new work laptop, this will need to be addressed.
+
+Update: hostname changed, it was a hassle.

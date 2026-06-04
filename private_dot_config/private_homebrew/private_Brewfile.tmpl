@@ -20,25 +20,24 @@ brew "mise"
 brew "neovim"
 brew "ripgrep"
 brew "sheldon"
+brew "shellcheck"
 brew "starship"
-brew "television"
 brew "tree"
 brew "watch"
 brew "wget"
 
 cask "1password-cli"
 cask "alt-tab"
-cask "appcleaner"
+cask "cursor"
+cask "orbstack"
 cask "raycast"
 cask "sublime-text"
-cask "wezterm"
 
 mas "Anybox", id: 1593408455
 mas "Peek", id: 1554235898
-mas "Quiver", id: 866773894
 mas "Xcode", id: 497799835
 
-{{ if eq .chezmoi.hostname "adro" }}
+{{ if eq .chezmoi.hostname "nick-kuzmik-ML-L2KCW7KQTD" }}
 # Work specific stuff that I don't want to install on my personal macs
 tap "robinovitch61/tap"
 
@@ -49,19 +48,12 @@ brew "k9s"
 brew "kubectx"
 brew "kubie"
 brew "libyaml"
-brew "mongosh"
-brew "mysql-client@8.0"
 brew "openssl@3"
-brew "robinovitch61/tap/kl"
 brew "semgrep"
 brew "shared-mime-info"
-brew "shellcheck"
 brew "sipcalc"
 brew "tig"
 brew "yq"
-
-cask "cursor"
-cask "orbstack"
 
 mas "GoLinks", id: 1478821913
 mas "Numbers", id: 409203825

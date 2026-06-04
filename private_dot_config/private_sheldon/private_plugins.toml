@@ -22,14 +22,11 @@ defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
-# Not really needed, i've got my completions setup already
-# [plugins.completions]
-# github = "zsh-users/zsh-completions"
-# use = ["zsh-completions.plugin.zsh"]
-# apply = ["defer"]
-
-[plugins.zsh-syntax-highlighting]
-github = "zsh-users/zsh-syntax-highlighting"
+# Load order matters. fzf-tab must load after compinit but before any plugin
+# that wraps widgets; syntax-highlighting must load last so it can highlight
+# the widgets the other plugins define.
+[plugins.fzf-tab]
+github = "Aloxaf/fzf-tab"
 apply = ["defer"]
 
 [plugins.zsh-autosuggestions]
@@ -37,6 +34,6 @@ github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
 apply = ["defer"]
 
-[plugins.fzf-tab]
-github = "Aloxaf/fzf-tab"
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
 apply = ["defer"]

@@ -4,6 +4,6 @@
 # TBH I don't use Linux On The Desktop:tm: much right now, so this isn't terribly valuable
 sudo apt install ripgrep btop nvim delta
 {{ else if eq .chezmoi.os "darwin" -}}
-brew bundle --file ~/.config/homebrew/Brewfile --no-lock
+brew bundle --global
 {{ end -}}
 
