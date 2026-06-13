@@ -17,6 +17,7 @@ export XDG_RUNTIME_DIR="${HOME}/.local/run"
 export XDG_STATE_HOME="${HOME}/.local/state"
 
 export DO_NOT_TRACK=1
+export ATUIN_LOG=off
 
 # buncha crap to make xdg-ninja happy
 export ZDOTDIR="${HOME}/.config/zsh"
@@ -74,7 +75,7 @@ export SQLITE_HISTORY="${XDG_STATE_HOME}/sqlite_history"
 export SHM_DIR="${XDG_RUNTIME_DIR}/shm"
 ### End XDG specific stuff
 
-{{ if eq .chezmoi.hostname "nick-kuzmik-ML-L2KCW7KQTD" }}
+{{- if .work.enabled }}
 # other work specific stuff
 export USE_GKE_GCLOUD_AUTH_PLUGIN="True"
 export OP_ACCOUNT=withpersona.1password.com

@@ -3,7 +3,7 @@
 # zmodload zsh/zprof
 
 ### User configuration specific to nick
-export PATH="$HOME/.local/bin:$PATH:/usr/local/bin"
+export PATH="$HOME/.local/bin:$HOME/.local/share/mise/shims:$PATH:/usr/local/bin"
 export CLICOLOR=1
 export EDITOR="nvim"
 export GUI_EDITOR="cursor"
@@ -47,7 +47,11 @@ source "$ZDOTDIR/aliases"
 
 # TODO: mac only. lots of this repo is mac only i'd bet.
 if [[ -x /opt/homebrew/bin/brew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  _brew_cache="${XDG_CACHE_HOME}/brew_shellenv.zsh"
+  if [[ ! -f "$_brew_cache" || /opt/homebrew/bin/brew -nt "$_brew_cache" ]]; then
+    /opt/homebrew/bin/brew shellenv >! "$_brew_cache"
+  fi
+  source "$_brew_cache"
 else
   echo "you need to install brew, duh"
 fi
@@ -72,17 +76,28 @@ if (( $+commands[direnv] )); then
   eval "$(direnv hook zsh)"
 fi
 
-# This should run AFTER path is modified
+# auto-reshim after any mise command that changes installed tools
 if (( $+commands[mise] )); then
-  eval "$(mise activate zsh)"
-else
-  echo "mise is not installed, might want to handle that"
+  mise() {
+    command mise "$@"
+    local ret=$?
+    case "${1:-}" in
+      install|uninstall|use|prune|upgrade|up)
+        command mise reshim
+        ;;
+    esac
+    return $ret
+  }
 fi
 
 # Use atuin to save shell history
 if (( $+commands[atuin] )); then
   eval "$(atuin init zsh --disable-up-arrow)"
 fi
+
+# >>> minimal >>>
+[ -f "$HOME/.minimal/shim/shell-init/zsh.sh" ] && . "$HOME/.minimal/shim/shell-init/zsh.sh"
+# <<< minimal <<<
 
 # Prefix history search on Up/Down. These need to go after atuin init.
 # up and down search history when there is a character on the line.

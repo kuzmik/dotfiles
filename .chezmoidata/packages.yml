@@ -1,0 +1,26 @@
+packages:
+  darwin:
+    brews:
+      - name: age
+      - name: atuin
+      - name: chezmoi
+      - name: coreutils
+      - name: curl
+      - name: direnv
+      - name: duti
+      - name: fzf
+    casks:
+      - name: 1password-cli
+      - name: claude-code
+      - name: alt-tab
+      - name: cursor
+      - name: orbstack
+      - name: raycast
+      - name: sublime-text
+    app_store:
+      - name: Anybox
+        id: 1593408455
+      - name: Peek
+        id: 1554235898
+      - name: Xcode
+        id: 497799835

@@ -20,7 +20,7 @@ alias tf='terraform'
 alias fixsudo="if grep -q pam_tid /etc/pam.d/sudo; then echo 'no need'; else (echo 1a; echo 'auth       sufficient     pam_tid.so'; echo .; echo w) | sudo ed - /etc/pam.d/sudo; fi"
 
 # Aliases to make specifica commands XDG compliant
-alias tflint='tflint -c ~/.config/tflint/config.hcl'
+alias tflint='tflint -c {{ .chezmoi.homeDir }}/.config/tflint/config.hcl'
 
 # zsh functions for interacting with kubernetes
 k8s-exec-all-pods() {
@@ -93,12 +93,12 @@ ka() {
   fi
 }
 
-{{ if eq .chezmoi.hostname "nick-kuzmik-ML-L2KCW7KQTD" }}
-# persona stuff
-alias cpw='cd ~/Code/persona-web'
-alias cpi='cd ~/Code/persona-infrastructure'
-alias cpk='cd ~/Code/persona-kubernetes'
-alias cpa='cd ~/Code/persona-access'
+{{- if .work.enabled }}
+# work (persona) stuff
+alias cpw='cd {{ .chezmoi.homeDir }}/Code/persona-web'
+alias cpi='cd {{ .chezmoi.homeDir }}/Code/persona-infrastructure'
+alias cpk='cd {{ .chezmoi.homeDir }}/Code/persona-kubernetes'
+alias cpa='cd {{ .chezmoi.homeDir }}/Code/persona-access'
 alias dcom='docker compose'
 alias mg='make generate && git status'
 

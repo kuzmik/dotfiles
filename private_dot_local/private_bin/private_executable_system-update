@@ -60,7 +60,3 @@ if [[ -x $(command -v docker) ]]; then
   docker completion zsh > "$(brew --prefix)"/share/zsh/site-functions/_docker
 fi
 
-# orb cli
-if [[ -x $(command -v orb) ]]; then
-  orb completion zsh > "$(brew --prefix)"/share/zsh/site-functions/_orb
-fi

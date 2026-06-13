@@ -25,7 +25,7 @@ ruby          = {
 terraform     = {
   version     = "latest"
 }
-{{- if eq .chezmoi.hostname "nick-kuzmik-ML-L2KCW7KQTD" }}
+{{- if .work.enabled }}
 gcloud        = {
   version     = "latest",
   postinstall = "gcloud components install gke-gcloud-auth-plugin"

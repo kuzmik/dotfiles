@@ -2,12 +2,8 @@
 
 # Some parts of this rely on the git-delta package from homebrew
 [user]
-  name = Nick Kuzmik
-{{- if eq .chezmoi.hostname "nick-kuzmik-ML-L2KCW7KQTD" }}
-  email = nick.kuzmik@withpersona.com
-{{- else }}
-  email = nick@kuzmik.org
-{{- end}}
+  name = {{ .fullName | quote }}
+  email = {{ .email | quote }}
 
 [add.interactive]
   useBuiltin = false # required for git 2.37.0
@@ -56,12 +52,12 @@
 #   ui = auto
 
 [commit]
-  template = /Users/nick/.config/git/gitmessage
+  template = {{ .chezmoi.homeDir }}/.config/git/gitmessage
   verbose = true
 
 [core]
-  editor = ~/.local/bin/git-editor.sh
-  excludesfile = ~/.config/git/ignore
+  editor = {{ .chezmoi.homeDir }}/.local/bin/git-editor.sh
+  excludesfile = {{ .chezmoi.homeDir }}/.config/git/ignore
   pager = "f() { if which delta>/dev/null; then pre=delta; else pre=cat; fi; $pre | less --tabs=4 -RFX;  }; f"
   whitespace = trailing-space
 
@@ -127,7 +123,6 @@
 [tag]
   sort = version:refname
 
-# GPG signing stuff
 [user]
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBiEzhSMxThq5Gu42sm6ePSpYTezqq4PF6PGEtZ0qmZM
 
@@ -139,3 +134,12 @@
 
 [commit]
   gpgsign = true
+
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+
+[url "ssh://git@bitbucket.org/"]
+	insteadOf = https://bitbucket.org/
+
+[url "ssh://git@gitlab.com/"]
+	insteadOf = https://gitlab.com/

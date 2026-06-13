@@ -10,7 +10,7 @@ sourceDir: {{ .chezmoi.homeDir }}/.local/share/chezmoi
 verbose: false
 
 age:
-    identity: "~/.ssh/id_ed25519"
+    identity: "{{ .chezmoi.homeDir }}/.ssh/id_ed25519"
     recipient: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBiEzhSMxThq5Gu42sm6ePSpYTezqq4PF6PGEtZ0qmZM"
 
 diff:
@@ -26,3 +26,14 @@ edit:
 git:
     autoAdd: true
     autoPush: false
+
+# ty to kxd for showing me this feature
+# https://github.com/aphistic/dotfiles/blob/main/.chezmoi.yaml.tmpl
+data:
+    fullName: {{ promptStringOnce . "fullName" "Full Name" | quote }}
+    email: {{ promptStringOnce . "email" "Email Address" | quote }}
+    work:
+        enabled: {{ promptBoolOnce . "work.enabled" "[work] Enabled" }}
+        {{- if and (index . "work") .work.enabled }}
+        mode: {{ promptStringOnce . "work.mode" "[work] Mode" | quote }}
+        {{ end }}

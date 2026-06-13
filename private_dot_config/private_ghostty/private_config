@@ -25,7 +25,20 @@ font-size = 17
 font-thicken = true
 
 # Keybindings
+keybind = ctrl+minus=text:\x1f
+keybind = ctrl+plus=text:\x1f
+keybind = ctrl+slash=text:\x1f
+keybind = ctrl+bracket_left=text:\x1b
+keybind = ctrl+bracket_right=text:\x1d
+keybind = ctrl+backslash=text:\x1c
+keybind = ctrl+enter=text:\x0d
+keybind = ctrl+apostrophe=text:\x27
+keybind = ctrl+semicolon=text:\x3b
+keybind = ctrl+comma=text:\x2c
+keybind = ctrl+period=text:\x2e
+keybind = ctrl+grave_accent=text:\x60
 keybind = shift+arrow_left=unbind
+keybind = shift+arrow_up=unbind
 keybind = shift+page_up=unbind
 keybind = shift+end=unbind
 keybind = shift+arrow_right=unbind

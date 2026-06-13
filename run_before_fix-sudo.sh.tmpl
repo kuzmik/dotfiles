@@ -4,8 +4,6 @@
 if ! grep -q pam_tid /etc/pam.d/sudo; then
   (echo 1a; echo 'auth       sufficient     pam_tid.so'; echo .; echo w) | sudo ed - /etc/pam.d/sudo
   echo '=> macOS: updated sudoers to allow touchid auth'
-else
-  echo '=> macOS: no need to update sudoers'
 fi
 
 # disable stupid smart quotes too, while we're at it.

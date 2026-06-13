@@ -1,18 +1,16 @@
 # ~/.config/starship.toml
 
-{{- if eq .chezmoi.hostname "nick-kuzmik-ML-L2KCW7KQTD" }}
-format = "$gcloud $kubernetes$python\n$time <$username@$hostname:$directory$git_branch$git_status $cmd_duration $status > "
-{{ else }}
-format = "$kubernetes$python\n$time <$username@$hostname:$directory$git_branch$git_status $cmd_duration $status > "
-{{- end }}
+format = "$gcloud$kubernetes$python\n$time <$username@$hostname:$directory$git_branch$git_status $cmd_duration$status > "
+
+command_timeout = 300
 
 # Disable the blank line at the start of the prompt
 add_newline = false
 
 [cmd_duration]
 disabled = false
-min_time =   20
-format = '$duration'
+min_time = 1000
+format = '$duration '
 
 [time]
 disabled = false
@@ -28,9 +26,11 @@ format = "[$user](cyan)"
 disabled = false
 ssh_only = false
 format = "[$hostname](cyan)"
+{{- if .work.enabled }}
 aliases = {
   "nick-kuzmik-ML-L2KCW7KQTD" = "adro",
 }
+{{- end }}
 
 [directory]
 disabled = false
@@ -58,23 +58,24 @@ style = "yellow"
 up_to_date = "!"
 format = "[\\($all_status\\)]($style)"
 
+{{- if .work.enabled }}
 [gcloud]
-format = '[$account](dimmed cyan):[$project](yellow),'
-disabled = false
-
-[kubernetes]
-format = '[kctx](dimmed cyan):[$context]($style)$symbol, [kns](dimmed cyan):[$namespace](yellow)'
+format = '[gcp](cyan):[$account]($style)/[$project]($style), '
 disabled = false
 style = "yellow"
-symbol = ""
 
-[python]
+[gcloud.region_aliases]
+us-central1 = 'usc1'
+europe-west3 = 'euw3'
+{{ else }}
+[gcloud]
+disabled = true
+{{- end }}
+
+[kubernetes]
+format = '[kube](cyan):[$context]($style)/[$namespace]($style)'
 disabled = false
-pyenv_version_name = true
-pyenv_prefix = 'pyenv'
-style = "dimmed green"
-symbol = ""
-format = ', [${pyenv_prefix}](dimmed cyan):[(${version})($virtualenv)](yellow)'
+style = "yellow"
 
 # assumes all stacks are prod, even though we have some test stacks; to deal with later
 [[kubernetes.contexts]]
@@ -100,3 +101,20 @@ context_alias = "fedramp-staging"
 # context_pattern = ""
 # context_alias = ""
 # style = "bold red"
+
+[python]
+disabled = false
+pyenv_version_name = true
+pyenv_prefix = 'pyenv'
+style = "dimmed green"
+symbol = ""
+format = ', [${pyenv_prefix}](dimmed cyan):[(${version})($virtualenv)](yellow)'
+
+# claude
+[profiles]
+claude-code = "$claude_model$claude_context$claude_cost\n$directory$git_branch$git_status"
+
+[claude_model]
+format = "[$symbol$model]($style) "
+symbol = "🤖 "
+style = "bold blue"

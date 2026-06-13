@@ -37,9 +37,8 @@ mas "Anybox", id: 1593408455
 mas "Peek", id: 1554235898
 mas "Xcode", id: 497799835
 
-{{ if eq .chezmoi.hostname "nick-kuzmik-ML-L2KCW7KQTD" }}
+{{- if .work.enabled }}
 # Work specific stuff that I don't want to install on my personal macs
-tap "robinovitch61/tap"
 
 brew "certigo"
 brew "fd"

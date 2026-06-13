@@ -1,0 +1,4 @@
+[core]
+account = nick.kuzmik@withpersona-gov.com
+disable_usage_reporting = True
+project = persona-fedramp-demo
