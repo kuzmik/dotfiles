@@ -95,10 +95,6 @@ if (( $+commands[atuin] )); then
   eval "$(atuin init zsh --disable-up-arrow)"
 fi
 
-# >>> minimal >>>
-[ -f "$HOME/.minimal/shim/shell-init/zsh.sh" ] && . "$HOME/.minimal/shim/shell-init/zsh.sh"
-# <<< minimal <<<
-
 # Prefix history search on Up/Down. These need to go after atuin init.
 # up and down search history when there is a character on the line.
 autoload -U up-line-or-beginning-search down-line-or-beginning-search
@@ -108,6 +104,15 @@ bindkey "^[[A" up-line-or-beginning-search    # Up
 bindkey "^[OA" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search  # Down
 bindkey "^[OB" down-line-or-beginning-search
+
+# >>> minimal >>>
+[ -f "$HOME/.minimal/shim/shell-init/zsh.sh" ] && . "$HOME/.minimal/shim/shell-init/zsh.sh"
+# <<< minimal <<<
+
+{{- if .work.enabled }}
+# persona managed zshrc for the npq wrapper
+[ -f "$HOME/.zshrc" ] && . "$HOME/.zshrc"
+{{- end }}
 
 # Load all the completion stuff from a separate file.
 source "$ZDOTDIR/completion.zsh"
