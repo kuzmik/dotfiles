@@ -128,6 +128,8 @@ history_filter = [
 ## amount of commands in your history.
 show_help = true
 
+show_numeric_shortcuts = false
+
 ## Defaults to true. This matches history against a set of default regex, and will not save it if we get a match. Defaults include
 ## 1. AWS key id
 ## 2. Github pat (old and new)
@@ -177,3 +179,10 @@ common_subcommands = [
 
 # Set commands that should be totally stripped and ignored from stats
 #common_prefix = ["sudo"]
+
+[logs]
+enabled = false
+dir = "$XDG_CACHE_HOME/atuin/logs"
+
+[ui]
+columns = ["duration", "time", "host", "directory", "command"]
