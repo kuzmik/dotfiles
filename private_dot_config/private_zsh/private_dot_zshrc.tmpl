@@ -4,7 +4,9 @@
 
 ### User configuration specific to nick
 export PATH="$HOME/.local/bin:$HOME/.local/share/mise/shims:$PATH:/usr/local/bin"
-typeset -U path PATH   # keep PATH entries unique (dedupe across nested/child shells)
+
+# keep PATH entries unique (dedupe across nested/child shells)
+typeset -U path PATH
 
 # gcloud PATH via mise. Completion is set up later in completion.zsh (after compinit).
 if [ -d "$XDG_DATA_HOME/mise/installs/gcloud" ]; then
