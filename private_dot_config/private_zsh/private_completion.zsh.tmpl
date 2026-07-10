@@ -92,15 +92,19 @@ zstyle ':completion:*:complete:git:argument-1:' tag-order !aliases
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
 
+# Hide autoloaded completion helpers (_elinks, _elfdump, _gcloud-secrets-*, etc.)
+# from the "functions" tag so they don't pollute command completion.
+zstyle ':completion:*:functions' ignored-patterns '_*'
+
 # See ZSHCOMPWID "completion matching control"
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' keep-prefix true
 
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,{{ .chezmoi.homeDir }}/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
-# gcloud via mise
+# gcloud completion via mise (PATH setup lives in .zshrc).
+# completion.zsh.inc calls compdef, so it must run after compinit above.
 if [ -d "$XDG_DATA_HOME/mise/installs/gcloud" ]; then
-  . "$XDG_DATA_HOME/mise/installs/gcloud/latest/path.zsh.inc"
   . "$XDG_DATA_HOME/mise/installs/gcloud/latest/completion.zsh.inc"
 fi
 

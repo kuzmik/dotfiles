@@ -4,6 +4,12 @@
 
 ### User configuration specific to nick
 export PATH="$HOME/.local/bin:$HOME/.local/share/mise/shims:$PATH:/usr/local/bin"
+typeset -U path PATH   # keep PATH entries unique (dedupe across nested/child shells)
+
+# gcloud PATH via mise. Completion is set up later in completion.zsh (after compinit).
+if [ -d "$XDG_DATA_HOME/mise/installs/gcloud" ]; then
+  . "$XDG_DATA_HOME/mise/installs/gcloud/latest/path.zsh.inc"
+fi
 export CLICOLOR=1
 export EDITOR="nvim"
 export GUI_EDITOR="cursor"
@@ -43,8 +49,6 @@ bindkey -e
 # fucking delete key
 bindkey "^[[3~" delete-char
 
-source "$ZDOTDIR/aliases"
-
 # TODO: mac only. lots of this repo is mac only i'd bet.
 if [[ -x /opt/homebrew/bin/brew ]]; then
   _brew_cache="${XDG_CACHE_HOME}/brew_shellenv.zsh"
@@ -56,10 +60,9 @@ else
   echo "you need to install brew, duh"
 fi
 
-# try, which is a symlink in ~/.local/bin
-if (( $+commands[try] )); then
-  eval "$(try init --path=~/Code/experiments)"
-fi
+# Sourced after brew shellenv so $+commands[...] checks (e.g. fd) can see
+# Homebrew-installed tools on PATH.
+source "$ZDOTDIR/aliases"
 
 # sheldon plugin manager
 if (( $+commands[sheldon] )); then
