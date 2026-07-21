@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -Eeuox pipefail
+
+{{ if eq .osid "linux-arch" }}
+# arch specific preparation
+
+## install yay
+sudo pacman -S --needed git base-devel
+
+pushd `mktemp -d`
+    git clone https://aur.archlinux.org/yay.git
+    pushd yay
+        makepkg -si --noconfirm
+    popd
+popd
+
+{{ else if eq .osid "linux-debian" }}
+# debian specific preparation
+
+## Setup the debian repo for the 1password cli
+curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
+    sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | \
+    sudo tee /etc/apt/sources.list.d/1password.list && \
+    sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/ && \
+    curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | \
+    sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol && \
+    sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22 && \
+    curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
+    sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+
+## install extrepo and enable mise
+sudo apt install -y extrepo
+sudo extrepo enable mise
+
+sudo apt update
+sudo apt install mise 1password-cli -y
+
+{{ end }}

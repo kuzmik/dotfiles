@@ -3,7 +3,7 @@
 # set umask to pretty restrictive
 umask 077
 
-# Dont read global configs
+# Dont read global configs from /etc
 unsetopt GLOBAL_RCS
 
 ### XDG specific stuff, because that's a thing now
@@ -16,17 +16,17 @@ export XDG_DATA_HOME="${HOME}/.local/share"
 export XDG_RUNTIME_DIR="${HOME}/.local/run"
 export XDG_STATE_HOME="${HOME}/.local/state"
 
-export DO_NOT_TRACK=1
-export ATUIN_LOG=off
-
-# buncha crap to make xdg-ninja happy
+# Some things to make xdg-ninja happy. Needs to be in this file.
 export ZDOTDIR="${HOME}/.config/zsh"
 export HISTFILE="${ZDOTDIR}/history"
 
-# configs
+##
+## configs
+##
 export AWS_CONFIG_FILE="${XDG_CONFIG_HOME}/aws/config"
 export AWS_SHARED_CREDENTIALS_FILE="${XDG_CONFIG_HOME}/aws/credentials"
 export BUNDLE_USER_CONFIG="${XDG_CONFIG_HOME}/bundle"
+export CLAUDE_CONFIG_DIR="${XDG_CONFIG_HOME}/claude"
 export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
 export GEMRC="${XDG_CONFIG_HOME}/gem/config"
 export HOMEBREW_BUNDLE_FILE_GLOBAL="${XDG_CONFIG_HOME}/homebrew/Brewfile"
@@ -42,28 +42,35 @@ export TF_CLI_CONFIG_FILE="${XDG_CONFIG_HOME}/terraform/config.hcl"
 export VIMINIT="set nocp | source ${XDG_CONFIG_HOME:-$HOME/.config}/vim/vimrc"
 export WGETRC="${XDG_CONFIG_HOME}/wgetrc"
 
-# data
+##
+## data
+##
 export BUNDLE_USER_PLUGIN="${XDG_DATA_HOME}/bundle"
 # export GEM_HOME="${XDG_DATA_HOME}/gem"
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
-# export GOPATH="${XDG_DATA_HOME}/go"
+export GOPATH="${XDG_DATA_HOME}/go"
 export MINIKUBE_HOME="${XDG_DATA_HOME}/minikube"
 # export TERMINFO="${XDG_DATA_HOME}/terminfo"
 # export TERMINFO_DIRS="${XDG_DATA_HOME}/terminfo:/usr/share/terminfo"
 # export TF_DATA_DIR="${XDG_DATA_HOME}/terraform"
 
-# caches
+##
+## caches
+##
 export BUNDLE_CACHE_PATH="${XDG_CACHE_HOME}/bundle"
 export BUNDLE_USER_CACHE="${XDG_CACHE_HOME}/bundle"
 # export GEM_SPEC_CACHE="${XDG_CACHE_HOME}/gem"
 export GOCACHE="${XDG_CACHE_HOME}/go/build"
 export GOMODCACHE="${XDG_CACHE_HOME}/go/pkg/mod"
-export SOLARGRAPH_CACHE="${XDG_CACHE_HOME}/solargraph"
+export HOMEBREW_CACHE="${XDG_CACHE_HOME}/homebrew"
 export NPM_CONFIG_CACHE="${XDG_CACHE_HOME}/npm"
 export npm_config_cache="${NPM_CONFIG_CACHE}"
+export SOLARGRAPH_CACHE="${XDG_CACHE_HOME}/solargraph"
 export UV_CACHE_DIR="${XDG_CACHE_HOME}/uv"
 
-# states
+##
+## states
+##
 export ANSIBLE_HOME="${XDG_STATE_HOME}/ansible"
 export LESSHISTFILE="${XDG_STATE_HOME}/less_history"
 export MYSQL_HISTFILE="${XDG_STATE_HOME}/mysql_history"
@@ -71,12 +78,63 @@ export PSQL_HISTORY="${XDG_STATE_HOME}/postgresql_history"
 export REDISCLI_HISTFILE="${XDG_STATE_HOME}/redis_history"
 export SQLITE_HISTORY="${XDG_STATE_HOME}/sqlite_history"
 
-# runtime
+##
+## runtime
+##
 export SHM_DIR="${XDG_RUNTIME_DIR}/shm"
+
 ### End XDG specific stuff
 
-{{- if .work.enabled }}
-# other work specific stuff
+##
+## quiet down noisy tools
+##
+export ATUIN_LOG=off
+export DO_NOT_TRACK=1
+
+##
+## locale
+##
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_COLLATE=C
+
+##
+## editors
+##
+export EDITOR="nvim"
+export GUI_EDITOR="cursor" # or zed idk
+
+##
+## color output for BSD userland tools
+##
+export CLICOLOR=1
+export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+
+##
+## homebrew behavior
+##
+export HOMEBREW_NO_ASK=1
+export HOMEBREW_NO_ENV_HINTS=1
+
+{{ if .workMode -}}
+##
+## work specific stuff
+##
 export USE_GKE_GCLOUD_AUTH_PLUGIN="True"
 export OP_ACCOUNT=withpersona.1password.com
 {{- end }}
+
+##
+## PATH
+##
+# Set here (not only in .zshrc) so non-interactive shells, scripts, and cron get
+# ~/.local/bin + mise shims too. ~/.config/zsh/rc.d/00-path re-asserts this
+# afterward so our dirs win over macOS /etc/zprofile's path_helper reordering
+# on login shells.
+export PATH="${HOME}/.local/bin:${XDG_DATA_HOME}/mise/shims:${PATH}:/usr/local/bin"
+typeset -U path PATH
+
+# gcloud SDK PATH via mise (wanted non-interactively too, e.g. scripts calling gcloud)
+if [ -d "${XDG_DATA_HOME}/mise/installs/gcloud" ]; then
+  . "${XDG_DATA_HOME}/mise/installs/gcloud/latest/path.zsh.inc"
+fi

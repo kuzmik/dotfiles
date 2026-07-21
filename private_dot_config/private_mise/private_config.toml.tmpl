@@ -4,15 +4,18 @@
 min_version = "2026.6.0"
 
 [settings]
-always_keep_download                  = false
-always_keep_install                   = false
-go_set_goroot                         = true
-idiomatic_version_file_enable_tools   = ["ruby"]
-minimum_release_age                   = "7d"
-verbose                               = false
+auto_install                        = false
+always_keep_download                = false
+always_keep_install                 = false
+go_set_goroot                       = true
+idiomatic_version_file_enable_tools = ["ruby"]
+minimum_release_age                 = "7d"
+verbose                             = false
 
-# try to isntall binaries first
-ruby.compile                          = false
+# try to install binaries first
+ruby.compile                        = false
+node.compile                        = false
+python.compile                      = false
 
 [tools]
 go            = {
@@ -25,7 +28,7 @@ ruby          = {
 terraform     = {
   version     = "latest"
 }
-{{- if .work.enabled }}
+{{- if .workMode }}
 gcloud        = {
   version     = "latest",
   postinstall = "gcloud components install gke-gcloud-auth-plugin"

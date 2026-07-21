@@ -1,0 +1,16 @@
+# ~/.config/zsh/rc.d/40-brew.zsh
+#
+# Homebrew shellenv (cached). Must run before aliases/plugins that probe
+# $+commands[...] so Homebrew-installed tools are already on PATH.
+
+{{ if eq .osid "darwin" -}}
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  _brew_cache="${XDG_CACHE_HOME}/brew_shellenv.zsh"
+  if [[ ! -f "$_brew_cache" || /opt/homebrew/bin/brew -nt "$_brew_cache" ]]; then
+    /opt/homebrew/bin/brew shellenv >! "$_brew_cache"
+  fi
+  source "$_brew_cache"
+else
+  echo "you need to install brew, duh"
+fi
+{{ end -}}

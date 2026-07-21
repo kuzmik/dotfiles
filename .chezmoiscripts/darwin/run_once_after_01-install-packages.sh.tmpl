@@ -1,0 +1,15 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+{{ if eq .chezmoi.os "darwin" -}}
+# start up homebrew shell environment
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+
+# bundle install the packages from the Brewfile in ~/.config/homebrew
+brew bundle --global
+
+# symlink zed cli
+if [ -d "/Applications/Zed.app" ]; then
+  ln -sf "/Applications/Zed.app/Contents/MacOS/cli" "$(brew --prefix)/bin/zed"
+fi
+{{- end }}

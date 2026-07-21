@@ -1,39 +1,35 @@
 # ~/.config/chezmoi/config
 
-# https://www.chezmoi.io/reference/configuration-file/
-# Requires `delta` to do the diff, and sublime to run edit
-
-encryption: age
-# mode: symlink
 progress: true
 sourceDir: {{ .chezmoi.homeDir }}/.local/share/chezmoi
 verbose: false
 
+encryption: age
 age:
-    identity: "{{ .chezmoi.homeDir }}/.ssh/id_ed25519"
-    recipient: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBiEzhSMxThq5Gu42sm6ePSpYTezqq4PF6PGEtZ0qmZM"
+    identity: "{{ .chezmoi.homeDir }}/.config/chezmoi/age-key.txt"
+    recipient: "age1cc3utzfgk7r0r4jkd322k46ax5mth07qjevm6nvw0a6pq7hh84mqln0hhr"
 
+{{ if lookPath "delta" -}}
 diff:
     command: delta
+{{ end }}
 
+{{- if lookPath "cursor" }}
 edit:
     command: cursor
     args: -w
     minDuration: 0
     watch: true
     apply: true
+{{- end }}
 
 git:
     autoAdd: true
     autoPush: false
 
-# ty to kxd for showing me this feature
-# https://github.com/aphistic/dotfiles/blob/main/.chezmoi.yaml.tmpl
 data:
-    fullName: {{ promptStringOnce . "fullName" "Full Name" | quote }}
-    email: {{ promptStringOnce . "email" "Email Address" | quote }}
-    work:
-        enabled: {{ promptBoolOnce . "work.enabled" "[work] Enabled" }}
-        {{- if and (index . "work") .work.enabled }}
-        mode: {{ promptStringOnce . "work.mode" "[work] Mode" | quote }}
-        {{ end }}
+    fullName: {{ promptStringOnce . "fullName" "Full name" "Nick Kuzmik" | quote }}
+    email: {{ promptStringOnce . "email" "Email address" "nick@kuzmik.org" | quote }}
+    computerName: {{ promptStringOnce . "computerName" "Computer name" | quote }}
+    osid: {{ includeTemplate "osid" . }}
+    workMode: {{ promptBoolOnce . "work" "Work mode enabled" false }}
