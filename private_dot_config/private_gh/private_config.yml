@@ -1,3 +1,5 @@
+# ~/.config/gh/config.yml
+
 # The current version of the config schema
 version: 1
 # What protocol to use when performing git operations. Supported values: ssh, https

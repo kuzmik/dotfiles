@@ -1,1 +1,3 @@
+# ~/.config/uv/uv.toml
+
 exclude-newer = "7 days"

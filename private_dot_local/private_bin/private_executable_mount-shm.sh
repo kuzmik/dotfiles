@@ -1,5 +1,6 @@
 #!/bin/bash
-set -eou pipefail
+# ~/.local/bin/mount-shm.sh
+set -Eeuo pipefail
 
 # mount (and create) a tmpfs backed shm directory at $SHM_DIR
 # will error if $SHM_DIR is not set (on purpose). this is set
@@ -12,7 +13,7 @@ if [ ! -d "$SHM_DIR" ]; then
 fi
 
 # check to see if the directory is mounted already
-if mount | grep "$SHM_DIR" > /dev/null; then
+if mount | grep "$SHM_DIR" >/dev/null; then
   echo "==> tmpfs is already mounted at \$SHM_DIR ($SHM_DIR)"
   exit 0
 fi

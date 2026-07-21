@@ -1,0 +1,24 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+{{ if eq .osid "darwin" }}
+# setup homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# source the homebrew environment
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+
+# install necessary packages for the process
+brew tap 1password/tap > /dev/null
+brew trust --formula 1password/tap/1password-cli > /dev/null
+brew install age 1password 1password-cli
+
+# dump the age key to the chezmoi config directory
+op read "op://personal/chezmoi age key/private key" > ~/.config/chezmoi/age-key.txt
+chmod 600 ~/.config/chezmoi/age-key.txt
+
+# fix the remote URL for the dotfiles repo since it's HTTPS by default
+pushd {{ .chezmoi.sourceDir }}
+  git remote set-url origin git@github.com:kuzmik/dotfiles.git
+popd
+{{ end }}

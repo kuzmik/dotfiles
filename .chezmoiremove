@@ -1,0 +1,24 @@
+# for god's sake, do NOT use a leading / here (ie /Applications/)
+# as it WILL delete anything it can from /Applications/
+
+# stuff that keeps coming back that i dont want. go away.
+go/
+Applications/
+
+# --- stale targets from the 2.0 refactor ---
+# These used to be managed but are gone (or moved) in the new layout. chezmoi
+# never removes orphaned targets on its own, so clean them up here.
+
+# Terminal consolidation on Ghostty: WezTerm and Kitty are gone entirely.
+.config/kitty/
+.config/wezterm/
+
+# Zsh modularized into rc.d/*: the old flat aliases/completion files were
+# split into rc.d/50-aliases.zsh, rc.d/55-functions.zsh, and
+# rc.d/80-completion.zsh. The old targets linger otherwise.
+.config/zsh/aliases
+.config/zsh/completion.zsh
+
+# Raycast cursor helpers moved from ~/.local/bin to ~/.config/raycast/scripts.
+.local/bin/cursor-infra.sh
+.local/bin/cursor-kubernetes.sh

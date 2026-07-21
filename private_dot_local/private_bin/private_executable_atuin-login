@@ -1,14 +1,23 @@
 #!/bin/bash
-set -o errtrace
-set -o errexit
-set -o nounset
-set -o pipefail
+# ~/.local/bin/atuin-login
+set -Eeuo pipefail
 
 # Login to the atuin remote server
 # Requires the 1password cli to be installed and logged in
 # NB: only use on personal machines
 
-atuin login \
-    -u "$(op read --account=my.1password.com 'op://personal/atuin - remote/username')" \
-    -p "$(op read --account=my.1password.com 'op://personal/atuin - remote/password')" \
-    -k "$(op read --account=my.1password.com 'op://personal/atuin - remote/encryption key')"
+# Fetch the item once, then pull the three fields out of the JSON. Labels are
+# matched case-insensitively (the vault has "Encryption Key", not "encryption
+# key"), and @tsv escapes any embedded tabs/commas so the split stays correct.
+IFS=$'\t' read -r username password key < <(
+  op item get 'atuin - remote' \
+    --account my.1password.com \
+    --vault personal \
+    --format json |
+    jq -r '(.fields | map(select(.value != null and .value != "")
+            | {(.label | ascii_downcase): .value}) | add) as $f
+            | [$f.username, $f.password, $f["encryption key"]]
+            | @tsv'
+)
+
+atuin login -u "$username" -p "$password" -k "$key"

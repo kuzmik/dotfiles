@@ -1,6 +1,29 @@
-# Things  we don't want to lay down on an apply run, but want to keep around anyway
+# Things we don't want to lay down on an apply run, but want to keep around anyway
 /README.md
 /LICENSE
-
-# other random stuff that doesn't necessarily need to be copied to ~
 /misc
+
+# i am not using sublime currently, so we'll skip copying the files
+/Library/Application Support/Sublime Text
+
+{{ if not .workMode -}}
+# ignore work specific files when not in workmode
+/.config/gcloud/
+/.config/raycast/scripts/cursor-infra.sh
+/.config/raycast/scripts/cursor-kubernetes.sh
+/.kube/
+{{- else }}
+# ignore personal items when in workmode
+/.config/op/plugins/used_items/doctl.json
+/.ssh/personal-config
+{{- end }}
+
+{{ if ne .chezmoi.os "darwin" -}}
+# ignore darwin specific files
+/.chezmoiscripts/darwin/**
+/.config/zsh/rc.d/40-brew.zsh
+/Library
+{{- else if ne .chezmoi.os "linux" -}}
+# ignore linux specific files
+/.chezmoiscripts/linux/**
+{{- end }}
