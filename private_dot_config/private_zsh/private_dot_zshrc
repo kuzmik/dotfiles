@@ -1,0 +1,18 @@
+# ~/.config/zsh/.zshrc
+
+# zmodload zsh/zprof
+
+# Interactive shell config lives in rc.d/, one concern per file, sourced in
+# lexical (numeric-prefix) order. Ordering constraints are encoded in the
+# prefixes:
+#   40-brew         runs before aliases/plugins so $+commands[...] probes see brew tools
+#   58-op           sources op plugin aliases right before the plugin managers
+#   65-hist-search  must run after atuin init (60)
+#   80-completion   (compinit) runs last
+
+for _rc in ${ZDOTDIR}/rc.d/*.zsh(N); do
+  source "$_rc"
+done
+unset _rc
+
+# zprof

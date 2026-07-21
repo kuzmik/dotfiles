@@ -1,0 +1,17 @@
+# ~/.ssh/config
+
+AddressFamily inet
+
+Host *
+  ForwardAgent yes
+  ServerAliveInterval 60
+  TCPKeepAlive yes
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+  AddKeysToAgent yes
+  UseKeychain yes
+
+Include ~/.orbstack/ssh/config
+
+{{ if not .workMode -}}
+Include ~/.ssh/personal-config
+{{- end }}

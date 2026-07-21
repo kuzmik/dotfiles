@@ -1,0 +1,12 @@
+# for god's sake, do NOT use a leading / here (ie /Applications/)
+# as it WILL delete anything it can from /Applications/
+
+# stuff that keeps coming back that i dont want. go away.
+go/
+Applications/
+
+# so long, bash
+.bash*
+.profile
+.cloud-locale-test.skip
+.viminfo

@@ -1,0 +1,17 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+{{ if eq .osid "darwin" -}}
+# setup sudo to accept touchid
+if ! grep -q pam_tid /etc/pam.d/sudo; then
+  (echo 1a; echo 'auth       sufficient     pam_tid.so'; echo .; echo w) | sudo ed - /etc/pam.d/sudo
+  echo '=> macOS: updated sudoers to allow touchid auth'
+fi
+
+# RE-disable the stupid annoying "smart" features too, while we're at it.
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+{{- end }}

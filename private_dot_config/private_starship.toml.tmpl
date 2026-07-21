@@ -26,7 +26,7 @@ format = "[$user](cyan)"
 disabled = false
 ssh_only = false
 format = "[$hostname](cyan)"
-{{- if .work.enabled }}
+{{- if .workMode }}
 aliases = {
   "nick-kuzmik-ML-L2KCW7KQTD" = "adro",
 }
@@ -35,7 +35,8 @@ aliases = {
 [directory]
 disabled = false
 truncate_to_repo = true
-use_logical_path = true
+truncation_length = 2
+use_logical_path = false
 format = "[$path](bold blue)"
 
 [status]
@@ -58,7 +59,7 @@ style = "yellow"
 up_to_date = "!"
 format = "[\\($all_status\\)]($style)"
 
-{{- if .work.enabled }}
+{{- if .workMode }}
 [gcloud]
 format = '[gcp](cyan):[$account]($style)/[$project]($style), '
 disabled = false

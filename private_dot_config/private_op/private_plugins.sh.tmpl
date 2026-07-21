@@ -1,0 +1,9 @@
+# ~/.config/op/plugins.sh
+
+export OP_PLUGIN_ALIASES_SOURCED=1
+
+{{ if not .workMode -}}
+alias claude="op plugin run -- claude"
+alias doctl="op plugin run -- doctl"
+{{ end -}}
+alias gh="op plugin run -- gh"

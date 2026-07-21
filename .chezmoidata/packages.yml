@@ -1,26 +1,75 @@
 packages:
   darwin:
-    brews:
-      - name: age
-      - name: atuin
-      - name: chezmoi
-      - name: coreutils
-      - name: curl
-      - name: direnv
-      - name: duti
-      - name: fzf
-    casks:
-      - name: 1password-cli
-      - name: claude-code
-      - name: alt-tab
-      - name: cursor
-      - name: orbstack
-      - name: raycast
-      - name: sublime-text
-    app_store:
-      - name: Anybox
-        id: 1593408455
-      - name: Peek
-        id: 1554235898
-      - name: Xcode
-        id: 497799835
+    general:
+      app_store:
+        - id: 1593408455
+          name: Anybox
+      brews:
+        - name: age
+        - name: atuin
+        - name: bat
+        - name: chezmoi
+        - name: coreutils
+        - name: curl
+        - name: direnv
+        - name: duti
+        - name: fd
+        - name: fzf
+        - name: git
+        - name: git-delete-merged-branches
+        - name: git-delta
+        - name: git-lfs
+        - name: gnu-sed
+        - name: jq
+        - name: mas
+        - name: mise
+        - name: neovim
+        - name: ripgrep
+        - name: sheldon
+        - name: shellcheck
+        - name: starship
+        - name: tree
+        - name: watch
+        - name: wget
+      casks:
+        - name: 1password
+        - name: 1password-cli
+        - name: alt-tab
+        - name: claude-code
+        - name: cursor
+        - name: orbstack
+        - name: raycast
+        - name: zed
+    work:
+  # debian packages; no work/general division currently
+  debian:
+    - name: age
+    - name: atuin
+    - name: bat
+    - name: btop
+    - name: curl
+    - name: direnv
+    - name: fd-find
+    - name: fzf
+    - name: git
+    - name: git-delta
+    - name: git-lfs
+    - name: jq
+    - name: neovim
+    - name: ripgrep
+    - name: shellcheck
+    - name: starship
+    - name: tree
+
+
+# # no deb for chezmoi currently, so move the bin into $PATH
+
+# # no deb for sheldon
+# curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
+#     | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
+
+# # install mise
+# sudo apt install -y extrepo
+# sudo extrepo enable mise
+# sudo apt update
+# sudo apt install -y mise

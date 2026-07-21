@@ -1,5 +1,6 @@
 # ~/.config/1Password/ssh/agent.toml
-{{- if .work.enabled }}
+
+{{- if .workMode }}
 # pin ssh keys to the employee vault on my work laptop
 [[ssh-keys]]
 # pinning to personal for now, so i dont have to okta auth every god damned push/pull

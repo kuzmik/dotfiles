@@ -88,4 +88,5 @@
   },
   "security.promptForLocalFileProtocolHandling": false,
   "workbench.agentsWindowButton.enabled": false,
+  "extensions.installCooldownHours": 336,
 }

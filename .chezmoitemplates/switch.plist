@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SUHasLaunchedBefore</key>
+	<true/>
+	<key>SULastCheckTime</key>
+	<date>2026-07-10T21:12:08Z</date>
+	<key>SUUpdateGroupIdentifier</key>
+	<integer>1989878160</integer>
+	<key>switch.accent</key>
+	<string>system</string>
+	<key>switch.backgroundBlur</key>
+	<string>light</string>
+	<key>switch.hideMenuBarIcon</key>
+	<false/>
+	<key>switch.hotkey.allWindows</key>
+	<data>
+	eyJrZXlDb2RlIjo0OCwibW9kaWZpZXJzUmF3IjoxMDQ4NTc2fQ==
+	</data>
+	<key>switch.hotkey.currentApp</key>
+	<data>
+	eyJrZXlDb2RlIjo1MCwibW9kaWZpZXJzUmF3IjoxMDQ4NTc2fQ==
+	</data>
+	<key>switch.hotkey.seeded</key>
+	<true/>
+	<key>switch.showCrossSpace</key>
+	<false/>
+	<key>switch.showStoplights</key>
+	<false/>
+	<key>switch.staticOrder</key>
+	<false/>
+	<key>switch.thumbnailHeight</key>
+	<real>150</real>
+	<key>switch.verticalList</key>
+	<false/>
+</dict>
+</plist>

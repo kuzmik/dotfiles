@@ -1,5 +1,7 @@
+# ~/.config/hg/hosts.yml
+
 github.com:
-    git_protocol: https
-    users:
-        kuzmik:
-    user: kuzmik
+  git_protocol: https
+  users:
+    kuzmik:
+  user: kuzmik

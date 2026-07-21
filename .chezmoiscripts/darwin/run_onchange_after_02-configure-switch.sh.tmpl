@@ -1,0 +1,16 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+{{- if eq .chezmoi.os "darwin" }}
+if [ -d "/Applications/Switch.app" ]; then
+  # close Switch first, so the config doesn't get stomped by cfprefsd
+  osascript -e 'quit app "Switch"'
+
+  defaults import com.sanyamgarg.switch - <<'PLIST'
+{{ includeTemplate "switch.plist" . | trim }}
+PLIST
+
+  # reopen Switch
+  open /Applications/Switch.app
+fi
+{{ end -}}

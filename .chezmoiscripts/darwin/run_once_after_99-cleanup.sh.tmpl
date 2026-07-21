@@ -1,0 +1,9 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+{{- if eq .chezmoi.os "darwin" }}
+{{-   if stat (joinPath "/opt" "homebrew" "bin" "chezmoi") }}
+# if the homebrew chezmoi is installed, kill the one that got downloaded in the init process
+rm -rf {{ .chezmoi.homeDir }}/bin
+{{-   end }}
+{{- end }}

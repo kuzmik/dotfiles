@@ -1,17 +1,31 @@
 # Dotfiles
 
-Just my dotfiles, as well as some sublime3 packages that vanished into the ether (anything Boxy related, apparently) and my iTerm2 config.
+REDOING IT ALL.
 
-## Setup
+## One liner setup
 
-This repo uses [chezmoi](https://github.com/twpayne/chezmoi) to manage the dotfiles.
+```bash
+# use main
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply kuzmik
 
-## Install the `brew` items
+# use a specific branch
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply --branch kuzmik/refactor kuzmik
+```
 
-Just run `brew bundle` and it will install all of the base utilities I need.
+## Notes
 
-### Work/home differences
+- If Switch.app configuration changes, run this to update chezmoi:
+  - `defaults export com.sanyamgarg.switch - > ~/.local/share/chezmoi/.chezmoitemplates/switch.plist`
 
-NB: I use some templating in here that detects if I am on my work laptop via hostname `adro`. If I ever get a new work laptop, this will need to be addressed.
 
-Update: hostname changed, it was a hassle.
+## WTF
+
+This shit aint related.
+
+### Fix the locale on debian
+
+```bash
+sudo sed -i "s/^# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/" /etc/locale.gen && \ 
+    sudo locale-gen en_US.UTF-8 && \
+    sudo update-locale LANG=en_US.UTF-8
+```

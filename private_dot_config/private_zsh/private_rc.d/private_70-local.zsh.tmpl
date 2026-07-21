@@ -1,0 +1,12 @@
+# ~/.config/zsh/rc.d/70-local.zsh
+#
+# Machine-local / externally-managed shell shims.
+
+# >>> minimal >>>
+[ -f "$HOME/.minimal/shim/shell-init/zsh.sh" ] && . "$HOME/.minimal/shim/shell-init/zsh.sh"
+# <<< minimal <<<
+
+{{- if .workMode }}
+# persona managed zshrc for the npq wrapper
+[ -f "$HOME/.zshrc" ] && . "$HOME/.zshrc"
+{{- end }}

@@ -1,6 +1,5 @@
 #!/bin/bash
-set -euo pipefail
-set Xx
+set -Eeuo pipefail
 
 # Set the filehandler of all plain text files (code, data, unix executables [hopefully scripts])
 # to sublimetext4. Requires `duti` and `yq` to be installed, just use brew

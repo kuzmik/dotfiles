@@ -3,7 +3,6 @@
   "lsp_code_actions_on_save": {
     "source.formatAll.terraform": true,
   },
-
   "on_save_task_timeout_ms": 20000,
   "lsp_format_on_save": false,
 }
