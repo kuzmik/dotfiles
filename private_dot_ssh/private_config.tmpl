@@ -3,14 +3,21 @@
 AddressFamily inet
 
 Host *
+  AddKeysToAgent yes
   ForwardAgent yes
   ServerAliveInterval 60
   TCPKeepAlive yes
+  ControlMaster auto
+  ControlPath ~/.ssh/control/%h_%p_%r
+  ControlPersist 10m
+  {{ if eq .osid "darwin" -}}
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-  AddKeysToAgent yes
   UseKeychain yes
+  {{- end }}
 
+{{ if eq .osid "darwin" -}}
 Include ~/.orbstack/ssh/config
+{{- end }}
 
 {{ if not .workMode -}}
 Include ~/.ssh/personal-config

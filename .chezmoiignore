@@ -11,6 +11,7 @@
 /.config/gcloud/
 /.config/raycast/scripts/cursor-infra.sh
 /.config/raycast/scripts/cursor-kubernetes.sh
+/.config/zsh/rc.d/75-npm.zsh
 /.kube/
 {{- else }}
 # ignore personal items when in workmode

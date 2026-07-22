@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+{{ if eq .chezmoi.os "linux" -}}
+if [ -f ~/bin/chezmoi ]; then
+    mv ~/bin/chezmoi ~/.local/bin/chezmoi
+    rm -rf ~/bin/
+fi
+{{- end }}

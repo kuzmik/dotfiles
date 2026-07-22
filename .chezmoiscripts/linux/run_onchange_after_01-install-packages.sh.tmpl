@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+set -euo pipefail
+
+{{ if eq .osid "linux-debian" }}
+
+# TODO: convert to using packages.yml
+sudo apt install zsh starship -y
+
+curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
+    | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
+
+{{ end }}

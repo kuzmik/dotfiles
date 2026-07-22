@@ -2,42 +2,43 @@
 #
 # One-liner aliases. Shell functions live in 55-functions.
 
-alias bo='brew update && brew outdated'
 alias cz='chezmoi'
+alias k='kubectl'
+alias kn='kubens'
+alias kx='kubectx'
+alias ls='ls --color=auto'
+alias lsl='ls -hal --color=auto'
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias tf='terraform'
+alias vg='rg --vimgrep'
+alias wget='wget --no-hsts'
+
+if (( $+commands[nvim] )); then
+  alias vim='nvim'
+fi
+
+{{ if eq .osid "darwin" -}}
+alias bo='brew update && brew outdated'
+alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 alias ls='gls --color=auto --hyperlink=auto'
 alias lsl='gls --color=auto -halG --hyperlink=auto'
-alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias vg='rg --vimgrep'
-alias vim='nvim'
-alias wget='wget --no-hsts'
-alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
-alias k='kubectl'
-alias kx='kubectx'
-alias kn='kubens'
-alias parse_jwt="jq -R 'split(".") | .[1] | @base64d | fromjson'"
-alias speedtest="wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip"
-alias tf='terraform'
 
 if (( $+commands[fd] )); then
   alias dsstore='fd --hidden --glob ".DS_Store" --exec-batch rm -rf'
 else
   alias dsstore='find . -name .DS_Store -exec rm -rf {} \;'
 fi
-
-# fix the pam file to allow touch id to auth sudo. macos updates revert this.
-alias fixsudo="if grep -q pam_tid /etc/pam.d/sudo; then echo 'no need'; else (echo 1a; echo 'auth       sufficient     pam_tid.so'; echo .; echo w) | sudo ed - /etc/pam.d/sudo; fi"
-
-# Aliases to make specifica commands XDG compliant
-alias tflint='tflint -c {{ .chezmoi.homeDir }}/.config/tflint/config.hcl'
+{{- end }}
 
 {{- if .workMode }}
 # work (persona) stuff
-alias cpw='cd {{ .chezmoi.homeDir }}/Code/persona-web'
+alias cpa='cd {{ .chezmoi.homeDir }}/Code/persona-access'
 alias cpi='cd {{ .chezmoi.homeDir }}/Code/persona-infrastructure'
 alias cpk='cd {{ .chezmoi.homeDir }}/Code/persona-kubernetes'
-alias cpa='cd {{ .chezmoi.homeDir }}/Code/persona-access'
+alias cpw='cd {{ .chezmoi.homeDir }}/Code/persona-web'
 alias dcom='docker compose'
 alias mg='make generate && git status'
+alias tflint='tflint -c {{ .chezmoi.homeDir }}/.config/tflint/config.hcl'
 
 # get a shell on a random proxysql pod
 alias proxycore='k exec deployments/proxysql-core -it -c proxysql -- /bin/bash'

@@ -44,7 +44,7 @@ packages:
   # debian packages; no work/general division currently
   debian:
     - name: age
-    - name: atuin
+    - name: atuin     # old as shit, find better package
     - name: bat
     - name: btop
     - name: curl
@@ -60,16 +60,9 @@ packages:
     - name: shellcheck
     - name: starship
     - name: tree
+    - name: zsh
 
 
-# # no deb for chezmoi currently, so move the bin into $PATH
-
-# # no deb for sheldon
+# no deb for sheldon
 # curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
 #     | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
-
-# # install mise
-# sudo apt install -y extrepo
-# sudo extrepo enable mise
-# sudo apt update
-# sudo apt install -y mise

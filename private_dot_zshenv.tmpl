@@ -102,7 +102,11 @@ export LC_COLLATE=C
 ## editors
 ##
 export EDITOR="nvim"
-export GUI_EDITOR="cursor" # or zed idk
+{{- if .workMode }}
+export GUI_EDITOR="cursor"
+{{- else }}
+export GUI_EDITOR="zed"
+{{- end }}
 
 ##
 ## color output for BSD userland tools
@@ -134,7 +138,9 @@ export OP_ACCOUNT=withpersona.1password.com
 export PATH="${HOME}/.local/bin:${XDG_DATA_HOME}/mise/shims:${PATH}:/usr/local/bin"
 typeset -U path PATH
 
+{{ if not .workMode -}}
 # gcloud SDK PATH via mise (wanted non-interactively too, e.g. scripts calling gcloud)
 if [ -d "${XDG_DATA_HOME}/mise/installs/gcloud" ]; then
   . "${XDG_DATA_HOME}/mise/installs/gcloud/latest/path.zsh.inc"
 fi
+{{- end }}

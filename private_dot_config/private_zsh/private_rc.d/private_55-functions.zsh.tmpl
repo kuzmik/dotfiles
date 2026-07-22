@@ -50,6 +50,7 @@ k8s-list-resources() {
   done
 }
 
+{{ if eq .osid "darwin" }}
 # macos date sucks, this simulates gnu date
 date() {
   if [ "$1" = "-I" ]; then
@@ -58,6 +59,7 @@ date() {
     command date "$@"
   fi
 }
+{{ end }}
 
 # a `kubectl apply` that (probably) won't fuck up production.
 ka() {

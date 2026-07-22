@@ -25,7 +25,8 @@ format = "[$user](cyan)"
 [hostname]
 disabled = false
 ssh_only = false
-format = "[$hostname](cyan)"
+ssh_symbol = "🌏"
+format = "[$hostname](cyan)$ssh_symbol"
 {{- if .workMode }}
 aliases = {
   "nick-kuzmik-ML-L2KCW7KQTD" = "adro",
@@ -115,7 +116,7 @@ format = ', [${pyenv_prefix}](dimmed cyan):[(${version})($virtualenv)](yellow)'
 [profiles]
 claude-code = "$claude_model$claude_context$claude_cost\n$directory$git_branch$git_status"
 
-[claude_model]
-format = "[$symbol$model]($style) "
-symbol = "🤖 "
-style = "bold blue"
+# [claude_model]
+# format = "[$symbol$model]($style) "
+# symbol = "🤖 "
+# style = "bold blue"

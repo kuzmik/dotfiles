@@ -1,0 +1,34 @@
+# ~/.config/ripgrep/config
+
+# Regex engine: auto-fall back to PCRE2 for lookaround/backrefs (no need for -P).
+--engine=auto
+
+# Search behavior
+--follow
+--hidden
+--smart-case
+--sort=path
+--glob=!.git
+--glob=!.terraform
+
+# Output formatting. Note: no --pretty on purpose — it forces --color=always,
+# which leaks ANSI/OSC-8 codes into pipes and `rg --vimgrep`. rg already enables
+# heading/line-numbers/color automatically when writing to a terminal.
+--max-columns=150
+--max-columns-preview
+--trim
+{{- if .workMode }}
+--hyperlink-format=cursor://file{path}:{line}:{column}
+{{ else }}
+--hyperlink-format=zed://file{path}:{line}:{column}
+{{ end -}}
+
+# Colors
+--colors=line:style:bold
+--colors=match:fg:yellow
+--colors=match:style:bold
+--colors=path:fg:green
+
+# Custom file types (e.g. `rg -tweb foo`, `rg -ttf provider`)
+--type-add=web:*.{html,css,scss,js,jsx,ts,tsx,vue}
+--type-add=tf:*.{tf,tfvars,hcl}

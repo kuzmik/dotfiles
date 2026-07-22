@@ -9,7 +9,9 @@ set -Eeuo pipefail
 find "$HOME" -type d -exec chmod 700 {} +
 
 # set any executable files to 700
-find "$HOME" -type f -perm +111 ! -perm 700 -exec chmod 700 {} +
+# BSD only: find "$HOME" -type f -perm +111 ! -perm 700 -exec chmod 700 {} +
+find "$HOME" -type f \( -perm -u+x -o -perm -g+x -o -perm -o+x \) ! -perm 700 -exec chmod 700 {} +
 
 # find any file that is readable by anyone, but is not 600. correct that
-find "$HOME" -type f -perm +400 ! \( -perm 600 -o -perm 700 \) -exec chmod 600 {} +
+# BSD only: find "$HOME" -type f -perm +400 ! \( -perm 600 -o -perm 700 \) -exec chmod 600 {} +
+find "$HOME" -type f -perm -u+r ! \( -perm 600 -o -perm 700 \) -exec chmod 600 {} +

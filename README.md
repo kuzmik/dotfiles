@@ -12,11 +12,14 @@ sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply kuzmik
 sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply --branch kuzmik/refactor kuzmik
 ```
 
+-----
+
 ## Notes
 
 - If Switch.app configuration changes, run this to update chezmoi:
   - `defaults export com.sanyamgarg.switch - > ~/.local/share/chezmoi/.chezmoitemplates/switch.plist`
 
+-----
 
 ## WTF
 

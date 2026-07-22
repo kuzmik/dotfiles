@@ -7,12 +7,14 @@
 # | General |
 # +---------+
 
+{{ if eq .osid "darwin" }}
 # Load more completions
 fpath=(
   /opt/homebrew/completions/zsh
   /opt/homebrew/share/zsh/site-functions
   $fpath
 )
+{{ end }}
 
 # Should be called before compinit
 zmodload zsh/complist
@@ -172,5 +174,3 @@ if (( $+commands[context] )); then
   eval "$(context --completion-setup)"
 fi
 {{- end }}
-
-# zprof

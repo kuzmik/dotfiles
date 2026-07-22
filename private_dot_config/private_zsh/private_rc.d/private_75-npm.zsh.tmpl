@@ -1,0 +1,13 @@
+# ~/.config/zsh/rc.d/75-npm.zsh
+
+{{ if .workMode -}}
+# wrap npm/yarn/pnpm with npq
+if [ -r /usr/local/persona/npq-wrapper.sh ]; then
+  . /usr/local/persona/npq-wrapper.sh
+fi
+
+# Disable the wrapper if requested
+if [ -f "$HOME/.disable-npq" ]; then
+  unset -f npm yarn pnpm 2>/dev/null
+fi
+{{ end -}}
