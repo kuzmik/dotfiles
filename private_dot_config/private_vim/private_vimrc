@@ -1,10 +1,29 @@
 " ~/.config/vim/vimrc
 
+" Use Vim settings, rather then Vi settings (much better!).
+" This must be first, because it changes other options as a side effect
+" (including giving 'viminfo' a sane default before we append to it below).
+set nocompatible
+
 " ================ XDG compliance stuff ================
+" Fall back to XDG defaults if the shell didn't export them (bare remote box,
+" sudo, or vim launched outside our zsh env). Without this the vars expand to
+" empty and paths become /vim/... -> vim errors on startup (E739).
+if empty($XDG_CONFIG_HOME) | let $XDG_CONFIG_HOME = $HOME . '/.config'      | endif
+if empty($XDG_DATA_HOME)   | let $XDG_DATA_HOME   = $HOME . '/.local/share' | endif
+if empty($XDG_CACHE_HOME)  | let $XDG_CACHE_HOME  = $HOME . '/.cache'       | endif
+if empty($XDG_STATE_HOME)  | let $XDG_STATE_HOME  = $HOME . '/.local/state' | endif
+
 set runtimepath^=$XDG_CONFIG_HOME/vim
 set runtimepath+=$XDG_DATA_HOME/vim
 set runtimepath+=$XDG_CONFIG_HOME/vim/after
-set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+
+" nvim also sources this vimrc (via ~/.config/nvim/init.vim), but its ShaDa
+" format is incompatible with vim's viminfo. Only point *real vim* at this file,
+" or the two clobber each other's history (E576/E136). nvim keeps its own default.
+if !has('nvim')
+  set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+endif
 
 set packpath^=$XDG_DATA_HOME/vim,$XDG_CONFIG_HOME/vim
 set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after
@@ -12,26 +31,27 @@ set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after
 let g:netrw_home = $XDG_DATA_HOME."/vim"
 call mkdir($XDG_DATA_HOME."/vim/spell", 'p')
 
-set backupdir=$XDG_STATE_HOME/vim/backup | call mkdir(&backupdir, 'p')
-set directory=$XDG_STATE_HOME/vim/swap   | call mkdir(&directory, 'p')
-set undodir=$XDG_STATE_HOME/vim/undo     | call mkdir(&undodir,   'p')
-set viewdir=$XDG_STATE_HOME/vim/view     | call mkdir(&viewdir,   'p')
+" Persistent state. Swap/backup are disabled below, so only undo + view here.
+set undodir=$XDG_STATE_HOME/vim/undo | call mkdir(&undodir, 'p')
+set viewdir=$XDG_STATE_HOME/vim/view | call mkdir(&viewdir, 'p')
 " ================ End XDG compliance stuff ================
-
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
 
 " ================ General Config ====================
 
-set number                      "Line numbers are good
-set backspace=indent,eol,start  "Allow backspace in insert mode
-set history=1000                "Store lots of :cmdline history
-set showcmd                     "Show incomplete cmds down the bottom
-set showmode                    "Show current mode down the bottom
-set gcr=a:blinkon0              "Disable cursor blink
-set visualbell                  "No sounds
-set autoread                    "Reload files changed outside vim
+set number                                  "Line numbers are good
+set backspace=indent,eol,start              "Allow backspace in insert mode
+set history=1000                            "Store lots of :cmdline history
+set showcmd                                 "Show incomplete cmds down the bottom
+set showmode                                "Show current mode down the bottom
+set gcr=a:blinkon0                          "Disable cursor blink
+set visualbell                              "No sounds
+set autoread                                "Reload files changed outside vim
+set encoding=utf-8                          "Sane default encoding
+set laststatus=2                            "Always show the status line
+set display=lastline                        "Show as much as possible of a long last line
+set cursorline                              "Highlight the line the cursor is on
+set ttimeout ttimeoutlen=50                 "Snappy <Esc> (no lag leaving insert mode)
+set splitright splitbelow                   "Open new splits to the right / below
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -43,18 +63,18 @@ syntax on
 
 " Change leader to a comma because the backslash is too far away
 " That means all \x commands turn into ,x
-" The mapleader has to be set before vundle starts loading all
-" the plugins.
 let mapleader=","
 
-" ================ Turn Off Swap Files ==============
+" ================ Persistent Undo ==================
+" Keep undo history across sessions (undodir is set up above).
+set undofile
 
+" ================ Turn Off Swap Files ==============
 set noswapfile
 set nobackup
 set nowb
 
 " ================ Indentation ======================
-
 set autoindent
 set smartindent
 set smarttab
@@ -63,30 +83,24 @@ set softtabstop=2
 set tabstop=2
 set expandtab
 
-" Auto indent pasted text
-nnoremap p p=`]<C-o>
-nnoremap P P=`]<C-o>
-
 filetype plugin on
 filetype indent on
 
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·
 
-set nowrap       "Don't wrap lines
-set linebreak    "Wrap lines at convenient points
+set nowrap                                  "Don't wrap lines
+set linebreak                               "Wrap lines at convenient points
 
 " ================ Folds ============================
-
-set foldmethod=indent   "fold based on indent
-set foldnestmax=3       "deepest fold is 3 levels
-set nofoldenable        "dont fold by default
+set foldmethod=indent                       "fold based on indent
+set foldnestmax=3                           "deepest fold is 3 levels
+set nofoldenable                            "dont fold by default
 
 " ================ Completion =======================
-
 set wildmode=list:longest
-set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+set wildmenu                                "enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore=*.o,*.obj,*~                 "stuff to ignore when tab completing
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
 set wildignore+=*DS_Store*
@@ -98,19 +112,24 @@ set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 
 " ================ Scrolling ========================
-
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set scrolloff=8                             "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
 " ================ Search ===========================
+set incsearch                               " Find the next match as we type the search
+set hlsearch                                " Highlight searches by default
+set ignorecase                              " Ignore case when searching...
+set smartcase                               " ...unless we type a capital
+nnoremap <leader><space> :nohlsearch<CR>    " ,<space> clears search highlight
 
-set incsearch       " Find the next match as we type the search
-set hlsearch        " Highlight searches by default
-set ignorecase      " Ignore case when searching...
-set smartcase       " ...unless we type a capital
+" ================ Misc =============================
+" Reopen files at the last cursor position
+augroup vimrc_last_position
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
 
 " ================ Security ==========================
-
 set modelines=0
 set nomodeline

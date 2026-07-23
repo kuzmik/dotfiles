@@ -18,6 +18,7 @@ node.compile                        = false
 python.compile                      = false
 
 [tools]
+{{- if eq .osid "darwin" }}
 go            = {
   version     = "latest"
 }
@@ -33,4 +34,5 @@ gcloud        = {
   version     = "latest",
   postinstall = "gcloud components install gke-gcloud-auth-plugin"
 }
+{{- end }}
 {{- end }}

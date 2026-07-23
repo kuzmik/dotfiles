@@ -39,11 +39,13 @@ sudo apt update
 sudo apt install mise 1password-cli -y
 {{ end }}
 
-# dump the age key to the chezmoi config directory
-eval "$(op signin)"
+if [ ! -f ~/.config/chezmoi/age-key.txt ]; then
+  # dump the age key to the chezmoi config directory
+  eval "$(op signin)"
 
-op read --account=my.1password.com "op://personal/chezmoi age key/private key" > ~/.config/chezmoi/age-key.txt
-chmod 600 ~/.config/chezmoi/age-key.txt
+  op read --account=my.1password.com "op://personal/chezmoi age key/private key" > ~/.config/chezmoi/age-key.txt
+  chmod 600 ~/.config/chezmoi/age-key.txt
+fi
 
 # fix the remote URL for the dotfiles repo since it's HTTPS by default
 pushd {{ .chezmoi.sourceDir }}

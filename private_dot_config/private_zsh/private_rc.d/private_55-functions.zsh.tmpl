@@ -2,6 +2,21 @@
 #
 # Shell functions. One-liner aliases live in 50-aliases.
 
+# ripgrep -> fzf -> print "file:line:col" of the picked match (empty if cancelled)
+_rg_pick() {
+  emulate -L zsh
+  local sel
+  sel=$(rg --column --line-number --no-heading --color=always --smart-case "$@" |
+    fzf --ansi --delimiter=: \
+        --preview 'bat --style=numbers --color=always --highlight-line {2} -- {1}' \
+        --preview-window 'up,60%,+{2}-/2') || return 1
+  [[ -n "$sel" ]] && cut -d: -f1-3 <<<"$sel"
+}
+
+# search, pick a match, open it at line:col in the editor
+rgz() { local loc; loc=$(_rg_pick "$@") && zed "$loc"; }         # Zed
+rgc() { local loc; loc=$(_rg_pick "$@") && cursor -g "$loc"; }   # Cursor
+
 # zsh functions for interacting with kubernetes
 k8s-exec-all-pods() {
   deployment="$1"

@@ -6,7 +6,10 @@ set -euo pipefail
 # TODO: convert to using packages.yml
 sudo apt install zsh starship -y
 
-curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
+if [ ! -f ~/.local/bin/sheldon ]; then
+  # except sheldon, which doesnt have a deb pkg
+  curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
     | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
+fi
 
 {{ end }}

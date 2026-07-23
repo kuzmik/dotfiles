@@ -1,3 +1,6 @@
+{{/* this DOES require 1password login on every apply... */}}
+{{/* and im not sure i want my privkey on every linux box anyway */}}
+
 {{- if not .workMode -}}
-{{-     onepasswordRead "op://Personal/Personal - SSH Key/private key" -}}
+{{/*     onepasswordRead "op://Personal/Personal - SSH Key/private key" */}}
 {{- end -}}
