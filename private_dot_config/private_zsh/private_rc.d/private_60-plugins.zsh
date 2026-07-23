@@ -31,6 +31,12 @@ if (( $+commands[mise] )); then
   }
 fi
 
+# fzf key-bindings: Ctrl-T (insert files), Alt-C (cd into subdir), Ctrl-R.
+# Sourced BEFORE atuin on purpose so atuin re-binds Ctrl-R and wins it.
+if (( $+commands[fzf] )); then
+  eval "$(fzf --zsh)"
+fi
+
 # Use atuin to save shell history
 if (( $+commands[atuin] )); then
   eval "$(atuin init zsh --disable-up-arrow)"

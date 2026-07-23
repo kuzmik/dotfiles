@@ -1,4 +1,5 @@
-"~/.config/nvim/init.vim
+" ~/.config/nvim/init.vim
 
-" just load the standard vimrc
-source "~/.config/vim/vimrc"
+" Neovim shares the standard vim config. The vimrc guards vim-only bits
+" (e.g. the viminfo path) behind !has('nvim') so nvim keeps its own ShaDa.
+execute 'source' expand('~/.config/vim/vimrc')

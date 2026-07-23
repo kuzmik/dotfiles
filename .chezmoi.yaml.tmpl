@@ -14,10 +14,10 @@ diff:
     command: delta
 {{ end }}
 
-{{- if lookPath "cursor" }}
+{{- if lookPath "zed" }}
 edit:
-    command: cursor
-    args: -w
+    command: zed
+    args: -n -w
     minDuration: 0
     watch: true
     apply: true

@@ -26,7 +26,11 @@ format = "[$user](cyan)"
 disabled = false
 ssh_only = false
 ssh_symbol = "🌏"
+{{- if eq .chezmoi.os "darwin" }}
 format = "[$hostname](cyan)$ssh_symbol"
+{{- else }}
+format = "[$hostname](green)$ssh_symbol"
+{{- end }}
 {{- if .workMode }}
 aliases = {
   "nick-kuzmik-ML-L2KCW7KQTD" = "adro",
@@ -69,10 +73,6 @@ style = "yellow"
 [gcloud.region_aliases]
 us-central1 = 'usc1'
 europe-west3 = 'euw3'
-{{ else }}
-[gcloud]
-disabled = true
-{{- end }}
 
 [kubernetes]
 format = '[kube](cyan):[$context]($style)/[$namespace]($style)'
@@ -98,6 +98,7 @@ style = "bold red"
 [[kubernetes.contexts]]
 context_pattern = ".+fedramp-test.+"
 context_alias = "fedramp-staging"
+{{- end }}
 
 # [[kubernetes.contexts]]
 # context_pattern = ""

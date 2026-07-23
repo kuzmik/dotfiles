@@ -124,13 +124,34 @@ zstyle ':fzf-tab:complete:brew-(install|uninstall|search|info):*-argument-rest' 
 # env vars
 zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' fzf-preview 'echo ${(P)word}'
 
+# files & directories: preview file contents (bat) or dir tree while tab-completing.
+# Least-specific pattern, so the targeted previews above still win where they match.
+zstyle ':fzf-tab:complete:*:*' fzf-preview \
+  '[[ -d $realpath ]] && tree -C $realpath | head -100 || bat --color=always --style=numbers -- $realpath 2>/dev/null || echo $realpath'
+
 if (( $+commands[fzf] )); then
-  export FZF_DEFAULT_OPTS="--bind 'ctrl-k:kill-line'"
-  export FZF_CTRL_R_OPTS="--height 20% --preview 'echo {}' --preview-window down:3:hidden:wrap --bind 'ctrl-k:kill-line' --reverse"
+  # Ctrl-R is owned by atuin (see 60-plugins), so no FZF_CTRL_R_OPTS here.
+  export FZF_DEFAULT_OPTS="
+    --height 60% --layout=reverse --border --cycle --info=inline
+    --bind 'ctrl-k:kill-line'
+    --bind 'ctrl-/:toggle-preview'
+    --bind 'ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down'"
 
   if (( $+commands[rg] )); then
-    export FZF_DEFAULT_COMMAND="rg --files --no-ignore-vcs --hidden --follow"
+    # Respect .gitignore (no --no-ignore-vcs) so the picker isn't flooded with
+    # node_modules/build junk. --glob=!.git + --hidden come from the rg config.
+    export FZF_DEFAULT_COMMAND="rg --files --hidden --follow"
   fi
+
+  # Ctrl-T: insert file paths at the cursor (preview via bat)
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers -- {}'"
+
+  # Alt-C: fuzzy-cd into a subdirectory (preview its tree)
+  if (( $+commands[fd] )); then
+    export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git"
+  fi
+  export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -100'"
 fi
 
 {{- if .workMode }}
