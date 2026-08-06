@@ -6,4 +6,8 @@ if [ -f ~/bin/chezmoi ]; then
     mv ~/bin/chezmoi ~/.local/bin/chezmoi
     rm -rf ~/bin/
 fi
+
+sudo apt autoremove -y
+sudo apt autoclean
+sudo apt autopurge -y
 {{- end }}

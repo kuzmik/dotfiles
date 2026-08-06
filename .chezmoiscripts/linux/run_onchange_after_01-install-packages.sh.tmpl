@@ -1,15 +1,24 @@
 #!/usr/bin/bash
 set -euo pipefail
 
-{{ if eq .osid "linux-debian" }}
+{{ if eq .osid "linux-debian" -}}
+sudo apt update
 
-# TODO: convert to using packages.yml
-sudo apt install zsh starship -y
+{{- $pkgs := list }}
+{{ range .packages.debian }}{{ $pkgs = append $pkgs .name }}{{ end }}
+sudo apt install -y {{ $pkgs | sortAlpha | join " " }}
 
+# sheldon doesnt have a deb pkg
 if [ ! -f ~/.local/bin/sheldon ]; then
-  # except sheldon, which doesnt have a deb pkg
   curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
     | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
 fi
 
-{{ end }}
+# atuins deb package is old as hell
+if [ ! -f ~/.local/bin/atuin ]; then
+  export ATUIN_INSTALL_DIR="$HOME/.local/bin"
+  export ATUIN_NO_MODIFY_PATH=1
+  curl --proto '=https' --tlsv1.2 -LsSf \
+    https://github.com/atuinsh/atuin/releases/latest/download/atuin-installer.sh | sh
+fi
+{{- end }}
