@@ -1,47 +1,29 @@
+# declarative package list for linux hosts. macos is handled by homebrew and ~/.config/homebrew/Brewfile
+
 packages:
-  darwin:
-    general:
-      app_store:
-        - id: 1593408455
-          name: Anybox
-      brews:
-        - name: age
-        - name: atuin
-        - name: bat
-        - name: chezmoi
-        - name: coreutils
-        - name: curl
-        - name: direnv
-        - name: duti
-        - name: fd
-        - name: fzf
-        - name: git
-        - name: git-delete-merged-branches
-        - name: git-delta
-        - name: git-lfs
-        - name: gnu-sed
-        - name: jq
-        - name: mas
-        - name: mise
-        - name: neovim
-        - name: ripgrep
-        - name: sheldon
-        - name: shellcheck
-        - name: starship
-        - name: tree
-        - name: watch
-        - name: wget
-      casks:
-        - name: 1password
-        - name: 1password-cli
-        - name: alt-tab
-        - name: claude-code
-        - name: cursor
-        - name: orbstack
-        - name: raycast
-        - name: zed
-    work:
-  # debian packages; no work/general division currently
+  # arch packages, including aur packages
+  arch:
+    - aur:
+      - name: idk
+    - standard:
+      - name: age
+      - name: bat
+      - name: btop
+      - name: curl
+      - name: direnv
+      - name: fd-find
+      - name: fzf
+      - name: git
+      - name: git-delta
+      - name: git-lfs
+      - name: jq
+      - name: neovim
+      - name: ripgrep
+      - name: shellcheck
+      - name: starship
+      - name: tree
+      - name: zsh
+  # debian packages
   debian:
     - name: age
     - name: bat

@@ -1,0 +1,20 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+{{ if eq .chezmoi.os "darwin" -}}
+# hash the contents of the Brewfile to re-run this script whenever something changes
+# Brewfile: {{ include "private_dot_config/private_homebrew/private_Brewfile.tmpl" | sha256sum }}
+
+# start up homebrew shell environment
+eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+
+# bundle install the packages from the Brewfile in ~/.config/homebrew.
+# this has to pass --file explicitly as --global resolves via HOMEBREW_BUNDLE_FILE_GLOBAL
+# and XDG_CONFIG_HOME... neither of which are set during a fresh bootstrap.
+brew bundle install --file="${HOME}/.config/homebrew/Brewfile" --jobs auto
+
+# symlink the zed cli if zed is installed
+if [ -d "/Applications/Zed.app" ]; then
+  ln -sf "/Applications/Zed.app/Contents/MacOS/cli" "$(brew --prefix)/bin/zed"
+fi
+{{- end }}

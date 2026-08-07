@@ -1,3 +1,5 @@
+# ~/.config/rtk/filters.toml
+
 # User-global RTK filters — apply to all your projects.
 # Project-local .rtk/filters.toml takes precedence over these.
 # Docs: https://github.com/rtk-ai/rtk#custom-filters

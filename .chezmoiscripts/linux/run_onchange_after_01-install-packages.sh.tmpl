@@ -14,7 +14,7 @@ if [ ! -f ~/.local/bin/sheldon ]; then
     | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
 fi
 
-# atuins deb package is old as hell
+# atuins deb package is old, so let's use a recent one
 if [ ! -f ~/.local/bin/atuin ]; then
   export ATUIN_INSTALL_DIR="$HOME/.local/bin"
   export ATUIN_NO_MODIFY_PATH=1

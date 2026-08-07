@@ -19,6 +19,7 @@ if [ ! -d /Applications/1Password.app ]; then
     brew install 1password
 fi
 
+# of age or op are not found, install em
 command -v age >/dev/null 2>&1 || { brew install age; }
 command -v op >/dev/null 2>&1 || { brew install 1password-cli; }
 

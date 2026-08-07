@@ -3,8 +3,13 @@
 set -Eeuo pipefail
 
 # Login to the atuin remote server
-# Requires the 1password cli to be installed and logged in
+# Requires the 1password cli to be installed and logged in,
+# and if the machine is a headless linux host then there needs
+# to be a 1password SA setup.
+
 # NB: only use on personal machines
+
+eval "$(op signin)"
 
 # Fetch the item once, then pull the three fields out of the JSON. Labels are
 # matched case-insensitively (the vault has "Encryption Key", not "encryption
