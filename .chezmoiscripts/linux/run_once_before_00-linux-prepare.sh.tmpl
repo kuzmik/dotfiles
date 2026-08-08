@@ -5,11 +5,11 @@ set -Eeuox pipefail
 # arch specific preparation
 
 ## install yay
-sudo pacman -S --needed git base-devel
+sudo pacman -Sy --needed git base-devel
 
 pushd `mktemp -d`
-    git clone https://aur.archlinux.org/yay.git
-    pushd yay
+    git clone https://aur.archlinux.org/paru-bin.git paru-bin
+    pushd paru-bin
         makepkg -si --noconfirm
     popd
 popd

@@ -1,9 +1,9 @@
 # ~/.config/zsh/rc.d/70-local.zsh
-#
+
 # Machine-local / externally-managed shell shims.
 
 # >>> minimal >>>
-[ -f "$HOME/.minimal/shim/shell-init/zsh.sh" ] && . "$HOME/.minimal/shim/shell-init/zsh.sh"
+[ -f "$HOME/.local/share/minimal/shell-init/zsh.sh" ] && . "$HOME/.local/share/minimal/shell-init/zsh.sh"
 # <<< minimal <<<
 
 {{- if .workMode }}
