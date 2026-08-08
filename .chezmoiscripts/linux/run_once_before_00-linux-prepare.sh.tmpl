@@ -8,10 +8,19 @@ set -Eeuox pipefail
 sudo pacman -Sy --needed git base-devel
 
 pushd `mktemp -d`
-    git clone https://aur.archlinux.org/paru-bin.git paru-bin
-    pushd paru-bin
-        makepkg -si --noconfirm
-    popd
+    ## this doesnt work due to arch being too new, so we gotta compile i guess
+    # git clone https://aur.archlinux.org/paru-bin.git paru-bin
+    # pushd paru-bin
+    #     makepkg -si --noconfirm
+    # popd
+    #
+    # sudo pacman -Rns paru-bin
+    # git clone https://aur.archlinux.org/paru.git
+    # cd ~/build/paru && makepkg -si
+    #
+    # git clone https://aur.archlinux.org/yay.git \
+    #   && cd yay \
+    #   && makepkg -si
 popd
 
 # other stuff, i dont have an arch machine handy right now

@@ -4,9 +4,10 @@ packages:
   # arch packages, including aur packages
   arch:
     - aur:
-      - name: idk
+      - name: op
     - standard:
       - name: age
+      - name: atuin
       - name: bat
       - name: btop
       - name: curl
