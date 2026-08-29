@@ -9,8 +9,7 @@ Library/Application Support/Sublime Text
 {{ if not .workMode -}}
 # ignore work specific files when not in workmode
 .config/gcloud/
-.config/raycast/scripts/cursor-infra.sh
-.config/raycast/scripts/cursor-kubernetes.sh
+.config/raycast/
 .config/zsh/rc.d/75-npm.zsh
 .kube/
 {{- else }}

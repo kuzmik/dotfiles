@@ -27,9 +27,9 @@ What it needs before it'll work:
 | Path | What |
 | --- | --- |
 | `.chezmoidata/packages.yml` | Debian package list; macOS lives in the Brewfile instead |
-| `.chezmoiscripts/darwin/` | Homebrew bootstrap, macOS defaults, TouchID sudo, Brewfile install, Switch.app config |
+| `.chezmoiscripts/darwin/` | Homebrew bootstrap, macOS defaults, TouchID sudo, Brewfile install |
 | `.chezmoiscripts/linux/` | Distro prep (1Password repo, extrepo + mise), apt install |
-| `.chezmoitemplates/` | Shared partials — `osid`, `switch.plist` |
+| `.chezmoitemplates/` | Shared partials — `osid` |
 | `misc/` | Helper scripts and stashed configs (irssi, Raycast export), deliberately not laid down |
 | `~/.config/zsh/rc.d/` | Modular zsh config, sourced in numeric order |
 
@@ -76,13 +76,6 @@ Only laid down **in** work mode:
 Only laid down **outside** work mode: 
 - the `op` config
 - my personal SSH config
-- the casks that Jamf already manages on the work laptop (1Password, Switch).
+- the casks that Jamf already manages on the work laptop (1Password).
 
 See `.chezmoiignore` and the Brewfile for what flips.
-
------
-
-## Notes
-
-- If Switch.app configuration changes, run this to update chezmoi:
-  - `defaults export com.sanyamgarg.switch - > ~/.local/share/chezmoi/.chezmoitemplates/switch.plist`

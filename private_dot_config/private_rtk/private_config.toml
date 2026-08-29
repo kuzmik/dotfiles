@@ -6,9 +6,9 @@ history_days        = 365                               # retention in days (aut
 database_path       = "~/.local/share/rtk/history.db"   # optional override
 
 [display]
-colors              = true                              # colored output
-emoji               = true                              # use emojis in output
-max_width           = 120                               # maximum output width
+colors              = true      # colored output
+emoji               = true      # use emojis in output
+max_width           = 120       # maximum output width
 
 [filters]
 # These apply to file-reading commands (ls, find, grep, cat/rtk read).
@@ -21,19 +21,20 @@ ignore_dirs         = [
     ".venv",
     "vendor",
 ]
+
 ignore_files        = [
     "*.lock",
     "*.min.js",
     "*.min.css",
 ]
 
+[hooks]
+exclude_commands    = []            # commands to never auto-rewrite
+
 [tee]
-enabled             = true                              # save raw output on failure
-mode                = "failures"                        # "failures" (default), "always", "never"
-max_files           = 20                                # rotation: keep last N files
+enabled             = true          # save raw output on failure
+mode                = "failures"    # "failures" (default), "always", "never"
+max_files           = 20            # rotation: keep last N files
 
 [telemetry]
 enabled             = false
-
-[hooks]
-exclude_commands    = []                                # commands to never auto-rewrite
