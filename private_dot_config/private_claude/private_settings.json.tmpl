@@ -7,7 +7,7 @@
 {{- end }}
   "permissions": {
     "allow": [],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "auto"
   },
   "hooks": {
     "PostToolUse": [
@@ -60,25 +60,9 @@
   "enabledPlugins": {
     "coderabbit@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
-    "i-have-adhd@i-have-adhd": true,
     "ruby-lsp@claude-plugins-official": true,
     "session-report@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true,
-    "superpowers@superpowers-marketplace": true
-  },
-  "extraKnownMarketplaces": {
-    "superpowers-marketplace": {
-      "source": {
-        "source": "github",
-        "repo": "obra/superpowers-marketplace"
-      }
-    },
-    "i-have-adhd": {
-      "source": {
-        "source": "github",
-        "repo": "ayghri/i-have-adhd"
-      }
-    }
+    "superpowers@claude-plugins-official": true
   },
   "effortLevel": "xhigh",
   "skipDangerousModePermissionPrompt": true,

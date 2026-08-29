@@ -18,6 +18,10 @@ node.compile                        = false
 python.compile                      = false
 
 [tools]
+# global pin so bare `node` shims resolve (Claude Code plugin hooks call it directly)
+node          = {
+  version     = "latest"
+}
 {{- if eq .osid "darwin" }}
 go            = {
   version     = "latest"

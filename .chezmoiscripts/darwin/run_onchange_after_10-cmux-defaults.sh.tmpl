@@ -1,0 +1,26 @@
+#!/bin/bash
+set -Eeuo pipefail
+
+{{ if eq .chezmoi.os "darwin" -}}
+# apply cmux sidebar settings that have no equivalent in ~/.config/cmux/cmux.json
+if [ -d "/Applications/cmux.app" ]; then
+  if pgrep -qf "/Applications/cmux.app/"; then
+    echo '=> cmux: app is running; quit and relaunch it for these defaults to stick'
+    echo '=> exiting without applying.'
+    exit 0
+  fi
+
+  # # Sidebar chrome
+  # defaults write com.cmuxterm.app sidebarPreset -string "nativeSidebar"
+  # defaults write com.cmuxterm.app sidebarMaterial -string "sidebar"
+  # defaults write com.cmuxterm.app sidebarBlendMode -string "withinWindow"
+  # defaults write com.cmuxterm.app sidebarBlurOpacity -float 1
+  # defaults write com.cmuxterm.app sidebarCornerRadius -float 0
+  # defaults write com.cmuxterm.app sidebarState -string "followWindow"
+
+  # # Don't nag when quitting via cmd+q
+  # defaults write com.cmuxterm.app warnBeforeQuitShortcut -bool false
+
+  # echo '=> cmux: applied defaults not expressible in cmux.json'
+fi
+{{- end }}

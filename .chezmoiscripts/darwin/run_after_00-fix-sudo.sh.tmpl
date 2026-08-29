@@ -2,10 +2,19 @@
 set -Eeuo pipefail
 
 {{ if eq .osid "darwin" -}}
-# setup sudo to accept touchid
-if ! grep -q pam_tid /etc/pam.d/sudo; then
-  (echo 1a; echo 'auth       sufficient     pam_tid.so'; echo .; echo w) | sudo ed - /etc/pam.d/sudo
-  echo '=> macOS: updated sudoers to allow touchid auth'
+# setup sudo to accept touchid.
+if [ ! -f /etc/pam.d/sudo_local ]; then
+  if [ ! -f /etc/pam.d/sudo_local.template ]; then
+    echo '=> macOS: no /etc/pam.d/sudo_local.template found; skipping touchid sudo setup' >&2
+  else
+    sed 's/^#auth/auth/' /etc/pam.d/sudo_local.template | sudo tee /etc/pam.d/sudo_local >/dev/null
+    sudo chown root:wheel /etc/pam.d/sudo_local
+    sudo chmod 444 /etc/pam.d/sudo_local
+    echo '=> macOS: enabled touchid auth for sudo via /etc/pam.d/sudo_local'
+  fi
+elif ! grep -qE '^auth[[:space:]]+.*pam_tid\.so' /etc/pam.d/sudo_local; then
+  # don't clobber a hand-tuned sudo_local, but don't pretend touchid is working either
+  echo '=> macOS: /etc/pam.d/sudo_local has no active pam_tid rule; leaving it alone' >&2
 fi
 
 # RE-disable the stupid annoying "smart" features too, while we're at it.
