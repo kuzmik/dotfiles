@@ -13,8 +13,8 @@ minimum_release_age                 = "7d"
 verbose                             = false
 
 # try to install binaries first
-ruby.compile                        = false
 node.compile                        = false
+ruby.compile                        = false
 python.compile                      = false
 
 [tools]
@@ -23,6 +23,9 @@ node          = {
   version     = "latest"
 }
 {{- if eq .osid "darwin" }}
+bun          = {
+  version     = "latest"
+}
 go            = {
   version     = "latest"
 }
