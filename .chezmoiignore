@@ -12,6 +12,7 @@ Library/Application Support/Sublime Text
 .config/raycast/
 .config/zsh/rc.d/75-npm.zsh
 .kube/
+Library/Application Support/Cursor
 {{- else }}
 # ignore personal items when in workmode
 .config/op/
