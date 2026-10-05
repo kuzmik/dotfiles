@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    {{ if lookPath "herdr" }}
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/nick/.config/codex/herdr-agent-state.sh' session",
+            "timeout": 10,
+            "type": "command"
+          }
+        ]
+      }
+    ]
+    {{- end }}
+  }
+}
