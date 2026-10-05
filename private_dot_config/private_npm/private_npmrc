@@ -1,5 +1,0 @@
-# ~/.config/npm/npmrc
-
-min-release-age=7
-
-cache=${XDG_CACHE_HOME}/npm
