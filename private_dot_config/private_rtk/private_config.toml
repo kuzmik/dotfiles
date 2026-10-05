@@ -3,7 +3,7 @@
 [tracking]
 enabled             = true                              # enable/disable token tracking
 history_days        = 365                               # retention in days (auto-cleanup)
-database_path       = "~/.local/share/rtk/history.db"   # optional override
+# database_path       = "$HOME/.local/share/rtk/history.db"   # optional override
 
 [display]
 colors              = true      # colored output

@@ -11,6 +11,7 @@ go_set_goroot                       = true
 idiomatic_version_file_enable_tools = ["ruby"]
 minimum_release_age                 = "7d"
 verbose                             = false
+npm.bun                             = true # try to use bun to install npms packages
 
 # try to install binaries first
 node.compile                        = false
@@ -18,13 +19,10 @@ ruby.compile                        = false
 python.compile                      = false
 
 [tools]
-# global pin so bare `node` shims resolve (Claude Code plugin hooks call it directly)
-node          = {
-  version     = "latest"
-}
 {{- if eq .osid "darwin" }}
 bun          = {
-  version     = "latest"
+  version     = "latest",
+  postinstall = "printf '#!/bin/sh\nexec bun \"$@\"\n' > ~/.local/bin/node && chmod +x ~/.local/bin/node && printf '#!/bin/sh\nexec bunx \"$@\"\n' > ~/.local/bin/npx && chmod +x ~/.local/bin/npx"
 }
 go            = {
   version     = "latest"

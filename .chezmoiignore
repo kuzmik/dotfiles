@@ -3,8 +3,9 @@ README.md
 LICENSE
 misc
 
-# i am not using sublime currently, so we'll skip copying the files
+# i am not using these things currently, so don't lay them down
 Library/Application Support/Sublime Text
+.config/rtk
 
 {{ if not .workMode -}}
 # ignore work specific files when not in workmode
@@ -20,7 +21,7 @@ Library/Application Support/Cursor
 {{- end }}
 
 {{ if ne .chezmoi.os "darwin" -}}
-# ignore darwin specific files
+# this is LINUX, so ignore darwin specific files
 .chezmoiscripts/darwin/**
 .config/zsh/rc.d/40-brew.zsh
 .config/{1Password,cmux,ghostty,homebrew,k9s,raycast,zed}
@@ -28,6 +29,6 @@ Library/Application Support/Cursor
 .local/bin/system-update
 Library
 {{- else if ne .chezmoi.os "linux" -}}
-# ignore linux specific files
+# this is MACOS, so ignore linux specific files
 .chezmoiscripts/linux/**
 {{- end }}

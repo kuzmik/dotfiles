@@ -146,5 +146,3 @@ status scaffolding is longer than the answer:
 
 - Never commit to main/master; if user asks for a commit and we're on the default branch, prompt to create a branch and bail out
 - When writing commit messages, be detailed about the changes
-
-@RTK.md

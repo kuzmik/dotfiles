@@ -48,7 +48,6 @@ compdef vman="man"
 # +---------+
 
 # setopt GLOB_COMPLETE      # Show autocompletion menu with globs
-setopt MENU_COMPLETE        # Automatically highlight first element of completion menu
 setopt AUTO_LIST            # Automatically list choices on ambiguous completion.
 setopt COMPLETE_IN_WORD     # Complete from both ends of a word.
 
@@ -73,15 +72,15 @@ zle -C alias-expension complete-word _generic
 bindkey '^Xa' alias-expension
 zstyle ':completion:alias-expension:*' completer _expand_alias
 
-# Allow you to select in a menu
-zstyle ':completion:*' menu select
+# fzf-tab replaces the native menu; it asks for menu off
+zstyle ':completion:*' menu no
 
 # Autocomplete options for cd instead of directory stack
 zstyle ':completion:*' complete-options true
 zstyle ':completion:*' file-sort modification
 
 zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
-zstyle ':completion:*:*:*:*:descriptions' format '%F{blue}-- %D %d --%f'
+zstyle ':completion:*:*:*:*:descriptions' format '[%d]'   # fzf-tab uses this for group headers; no %F colors
 zstyle ':completion:*:*:*:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:*:*:*:warnings' format ' %F{red}-- no matches found --%f'
 # zstyle ':completion:*:default' list-prompt '%S%M matches%s'
@@ -96,6 +95,9 @@ zstyle ':completion:*:complete:git:argument-1:' tag-order !aliases
 # Required for completion to be in good groups (named after the tags)
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:*:-command-:*:*' group-order aliases builtins functions commands
+
+# Hide macOS system accounts (_teamsserver, _www, ...) from user/cd completion
+zstyle ':completion:*:users' ignored-patterns '_*'
 
 # Hide autoloaded completion helpers (_elinks, _elfdump, _gcloud-secrets-*, etc.)
 # from the "functions" tag so they don't pollute command completion.
@@ -113,9 +115,13 @@ if [ -d "$XDG_DATA_HOME/mise/installs/gcloud" ]; then
   . "$XDG_DATA_HOME/mise/installs/gcloud/latest/completion.zsh.inc"
 fi
 
+# fzf-tab: reuse FZF_DEFAULT_OPTS bindings, and < / > to switch groups
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
 # ps/kill completion
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
-zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview '[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview '[[ $group == "[process ID]" ]] && ps -p $word -o command= -ww'
 zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
 
 # Homebrew
@@ -143,9 +149,15 @@ if (( $+commands[fzf] )); then
     export FZF_DEFAULT_COMMAND="rg --files --hidden --follow"
   fi
 
-  # Ctrl-T: insert file paths at the cursor (preview via bat)
-  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-  export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers -- {}'"
+  # Ctrl-T: insert file or dir paths at the cursor (preview via bat / tree).
+  # fd, not rg: rg exits 2 on unreadable dirs (~/.Trash, TCC-protected
+  # ~/Library paths), which fzf reports as "Command failed".
+  if (( $+commands[fd] )); then
+    export FZF_CTRL_T_COMMAND="fd --type f --type d --hidden --follow --exclude .git"
+  else
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  fi
+  export FZF_CTRL_T_OPTS="--preview '[[ -d {} ]] && tree -C {} | head -100 || bat --color=always --style=numbers -- {}'"
 
   # Alt-C: fuzzy-cd into a subdirectory (preview its tree)
   if (( $+commands[fd] )); then

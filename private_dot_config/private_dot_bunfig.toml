@@ -1,0 +1,6 @@
+# ~/.config/.bunfig
+
+telemetry = false
+
+[install]
+globalBinDir = "/Users/nick/.local/bin"
