@@ -78,7 +78,7 @@ sub defc {
 
 sub defm {
     my($attr) = shift || \%attr;
-    $attr->{bold} = $attr->{underline} = 
+    $attr->{bold} = $attr->{underline} =
       $attr->{blink} = $attr->{reverse} = 0;
 }
 
@@ -100,10 +100,10 @@ sub emit {
 	# do nothing
     }
     else {
-	
+
 	if ($opt_html) {
 	    my %class;
-	    
+
 	    for (@bols) {
 		$class{$_}++ if $attr{$_};
 	    }
@@ -127,19 +127,19 @@ sub emit {
 			 );
 
 	    $elem{0}++ if @clear;
-	
+
 	    for (@bols) {
-		$elem{$base{$_}}++ 
+		$elem{$base{$_}}++
 		  if $attr{$_} && ($old{$_} != $attr{$_} || $elem{0});
 	    }
-	    
+
 	    for (@nums) {
 		$elem{$base{$_}+$attr{$_}}++
 		  if $attr{$_} >= 0 && ($old{$_} != $attr{$_} || $elem{0});
 	    }
-	    
+
 	    @elem = sort {$a<=>$b} keys %elem;
-	    
+
 	    if (@elem) {
 		@elem = () if @elem == 1 && !$elem[0];
 		printf "\e[%sm", join ";", @elem;
@@ -192,14 +192,14 @@ while (<>) {
 	if (s/^\cB//) {
 	    # toggle bold
 	    $attr{bold} = !$attr{bold};
-	
+
 	} elsif (s/^\cC//) {
 	    # mirc colors
 
 	    if (/^[^\d,]/) {
 		defc;
 	    } else {
-		
+
 		if (s/^(\d\d?)//) {
 		    $attr{fgc} = $mc[$1 % 16];
 		    $attr{fgh} = $mh[$1 % 16];

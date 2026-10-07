@@ -50,7 +50,7 @@ Driven by the Brewfile at `~/.config/homebrew/Brewfile`, installed via `brew bun
 
 The install script re-fires whenever the Brewfile changes, via a hash comment at the top. Note that `brew bundle` only ever adds; run `brew bundle cleanup --file=~/.config/homebrew/Brewfile` by hand to prune anything no longer listed.
 
-### Debian 
+### Debian
 
 Edit `packages.debian` in `.chezmoidata/packages.yml`, run `chezmoi apply`. The install script templates the whole list into one `apt install`, so adding a package changes the rendered script and the `run_onchange_` re-fires on its own.
 
@@ -67,13 +67,13 @@ TBD I GUESS
 
 `workMode` gets prompted once at init and gates a decent amount of code in both directions.
 
-Only laid down **in** work mode: 
+Only laid down **in** work mode:
 - gcloud and Kubernetes configs
 - work-only brews and Mac App Store apps
 - a couple of Raycast scripts
 - the custom npm/npq zsh config.
 
-Only laid down **outside** work mode: 
+Only laid down **outside** work mode:
 - the `op` config
 - my personal SSH config
 - the casks that Jamf already manages on the work laptop (1Password).

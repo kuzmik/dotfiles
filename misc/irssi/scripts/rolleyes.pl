@@ -1,6 +1,6 @@
 #! /usr/bin/perl
 
-# rolleyes.pl | v0.01-IRSSI 
+# rolleyes.pl | v0.01-IRSSI
 # Ported to irssi from xchat perl
 
 # Written by Patrick "octalc0de" Xia

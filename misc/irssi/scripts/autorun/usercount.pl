@@ -62,7 +62,7 @@ sub usercount {
           Irssi::EXPAND_FLAG_IGNORE_EMPTY);
     my $halfopstr = $theme->format_expand("{sb_uc_halfops $halfops}",
           Irssi::EXPAND_FLAG_IGNORE_EMPTY);
-    my $voicestr = $theme->format_expand("{sb_uc_voices $voices}", 
+    my $voicestr = $theme->format_expand("{sb_uc_voices $voices}",
           Irssi::EXPAND_FLAG_IGNORE_EMPTY);
     my $normalstr = $theme->format_expand("{sb_uc_normal $normal}",
           Irssi::EXPAND_FLAG_IGNORE_EMPTY);
@@ -117,7 +117,7 @@ sub calc_users() {
   }
 
   $total = $ops+$halfops+$voices+$normal;
-  
+
   if (!Irssi::settings_get_bool('usercount_show_zero')) {
     $ircops = undef if ($ircops == 0);
     $ops = undef if ($ops == 0);
@@ -126,7 +126,7 @@ sub calc_users() {
     $normal = undef if ($normal == 0);
   }
 
-  # Server doesn't support halfops? 
+  # Server doesn't support halfops?
   if($server->isupport("PREFIX") !~ /\%/) {
      $halfops = undef;
   } else {
@@ -152,7 +152,7 @@ sub refresh_check {
    return if $wi->{name} ne $channel->{name};
    return if $wi->{server}->{tag} ne $channel->{server}->{tag};
 
-   # don't refresh immediately, or we'll end up refreshing 
+   # don't refresh immediately, or we'll end up refreshing
    # a lot around netsplits
    $recalc = 1;
    Irssi::timeout_remove($timeout_tag) if ($timeout_tag > 0);

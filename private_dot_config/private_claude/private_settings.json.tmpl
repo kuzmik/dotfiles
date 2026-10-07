@@ -43,9 +43,10 @@
           }
         ]
       }
-    ],
+    ]
     {{- end }}
-    {{ if lookPath "herdr" }}
+    {{- if lookPath "herdr" }}
+    {{- if lookPath "atuin" }},{{ end }}
     "SessionStart": [
       {
         "matcher": "^(startup|resume|clear|compact|fork)$",
