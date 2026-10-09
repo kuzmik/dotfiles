@@ -13,7 +13,7 @@ scrollback-limit = 10000000000
 shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
 window-new-tab-position = end
 window-subtitle = working-directory
-working-directory = inherit
+working-directory = home
 
 # MacOS specific settings
 macos-option-as-alt = true
