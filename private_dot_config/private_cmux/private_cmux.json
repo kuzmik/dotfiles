@@ -280,14 +280,7 @@
     "when": {}
   },
   "sidebar": {
-    "beta": {
-      "workspaceTodos": {
-        "checklistStyle": "popover",
-        "controls": {
-          "enabled": false
-        }
-      }
-    },
+    "beta": {},
     "branchLayout": "vertical",
     "hideAllDetails": false,
     "loadingSpinnerPosition": "leading",

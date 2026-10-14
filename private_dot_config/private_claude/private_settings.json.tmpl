@@ -66,17 +66,19 @@
     "command": "starship statusline claude-code"
   },
   "enabledPlugins": {
+    {{- if .workMode }}
+    "watch-pr@persona-claude-marketplace": true,
+    "whiteboard@persona-claude-marketplace": true,
+    {{ end }}
     "frontend-design@claude-plugins-official": true,
     "ruby-lsp@claude-plugins-official": true,
     "session-report@claude-plugins-official": true,
-    {{- if .workMode }}
-    "watch-pr@persona-claude-marketplace": true,
-    {{- end }}
     "superpowers@claude-plugins-official": true
   },
   "disableDeepLinkRegistration": "disable",
   "extraKnownMarketplaces": {},
   "effortLevel": "high",
+  "model": "sonnet",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark-ansi",
   "verbose": true,
