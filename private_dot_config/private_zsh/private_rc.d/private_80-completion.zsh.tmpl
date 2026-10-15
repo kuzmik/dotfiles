@@ -118,6 +118,10 @@ fi
 # fzf-tab: reuse FZF_DEFAULT_OPTS bindings, and < / > to switch groups
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 zstyle ':fzf-tab:*' switch-group '<' '>'
+# fzf-tab sizes itself via ${FZF_TMUX_HEIGHT:=...} without a local, so the
+# first completion's height (e.g. 3 lines for one match) sticks for the whole
+# session. Pin it so every popup gets a usable height.
+export FZF_TMUX_HEIGHT=60%
 
 # ps/kill completion
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
