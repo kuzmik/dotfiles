@@ -7,37 +7,41 @@ set -Eeuox pipefail
 ## install yay
 sudo pacman -Sy --needed git base-devel
 
-pushd `mktemp -d`
-    ## this doesnt work due to arch being too new, so we gotta compile i guess
-    # git clone https://aur.archlinux.org/paru-bin.git paru-bin
-    # pushd paru-bin
-    #     makepkg -si --noconfirm
-    # popd
-    #
-    # sudo pacman -Rns paru-bin
-    # git clone https://aur.archlinux.org/paru.git
-    # cd ~/build/paru && makepkg -si
-    #
-    # git clone https://aur.archlinux.org/yay.git \
-    #   && cd yay \
-    #   && makepkg -si
+pushd $(mktemp -d)
+## this doesnt work due to arch being too new, so we gotta compile i guess
+# git clone https://aur.archlinux.org/paru-bin.git paru-bin
+# pushd paru-bin
+#     makepkg -si --noconfirm
+# popd
+#
+# sudo pacman -Rns paru-bin
+# git clone https://aur.archlinux.org/paru.git
+# cd ~/build/paru && makepkg -si
+#
+# git clone https://aur.archlinux.org/yay.git \
+#   && cd yay \
+#   && makepkg -si
 popd
 
 # other stuff, i dont have an arch machine handy right now
+# yay/paru install blah blah blah
 
-{{ else if eq .osid "linux-debian" }}
-# debian specific preparation
+{{ else if or (eq .osid "linux-debian") (eq .osid "linux-ubuntu") }}
+# debian/ubuntu specific preparation (1password's apt repo path is "debian" for both)
+
+sudo apt update
+sudo apt install gpg git -y
 
 ## setup the debian repo for the 1password cli
-curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
-    sudo gpg --dearmor --yes --output /usr/share/keyrings/1password-archive-keyring.gpg && \
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" | \
-    sudo tee /etc/apt/sources.list.d/1password.list && \
-    sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/ && \
-    curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | \
-    sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol && \
-    sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22 && \
-    curl -sS https://downloads.1password.com/linux/keys/1password.asc | \
+curl -sS https://downloads.1password.com/linux/keys/1password.asc |
+    sudo gpg --dearmor --yes --output /usr/share/keyrings/1password-archive-keyring.gpg &&
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/$(dpkg --print-architecture) stable main" |
+    sudo tee /etc/apt/sources.list.d/1password.list &&
+    sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22/ &&
+    curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol |
+    sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol &&
+    sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22 &&
+    curl -sS https://downloads.1password.com/linux/keys/1password.asc |
     sudo gpg --dearmor --yes --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
 
 ## install extrepo and enable mise
@@ -45,15 +49,15 @@ sudo apt install -y extrepo
 sudo extrepo enable mise
 
 sudo apt update
-sudo apt install mise 1password-cli -y
+sudo apt install age mise 1password-cli -y
 {{ end }}
 
 if [ ! -f ~/.config/chezmoi/age-key.txt ]; then
-  # dump the age key to the chezmoi config directory
-  eval "$(op signin)"
+    # dump the age key to the chezmoi config directory
+    eval "$(op signin)"
 
-  op read --account=my.1password.com "op://personal/chezmoi age key/private key" > ~/.config/chezmoi/age-key.txt
-  chmod 600 ~/.config/chezmoi/age-key.txt
+    op read --account=my.1password.com "op://personal/chezmoi age key/private key" > ~/.config/chezmoi/age-key.txt
+    chmod 600 ~/.config/chezmoi/age-key.txt
 fi
 
 # fix the remote URL for the dotfiles repo since it's HTTPS by default

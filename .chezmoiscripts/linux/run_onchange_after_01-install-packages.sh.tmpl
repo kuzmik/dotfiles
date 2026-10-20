@@ -1,8 +1,7 @@
 #!/usr/bin/bash
 set -euo pipefail
 
-{{ if eq .osid "linux-debian" -}}
-sudo apt update
+{{ if or (eq .osid "linux-debian") (eq .osid "linux-ubuntu") }}
 
 {{- $pkgs := list }}
 {{ range .packages.debian }}{{ $pkgs = append $pkgs .name }}{{ end }}
