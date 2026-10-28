@@ -400,5 +400,4 @@ columns = ["duration", "time", "host", "directory", "command"]
 ## ---------------------------------------------------------------------------
 
 [logs]
-enabled = false
 dir = "$XDG_CACHE_HOME/atuin/logs"

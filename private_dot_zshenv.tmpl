@@ -23,6 +23,7 @@ export HISTFILE="${ZDOTDIR}/history"
 ##
 ## configs
 ##
+export ATUIN_CONFIG_DIR="${XDG_CONFIG_HOME}/atuin"
 export AWS_CONFIG_FILE="${XDG_CONFIG_HOME}/aws/config"
 export AWS_SHARED_CREDENTIALS_FILE="${XDG_CONFIG_HOME}/aws/credentials"
 export BUNDLE_USER_CONFIG="${XDG_CONFIG_HOME}/bundle"
@@ -75,6 +76,7 @@ export UV_CACHE_DIR="${XDG_CACHE_HOME}/uv"
 ##
 ## states
 ##
+export ATUIN_HOME="${XDG_STATE_HOME}/atuin"
 export ANSIBLE_HOME="${XDG_STATE_HOME}/ansible"
 export LESSHISTFILE="${XDG_STATE_HOME}/less_history"
 export MYSQL_HISTFILE="${XDG_STATE_HOME}/mysql_history"
@@ -107,11 +109,7 @@ export LC_COLLATE=C
 ## editors
 ##
 export EDITOR="nvim"
-{{- if .workMode }}
-export GUI_EDITOR="cursor"
-{{- else }}
 export GUI_EDITOR="zed"
-{{- end }}
 
 ##
 ## color output for BSD userland tools
@@ -125,14 +123,6 @@ export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 export HOMEBREW_NO_ASK=1
 export HOMEBREW_NO_ENV_HINTS=1
 
-{{ if .workMode -}}
-##
-## work specific stuff
-##
-export USE_GKE_GCLOUD_AUTH_PLUGIN="True"
-export OP_ACCOUNT=withpersona.1password.com
-{{- end }}
-
 ##
 ## PATH
 ##
@@ -143,9 +133,4 @@ export OP_ACCOUNT=withpersona.1password.com
 export PATH="${HOME}/.local/bin:${XDG_DATA_HOME}/mise/shims:${PATH}:/usr/local/bin"
 typeset -U path PATH
 
-{{ if .workMode -}}
-# gcloud SDK PATH via mise (wanted non-interactively too, e.g. scripts calling gcloud)
-if [ -d "${XDG_DATA_HOME}/mise/installs/gcloud" ]; then
-  . "${XDG_DATA_HOME}/mise/installs/gcloud/latest/path.zsh.inc"
-fi
-{{- end }}
+
