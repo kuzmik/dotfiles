@@ -32,3 +32,10 @@ Library
 # this is MACOS, so ignore linux specific files
 .chezmoiscripts/linux/**
 {{- end }}
+
+{{ if not .devTools -}}
+# devTools is off, so skip language/toolchain/editor config
+.config/{gem,irb,mise,npm,nvim,pry,terraform,uv,zed}
+.config/zsh/rc.d/75-npm.zsh
+.config/.bunfig.toml
+{{- end }}

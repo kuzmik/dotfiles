@@ -8,34 +8,39 @@ brew "bat"
 brew "chezmoi"
 brew "coreutils" # installing posix utils because macos (bsd) ls and sed suck
 brew "curl"
-brew "direnv"
 brew "duti"
 brew "fd"
 brew "fzf"
 brew "git"
-brew "git-delete-merged-branches"
 brew "git-delta"
 brew "git-lfs"
 brew "gnu-sed"
 brew "jq"
 brew "mas"
-brew "mise"
-brew "neovim"
 brew "ripgrep"
 brew "sheldon"
-brew "shellcheck"
-brew "shfmt"
 brew "starship"
 brew "tree"
 brew "watch"
 brew "wget"
 
 cask "1password-cli"
+
+{{ if .devTools -}}
+# development tooling, skipped when devTools is off
+brew "direnv"
+brew "git-delete-merged-branches"
+brew "mise"
+brew "neovim"
+brew "shellcheck"
+brew "shfmt"
+
 cask "claude-code"
 cask "cursor"
 cask "orbstack"
 cask "sublime-text"
 cask "zed"
+{{- end }}
 
 {{ if not .workMode -}}
 # 1password is managed by jamf on my work laptop so this will always fail

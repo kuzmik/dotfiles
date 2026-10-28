@@ -33,3 +33,4 @@ data:
     computerName: {{ promptStringOnce . "computerName" "Computer name" | quote }}
     osid: {{ includeTemplate "osid" . }}
     workMode: {{ promptBoolOnce . "work" "Work mode enabled" false }}
+    devTools: {{ promptBoolOnce . "devTools" "Install devtools" true }}
