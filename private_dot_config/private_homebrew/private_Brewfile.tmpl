@@ -36,9 +36,9 @@ brew "shellcheck"
 brew "shfmt"
 
 cask "claude-code"
-cask "cursor"
+# cask "cursor"
 cask "orbstack"
-cask "sublime-text"
+# cask "sublime-text"
 cask "zed"
 {{- end }}
 
@@ -50,10 +50,6 @@ cask "1password"
 # cask "sanyam-g/switch/switch", trusted: true
 {{- end }}
 
-mas "Anybox", id: 1593408455
-# mas "Peek", id: 1554235898
-# mas "Xcode", id: 497799835
-
 {{ if .workMode -}}
 # Work specific stuff that I don't want to install on my personal macs
 
@@ -62,7 +58,6 @@ brew "k9s"
 brew "kubectx"
 brew "kubie"
 brew "libyaml"
-brew "openssl@3"
 brew "semgrep"
 brew "shared-mime-info"
 brew "sipcalc"
@@ -74,3 +69,7 @@ cask "raycast"
 mas "GoLinks", id: 1478821913
 mas "Numbers", id: 409203825
 {{- end }}
+
+mas "Anybox", id: 1593408455
+# mas "Peek", id: 1554235898
+# mas "Xcode", id: 497799835

@@ -11,10 +11,10 @@ eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 # bundle install the packages from the Brewfile in ~/.config/homebrew.
 # this has to pass --file explicitly as --global resolves via HOMEBREW_BUNDLE_FILE_GLOBAL
 # and XDG_CONFIG_HOME... neither of which are set during a fresh bootstrap.
-brew bundle install --file="${HOME}/.config/homebrew/Brewfile" --jobs auto
+brew bundle install --file="${HOME}/.config/homebrew/Brewfile"
 
 # symlink the zed cli if zed is installed
 if [ -d "/Applications/Zed.app" ]; then
-  ln -sf "/Applications/Zed.app/Contents/MacOS/cli" "$(brew --prefix)/bin/zed"
+    ln -sf "/Applications/Zed.app/Contents/MacOS/cli" "$(brew --prefix)/bin/zed"
 fi
 {{- end }}
